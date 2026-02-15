@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function(){
             <li>Guided workouts</li>
             <li>Full supervision</li>
           </ul>
-          <p><strong>Personal Training:</strong> ₹35,000 extra</p>
+          
         `;
       }
 
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function(){
             <li>Accountability tracking</li>
             <li>Habit rebuilding</li>
           </ul>
-          <p><strong>Personal Training:</strong> ₹60,000 extra</p>
+          
         `;
       }
 
