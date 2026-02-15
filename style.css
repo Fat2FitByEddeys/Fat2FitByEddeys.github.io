@@ -9,6 +9,7 @@ box-sizing:border-box;
 }
 
 body{
+padding-top: 4%;
 font-family:'Space Grotesk',sans-serif;
 background:#000;
 color:white;
@@ -1265,5 +1266,160 @@ color:white;
   .lightbox-content img,
   .lightbox-content video {
     max-height: 70vh;
+  }
+}
+/* ============================= */
+/* CONTACT SECTION */
+/* ============================= */
+
+.contact-section {
+  background: #000;
+  padding: 120px 80px;
+  text-align: center;
+}
+
+.contact-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.contact-title {
+  font-family: 'Anton', sans-serif;
+  font-size: 70px;
+  line-height: 1.1;
+  color: white;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+
+.contact-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-btn {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 16px 32px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.contact-btn:hover {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 80px 20px;
+  }
+
+  .contact-title {
+    font-size: 40px;
+    line-height: 1.2;
+  }
+
+  .contact-subtitle {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .contact-btn {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+/* ============================= */
+/* PAYMENT SECTION */
+/* ============================= */
+
+.payment-section {
+  background: #f2f2f2;
+  padding: 120px 80px;
+  text-align: center;
+}
+
+.payment-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.payment-title {
+  font-family: 'Anton', sans-serif;
+  font-size: 70px;
+  line-height: 1.1;
+  color: #000;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+
+.payment-subtitle {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.payment-cta-btn {
+  background: #000;
+  color: #fff;
+  border: 2px solid #000;
+  padding: 16px 40px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.payment-cta-btn:hover {
+  background: transparent;
+  color: #000;
+  border-color: #000;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  .payment-section {
+    padding: 80px 20px;
+  }
+
+  .payment-title {
+    font-size: 40px;
+    line-height: 1.2;
+  }
+
+  .payment-subtitle {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .payment-cta-btn {
+    width: 100%;
+    max-width: 320px;
   }
 }

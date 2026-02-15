@@ -71,10 +71,10 @@ document.addEventListener("DOMContentLoaded", function(){
         details.innerHTML = `
           <h3>Program Includes</h3>
           <ul>
-            <li>Fixed daily routine</li>
-            <li>Controlled meals</li>
-            <li>Guided workouts</li>
-            <li>Full supervision</li>
+           <li>Stay format: Single Accommodation / Shared Accommodation.</li>
+            <li>Daily rhythm includes guided workouts, monitored walks, and coach-led check-ins.</li>
+            <li>Every meal is controlled and planned for consistency and metabolic response.</li>
+            <li>Lifestyle discipline rules are actively monitored to maintain program outcomes.</li>
           </ul>
           <p><strong>Personal Training:</strong> ₹35,000 extra</p>
         `;
@@ -85,10 +85,12 @@ document.addEventListener("DOMContentLoaded", function(){
         details.innerHTML = `
           <h3>Program Includes</h3>
           <ul>
-            <li>Full lifestyle reset</li>
-            <li>Structured environment</li>
-            <li>Accountability tracking</li>
-            <li>Habit rebuilding</li>
+           <li>Stay format: Single Accommodation / Shared Accommodation.</li>
+            <li>Progressive movement plan from low baseline to high-capacity walk endurance.</li>
+            <li>Strict routine, high supervision, and accountability-led daily structure.</li>
+            <li>Comprehensive transformation support focused on lifestyle and measurable health markers.</li>
+            
+            
           </ul>
           <p><strong>Personal Training:</strong> ₹60,000 extra</p>
         `;
