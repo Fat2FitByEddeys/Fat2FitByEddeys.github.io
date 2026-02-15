@@ -126,7 +126,7 @@ font-size:18px;
 .hero{
 position:relative;
 height:100vh;
-background:url("assets/CoverImage") center/cover no-repeat;
+background:url("assets/CoverImage.jpeg") center/cover no-repeat;
 display:flex;
 align-items:center;
 padding:80px;
