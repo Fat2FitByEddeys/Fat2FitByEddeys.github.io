@@ -1,0 +1,382 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FAT-TO-FIT</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+   <header class="nav">
+
+  <div class="logo">FAT-TO-FIT</div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- MENU -->
+  <nav class="menu" id="menu">
+    <a href="#home">Home</a>
+    <a href="#programs">Programs</a>
+    <a href="#testimonials">Transformations</a>
+    <a href="#coach">About Coach</a>
+    <a href="#about">About</a>
+    <a href="#contact" class="nav-btn">Book Now</a>
+  </nav>
+
+</header>
+
+
+
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1>
+          THIS IS <br />
+          NOT A <br />
+          HOLIDAY.
+        </h1>
+
+        <p class="tag">THIS IS A WEIGHT LOSS FAT-TO-FIT.</p>
+
+        <p class="desc">
+          You are here because you are stuck. We don't sell motivation. We sell
+          discipline. Routine. Consistency.
+        </p>
+
+        <div class="hero-buttons">
+
+  <button class="hero-btn secondary open-calendly">
+  Know More / Plan a Slot
+</button>
+
+
+  <a href="#contact" class="hero-btn primary">
+    Book a Slot
+  </a>
+
+</div>
+
+      </div>
+    </section>
+
+    <!-- POPUP MODAL -->
+    <div id="popupOverlay" class="popup-overlay">
+      <div class="popup-box">
+        <span class="close-popup">&times;</span>
+
+        <h2>Transform Your Life in the Hills</h2>
+
+        <p>
+          Join our structured wellness transformation program designed to help
+          you lose weight, FAT-TO-FIT your lifestyle, and build long-term
+          healthy habits in a peaceful retreat environment.
+        </p>
+
+        <div class="popup-buttons">
+          <button class="btn-primary open-calendly">Know More</button>
+
+          <a href="#booking" class="popup-btn primary"> Book a Slot </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHILOSOPHY -->
+    <section class="light section">
+      <div class="split">
+        <div>
+          <p class="mini">[ THE PHILOSOPHY ]</p>
+          <h2>WHY WE WORK<br />(AND OTHERS DON'T)</h2>
+        </div>
+
+        <div class="terminal">
+          <p>> Decision fatigue is the enemy.</p>
+          <p>> Every meal accounted for.</p>
+          <p>> Structure drives results.</p>
+        </div>
+      </div>
+    </section>
+
+   <section class="program-section" id="programs">
+
+  <div class="program-grid">
+
+    <!-- ===== 14 DAY PROGRAM ===== -->
+    <div class="room-card">
+
+  <img src="assets/room-1.jpeg" alt="14 day program">
+
+  <div class="card-content">
+
+    <h3>14 Days Transformation</h3>
+    <p class="card-sub">Lose up to 5 KG • Single Stay</p>
+
+    <div class="card-info">
+      <p><strong>Goal:</strong> Rapid body reset</p>
+      <p><strong>Duration:</strong> 14 Days structured routine</p>
+      <p><strong>Location:</strong> Hill retreat environment</p>
+    </div>
+
+    <ul class="card-features">
+      <li>Fixed daily schedule</li>
+      <li>Controlled nutrition plan</li>
+      <li>Guided workouts & walks</li>
+      <li>Full supervision</li>
+      <li>All meals included</li>
+    </ul>
+
+    <div class="card-rules">
+      <span>No alcohol</span>
+      <span>No smoking</span>
+      <span>No non-veg</span>
+      <span>No transport</span>
+    </div>
+
+  
+
+   <button class="view-room-btn" data-program="14">View Details</button>
+
+  </div>
+</div>
+
+
+    <!-- ===== 30 DAY PROGRAM ===== -->
+    <div class="room-card">
+
+  <img src="assets/room-2.jpeg" alt="30 day program">
+
+  <div class="card-content">
+
+    <h3>30 Days Transformation</h3>
+    <p class="card-sub">Lose up to 10 KG • Single Stay</p>
+
+    <div class="card-info">
+      <p><strong>Goal:</strong> Full lifestyle transformation</p>
+      <p><strong>Duration:</strong> 30 Days immersive program</p>
+      <p><strong>Focus:</strong> Metabolic reset + discipline</p>
+    </div>
+
+    <ul class="card-features">
+      <li>Deep body transformation</li>
+      <li>Structured environment</li>
+      <li>Accountability tracking</li>
+      <li>All meals included</li>
+      <li>Habit rebuilding system</li>
+    </ul>
+
+    <div class="card-rules">
+      <span>No alcohol</span>
+      <span>No smoking</span>
+      <span>No non-veg</span>
+      <span>No discounts</span>
+    </div>
+
+  
+
+   <button class="view-room-btn" data-program="30">View Details</button>
+
+  </div>
+</div>
+
+  </div>
+
+</section>
+
+
+<!-- ===== PROGRAM MODAL ===== -->
+<div id="programModal" class="program-modal">
+
+  <div class="program-modal-box">
+
+    <span class="close-program">&times;</span>
+
+    <h2 id="programTitle"></h2>
+
+    <div class="room-media">
+      <video muted autoplay loop playsinline>
+        <source src="assets/video-1.mp4" type="video/mp4">
+      </video>
+      <img src="assets/room-1.jpeg" alt="Room 1">
+      <img src="assets/room-2.jpeg" alt="Room 2">
+      <img src="assets/room-1.jpeg" alt="Room 1">
+      <img src="assets/room-3.jpeg" alt="Room 3">
+    </div>
+
+    <div id="programDetails" class="program-details"></div>
+
+    <button class="payment-btn">Make Payment</button>
+
+  </div>
+</div>
+
+<!-- LIGHTBOX MODAL -->
+<div id="lightboxModal" class="lightbox-overlay">
+  <div class="lightbox-container">
+    <span class="close-lightbox">&times;</span>
+    <button class="lightbox-prev">&#10094;</button>
+    <button class="lightbox-next">&#10095;</button>
+    
+    <div class="lightbox-content">
+      <img id="lightboxImage" src="" alt="">
+      <video id="lightboxVideo" controls muted>
+        <source src="" type="video/mp4">
+      </video>
+    </div>
+    
+    <div class="lightbox-counter"></div>
+  </div>
+</div>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script src="script.js"></script>
+
+    <!-- PROGRAMS -->
+    <section class="dark section">
+      <p class="mini center">[ THE PROGRAMS ]</p>
+      <h2 class="center">CHOOSE YOUR PROTOCOL</h2>
+
+      <div class="cards">
+        <div class="protocol">
+          <div class="number">01</div>
+          <p>TARGET</p>
+          <p>DURATION</p>
+          <p>STAY</p>
+        </div>
+
+        <div class="protocol">
+          <div class="number">02</div>
+          <p>TARGET</p>
+          <p>DURATION</p>
+          <p>STAY</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TERMS -->
+    <section class="light section">
+      <p class="mini">[ INCLUSIONS VS RULES ]</p>
+      <h2>THE TERMS OF ENGAGEMENT</h2>
+
+      <div class="terms">
+        <div class="white-box">
+          <h3>WHAT YOU GET</h3>
+          <ul>
+            <li>Fixed daily routine</li>
+            <li>Controlled meals</li>
+            <li>Guided movement</li>
+            <li>Structured stay</li>
+            <li>Accountability</li>
+          </ul>
+        </div>
+
+        <div class="black-box">
+          <h3>THE ABSOLUTES</h3>
+          <ul>
+            <li>No alcohol</li>
+            <li>No smoking</li>
+            <li>No non-veg</li>
+            <li>No transport</li>
+            <li>No discounts</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRANSFORMATIONS -->
+    <section class="dark section" id="testimonials">
+      <h2 class="center">REAL PEOPLE. REAL CHANGE.</h2>
+
+      <div class="people">
+        <div class="person">
+          <img src="assets/person-1.jpeg" />
+          <h4>Rohit</h4>
+          <p>Lost 12kg in 30 days</p>
+        </div>
+
+        <div class="person">
+          <img src="assets/person-2.jpeg" />
+          <h4>Ananya</h4>
+          <p>Rebuilt metabolism</p>
+        </div>
+
+        <div class="person">
+          <img src="assets/person-3.jpeg" />
+          <h4>Karan</h4>
+          <p>Full lifestyle FAT-TO-FIT</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="coach" class="coach-section">
+
+<div class="coach-container">
+
+  <div class="coach-image">
+    <img src="assets/coach.jpeg" alt="Coach">
+  </div>
+
+  <div class="coach-content">
+    <h2>ABOUT THE COACH</h2>
+
+    <p>
+    Our transformation programs are guided by an experienced wellness coach
+    dedicated to helping individuals rebuild discipline, reset metabolism,
+    and develop lifelong healthy habits.
+
+    With years of experience in structured fitness transformation,
+    the coaching philosophy focuses on routine, consistency, and
+    sustainable lifestyle change rather than temporary motivation.
+    </p>
+
+  </div>
+
+</div>
+
+</section>
+
+
+    <!-- ABOUT -->
+    <section class="light section center" id="about">
+      <h2>ABOUT THE FAT-TO-FIT</h2>
+      <p class="about">
+        A structured immersion program designed to remove decision fatigue,
+        rebuild metabolic health, and create permanent behavioural change.
+      </p>
+    </section>
+
+   <!-- CALENDLY MODAL -->
+<div id="calendlyModal" class="calendly-overlay">
+
+  <div class="calendly-container">
+
+    <span class="close-calendly">&times;</span>
+
+    <div class="calendly-inline-widget"
+         data-url="https://calendly.com/divyanshdwivedi110/30min">
+    </div>
+
+  </div>
+
+</div>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+
+
+    <script src="script.js"></script>
+  </body>
+</html>
