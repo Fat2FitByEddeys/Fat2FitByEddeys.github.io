@@ -33,8 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-
-/* ================= PROGRAM MODAL ================= */
 document.addEventListener("DOMContentLoaded", function(){
 
   const modal = document.getElementById("programModal");
@@ -78,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
           <h3>Accommodation</h3>
           <ul>
+            <li><strong>Tent Style Cottage</strong> - Non AC</li>
             <li>Comfortable private resort rooms</li>
             <li>Clean and hygienic facilities</li>
             <li>Peaceful mountain views</li>
@@ -86,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
           <h3>Meals & Nutrition</h3>
           <ul>
-            <li>3 healthy meals per day</li>
+            <li>3 healthy meals per day (Pure Veg)</li>
             <li>Balanced vegetarian diet</li>
             <li>Portion-controlled servings</li>
             <li>Fresh, locally sourced ingredients</li>
@@ -94,17 +93,24 @@ document.addEventListener("DOMContentLoaded", function(){
 
           <h3>What's Included</h3>
           <ul>
-            <li>All meals and accommodation</li>
-            <li>Group workout sessions (morning & evening)</li>
+            <li>Resort Stay with Breakfast, Lunch & Dinner (Pure Veg)</li>
+            <li>Group workout sessions & walks</li>
             <li>Initial health consultation</li>
             <li>Daily activity schedule</li>
-            <li>Resort amenities access</li>
-            <li>All taxes (GST included)</li>
+            <li>Facilities: WiFi, Swimming Pool, Badminton, Cafe, Sunset Point</li>
           </ul>
 
-          <h3>Duration Options</h3>
-          <p><strong>14 Days Program:</strong> Contact for pricing - GST Included</p>
-          <p><strong>30 Days Program:</strong> Contact for pricing - GST Included</p>
+          <h3>Pricing</h3>
+          <div style="background: rgba(44, 122, 63, 0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
+            <p style="font-size: 22px; margin-bottom: 15px;"><strong>14 Days Program:</strong> <span style="color: #2c7a3f; font-weight: 700;">₹60,000 + 18% GST</span></p>
+            <p style="font-size: 22px; margin-bottom: 0;"><strong>30 Days Program:</strong> <span style="color: #2c7a3f; font-weight: 700;">₹90,000 + 18% GST</span></p>
+          </div>
+
+          <h3>Special Discounts</h3>
+          <ul>
+            <li><strong>Shared Room with Activities:</strong> 10% discount on Grand Total</li>
+            <li><strong>Shared Room without Activities:</strong> 25% discount on Grand Total</li>
+          </ul>
           
           <p style="margin-top: 20px;"><em>Ideal for those seeking general wellness, relaxation, and a healthy lifestyle reset in a supportive group environment.</em></p>
         `;
@@ -136,6 +142,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
           <h3>Accommodation</h3>
           <ul>
+            <li><strong>Wooden Cottage</strong> - Non AC</li>
             <li>Premium private cottage with modern amenities</li>
             <li>Spacious and comfortable living space</li>
             <li>Private balcony with mountain views</li>
@@ -145,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
           <h3>Meals & Nutrition</h3>
           <ul>
-            <li>Customized meal plans based on goals</li>
+            <li>Customized meal plans based on goals (Pure Veg)</li>
             <li>Macro-balanced nutrition</li>
             <li>High-protein vegetarian options</li>
             <li>Nutritional counseling sessions</li>
@@ -162,9 +169,17 @@ document.addEventListener("DOMContentLoaded", function(){
             <li>Priority access to facilities</li>
           </ul>
 
-          <h3>Duration Options</h3>
-          <p><strong>14 Days Program:</strong> Contact for pricing + 5% GST</p>
-          <p><strong>30 Days Program:</strong> Contact for pricing + 5% GST</p>
+          <h3>Pricing</h3>
+          <div style="background: rgba(44, 122, 63, 0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
+            <p style="font-size: 22px; margin-bottom: 15px;"><strong>14 Days Program:</strong> <span style="color: #2c7a3f; font-weight: 700;">₹70,000 + 18% GST</span></p>
+            <p style="font-size: 22px; margin-bottom: 0;"><strong>30 Days Program:</strong> <span style="color: #2c7a3f; font-weight: 700;">₹1,25,000 + 18% GST</span></p>
+          </div>
+
+          <h3>Special Discounts</h3>
+          <ul>
+            <li><strong>Shared Room with Activities:</strong> 10% discount on Grand Total</li>
+            <li><strong>Shared Room without Activities:</strong> 25% discount on Grand Total</li>
+          </ul>
           
           <p style="margin-top: 20px;"><em>Perfect for those committed to serious health transformation with enhanced training, premium accommodation, and dedicated support.</em></p>
         `;
@@ -197,7 +212,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
           <h3>Luxury Accommodation</h3>
           <ul>
-            <li>Premium luxury cottage with top-tier amenities</li>
+            <li><strong>AC Cottage</strong> with premium amenities</li>
+            <li>Premium luxury cottage with top-tier facilities</li>
             <li>Spacious private living area</li>
             <li>Exclusive mountain-view terrace</li>
             <li>Premium bedding and furnishings</li>
@@ -207,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
           <h3>Specialized Meals & Nutrition</h3>
           <ul>
-            <li>Fully customized dietary plans</li>
+            <li>Fully customized dietary plans (Pure Veg)</li>
             <li>Meals designed for health recovery</li>
             <li>Specialized supplements (if needed)</li>
             <li>Personal nutritionist consultation</li>
@@ -235,13 +251,25 @@ document.addEventListener("DOMContentLoaded", function(){
             <li>Personal concierge service</li>
           </ul>
 
-          <h3>Duration Options</h3>
-          <p><strong>14 Days Program:</strong> Contact for pricing + 5% GST</p>
-          <p><strong>30 Days Program:</strong> Contact for pricing + 5% GST</p>
+          <h3>Pricing Options</h3>
+          <div style="background: rgba(44, 122, 63, 0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
+            <p style="font-size: 22px; margin-bottom: 15px;"><strong>14 Days Program:</strong> <span style="color: #2c7a3f; font-weight: 700;">₹1,00,000 + 18% GST</span></p>
+            <p style="font-size: 22px; margin-bottom: 15px;"><strong>30 Days Program (Non-Bathtub):</strong> <span style="color: #2c7a3f; font-weight: 700;">₹1,50,000 + 18% GST</span></p>
+            <p style="font-size: 22px; margin-bottom: 0;"><strong>30 Days Program (With Bathtub):</strong> <span style="color: #2c7a3f; font-weight: 700;">₹1,75,000 + 18% GST</span></p>
+          </div>
+
+          <h3>Special Discounts</h3>
+          <ul>
+            <li><strong>Shared Room with Activities:</strong> 10% discount on Grand Total</li>
+            <li><strong>Shared Room without Activities:</strong> 25% discount on Grand Total</li>
+          </ul>
           
-          <p style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-left: 4px solid #2c7a3f; border-radius: 5px;">
-            <strong>Note:</strong> This is our most comprehensive program designed for individuals requiring specialized attention for health recovery. Coach Aditya Sharma personally oversees every aspect of your transformation journey with maximum comfort and luxury.
-          </p>
+          <div style="margin-top: 30px; padding: 20px; background: rgba(44, 122, 63, 0.15); border-left: 5px solid #2c7a3f; border-radius: 8px;">
+            <p style="margin: 0; font-size: 19px; line-height: 1.9;">
+              <strong style="color: #2c7a3f; font-size: 21px;">📌 Important Note:</strong><br><br>
+              This is our most comprehensive program designed for individuals requiring specialized attention for health recovery. Coach Aditya Sharma personally oversees every aspect of your transformation journey with maximum comfort and luxury.
+            </p>
+          </div>
         `;
       }
 
@@ -262,7 +290,6 @@ document.addEventListener("DOMContentLoaded", function(){
   });
 
 });
-
 
 /* ================= LIGHTBOX GALLERY ================= */
 document.addEventListener("DOMContentLoaded", function() {
