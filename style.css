@@ -128,7 +128,7 @@ font-size:18px;
 .hero{
 position:relative;
 height:100vh;
-background:url("assets/WhatsApp Image 2026-02-12 at 3.07.20 PM.jpeg") center/cover no-repeat;
+background:url("assets/image.png") center/cover no-repeat;
 display:flex;
 align-items:center;
 padding:80px;
@@ -371,6 +371,16 @@ width:260px;
 height:320px;
 object-fit:cover;
 margin-bottom:15px;
+}
+
+.person-details-btn{
+  margin-top:15px;
+  padding:12px 20px;
+  border:1px solid white;
+  background:white;
+  color:black;
+  cursor:pointer;
+  border-radius:8px;
 }
 
 /* =========================
@@ -1421,5 +1431,348 @@ color:white;
   .payment-cta-btn {
     width: 100%;
     max-width: 320px;
+  }
+}
+
+/* ============================= */
+/* LOCATION SECTION */
+/* ============================= */
+
+.location-section {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.location-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header-center {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header-center h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: 60px;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.location-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.location-text p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.location-features {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.location-feature {
+  display: flex;
+  gap: 20px;
+  align-items: start;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.location-feature:hover {
+  background: #fff;
+  transform: translateX(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.location-feature .feature-icon {
+  font-size: 40px;
+}
+
+.location-feature h4 {
+  font-size: 20px;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.location-feature p {
+  font-size: 15px;
+  color: #666;
+  margin: 0;
+}
+
+.location-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.location-image {
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: 0.4s;
+}
+
+.location-image:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.location-image.main-image {
+  height: 350px;
+}
+
+.location-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.location-images-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.location-images-grid .location-image {
+  height: 180px;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  .section-header-center h2 {
+    font-size: 36px;
+  }
+
+  .location-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .location-image.main-image {
+    height: 250px;
+  }
+
+  .location-images-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .location-images-grid .location-image {
+    height: 200px;
+  }
+}
+
+/* ============================= */
+/* ROOM MEDIA - 2x2 GRID */
+/* ============================= */
+
+.room-media {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 25px;
+  margin-bottom: 30px;
+}
+
+.room-media img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.room-media img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .room-media {
+    grid-template-columns: 1fr;
+  }
+
+  .room-media img {
+    height: 220px;
+  }
+}
+
+/* ============================= */
+/* LIGHTBOX STYLING */
+/* ============================= */
+
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  animation: fadeIn 0.3s ease;
+}
+
+.lightbox-overlay.show {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lightbox-container {
+  position: relative;
+  width: 90%;
+  max-width: 1000px;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+  display: none;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-content img.active {
+  display: block;
+}
+
+/* CLOSE BUTTON */
+.close-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  z-index: 100;
+  transition: 0.3s;
+  background: rgba(0, 0, 0, 0.5);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-lightbox:hover {
+  background: white;
+  color: black;
+  transform: rotate(90deg);
+}
+
+/* NAVIGATION BUTTONS */
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 30px;
+  padding: 16px 20px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+  z-index: 100;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.lightbox-prev {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
+}
+
+/* COUNTER */
+.lightbox-counter {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 18px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  .lightbox-prev,
+  .lightbox-next {
+    font-size: 24px;
+    padding: 12px 16px;
+  }
+
+  .lightbox-prev {
+    left: 10px;
+  }
+
+  .lightbox-next {
+    right: 10px;
+  }
+
+  .close-lightbox {
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 32px;
+  }
+
+  .lightbox-content img {
+    max-height: 70vh;
+  }
+
+  .lightbox-counter {
+    bottom: 20px;
+    font-size: 16px;
+    padding: 8px 16px;
   }
 }

@@ -31,31 +31,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-
-  /* ================= CALENDLY ================= */
-  const calendlyModal = document.getElementById("calendlyModal");
-  const openBtns = document.querySelectorAll(".open-calendly");
-  const closeCalendly = document.querySelector(".close-calendly");
-
-  openBtns.forEach(btn=>{
-    btn.onclick = () => calendlyModal.classList.add("show");
-  });
-
-  closeCalendly.onclick = () => calendlyModal.classList.remove("show");
-
-  calendlyModal.onclick = (e)=>{
-    if(e.target === calendlyModal){
-      calendlyModal.classList.remove("show");
-    }
-  };
-
 });
+
+
+/* ================= PROGRAM MODAL ================= */
 document.addEventListener("DOMContentLoaded", function(){
 
   const modal = document.getElementById("programModal");
   const closeBtn = document.querySelector(".close-program");
   const title = document.getElementById("programTitle");
   const details = document.getElementById("programDetails");
+  const roomMedia = document.querySelector(".room-media");
 
   /* open modal */
   document.querySelectorAll(".view-room-btn").forEach(btn => {
@@ -66,33 +52,196 @@ document.addEventListener("DOMContentLoaded", function(){
 
       const type = this.dataset.program;
 
-      if(type === "14"){
-        title.innerText = "14 Days – 5 KG Reset Program";
+      if(type === "basic"){
+        title.innerText = "Basic Program - General Health Vacation";
+        
+        // UPDATE IMAGES FOR BASIC PROGRAM
+        roomMedia.innerHTML = `
+          <img src="assets/basicroom1.jpeg" alt="Basic accommodation">
+          <img src="assets/basicroom2.jpeg" alt="Basic room view">
+          <img src="assets/basicroom3.jpeg" alt="Basic facilities">
+          <img src="assets/basicroom4.jpeg" alt="Basic dining">
+        `;
+        
         details.innerHTML = `
-          <h3>Program Includes</h3>
+          <h3>Perfect For General Wellness</h3>
+          <p><strong>Who Should Join:</strong> Anyone looking for a general health vacation while enjoying private comfort at our resort.</p>
+          
+          <h3>Training & Workouts</h3>
           <ul>
-           <li>Stay format: Single Accommodation / Shared Accommodation.</li>
-            <li>Daily rhythm includes guided workouts, monitored walks, and coach-led check-ins.</li>
-            <li>Every meal is controlled and planned for consistency and metabolic response.</li>
-            <li>Lifestyle discipline rules are actively monitored to maintain program outcomes.</li>
+            <li><strong>Group Fitness Sessions:</strong> Daily morning and evening group workouts</li>
+            <li><strong>Yoga & Stretching:</strong> Flexibility and relaxation sessions</li>
+            <li><strong>Nature Walks:</strong> Guided treks through scenic mountain trails</li>
+            <li><strong>Outdoor Activities:</strong> Group exercises in fresh mountain air</li>
+            <li><strong>Wellness Workshops:</strong> Nutrition and healthy living sessions</li>
           </ul>
-          <p><strong>Personal Training:</strong> ₹35,000 extra</p>
+
+          <h3>Accommodation</h3>
+          <ul>
+            <li>Comfortable private resort rooms</li>
+            <li>Clean and hygienic facilities</li>
+            <li>Peaceful mountain views</li>
+            <li>Shared resort amenities</li>
+          </ul>
+
+          <h3>Meals & Nutrition</h3>
+          <ul>
+            <li>3 healthy meals per day</li>
+            <li>Balanced vegetarian diet</li>
+            <li>Portion-controlled servings</li>
+            <li>Fresh, locally sourced ingredients</li>
+          </ul>
+
+          <h3>What's Included</h3>
+          <ul>
+            <li>All meals and accommodation</li>
+            <li>Group workout sessions (morning & evening)</li>
+            <li>Initial health consultation</li>
+            <li>Daily activity schedule</li>
+            <li>Resort amenities access</li>
+            <li>All taxes (GST included)</li>
+          </ul>
+
+          <h3>Duration Options</h3>
+          <p><strong>14 Days Program:</strong> Contact for pricing - GST Included</p>
+          <p><strong>30 Days Program:</strong> Contact for pricing - GST Included</p>
+          
+          <p style="margin-top: 20px;"><em>Ideal for those seeking general wellness, relaxation, and a healthy lifestyle reset in a supportive group environment.</em></p>
         `;
       }
 
-      if(type === "30"){
-        title.innerText = "30 Days – 10 KG Transformation";
+      if(type === "premium"){
+        title.innerText = "Premium Program - Serious Goals & Private Cottages";
+        
+        // UPDATE IMAGES FOR PREMIUM PROGRAM
+        roomMedia.innerHTML = `
+          <img src="assets/premium1.jpeg" alt="Premium cottage exterior">
+          <img src="assets/premium2.jpeg" alt="Premium cottage interior">
+          <img src="assets/premium3.jpeg" alt="Premium facilities">
+          <img src="assets/premium4.jpeg" alt="Premium training area">
+        `;
+        
         details.innerHTML = `
-          <h3>Program Includes</h3>
+          <h3>For Serious Health Transformation</h3>
+          <p><strong>Who Should Join:</strong> Individuals serious about achieving health goals and making lasting lifestyle changes in premium private cottages.</p>
+          
+          <h3>Training & Workouts</h3>
           <ul>
-           <li>Stay format: Single Accommodation / Shared Accommodation.</li>
-            <li>Progressive movement plan from low baseline to high-capacity walk endurance.</li>
-            <li>Strict routine, high supervision, and accountability-led daily structure.</li>
-            <li>Comprehensive transformation support focused on lifestyle and measurable health markers.</li>
-            
-            
+            <li><strong>Enhanced Group Sessions:</strong> Intensive group training with advanced techniques</li>
+            <li><strong>Strength & Conditioning:</strong> Focused muscle-building and endurance training</li>
+            <li><strong>High-Intensity Workouts:</strong> HIIT and circuit training sessions</li>
+            <li><strong>Functional Training:</strong> Real-world movement patterns</li>
+            <li><strong>Progress Tracking:</strong> Weekly assessments and body composition analysis</li>
           </ul>
-          <p><strong>Personal Training:</strong> ₹60,000 extra</p>
+
+          <h3>Accommodation</h3>
+          <ul>
+            <li>Premium private cottage with modern amenities</li>
+            <li>Spacious and comfortable living space</li>
+            <li>Private balcony with mountain views</li>
+            <li>Enhanced privacy and comfort</li>
+            <li>Premium resort facilities access</li>
+          </ul>
+
+          <h3>Meals & Nutrition</h3>
+          <ul>
+            <li>Customized meal plans based on goals</li>
+            <li>Macro-balanced nutrition</li>
+            <li>High-protein vegetarian options</li>
+            <li>Nutritional counseling sessions</li>
+          </ul>
+
+          <h3>What's Included</h3>
+          <ul>
+            <li>Premium private cottage accommodation</li>
+            <li>Enhanced group training sessions</li>
+            <li>Lifestyle & nutrition coaching</li>
+            <li>Weekly progress assessments</li>
+            <li>All meals (customized plans)</li>
+            <li>Dedicated support team</li>
+            <li>Priority access to facilities</li>
+          </ul>
+
+          <h3>Duration Options</h3>
+          <p><strong>14 Days Program:</strong> Contact for pricing + 5% GST</p>
+          <p><strong>30 Days Program:</strong> Contact for pricing + 5% GST</p>
+          
+          <p style="margin-top: 20px;"><em>Perfect for those committed to serious health transformation with enhanced training, premium accommodation, and dedicated support.</em></p>
+        `;
+      }
+
+      if(type === "luxury"){
+        title.innerText = "Luxury Program - Personal Training & Ultimate Recovery";
+        
+        // UPDATE IMAGES FOR LUXURY PROGRAM
+        roomMedia.innerHTML = `
+          <img src="assets/luxury1.jpeg" alt="Luxury cottage exterior">
+          <img src="assets/luxury2.jpeg" alt="Luxury cottage interior">
+          <img src="assets/luxury3.jpeg" alt="Luxury amenities">
+          <img src="assets/luxury4.jpeg" alt="Personal training area">
+        `;
+        
+        details.innerHTML = `
+          <h3>Ultimate Health Recovery Experience</h3>
+          <p><strong>Who Should Join:</strong> Individuals with health issues seeking personalized recovery, luxury comfort, and one-on-one training with Coach Aditya Sharma.</p>
+          
+          <h3>Personal Training with Coach Aditya Sharma</h3>
+          <ul>
+            <li><strong>1-on-1 Training Sessions:</strong> Daily personal training exclusively with Coach Aditya</li>
+            <li><strong>Customized Programs:</strong> Tailored specifically to your health condition</li>
+            <li><strong>Rehabilitation Focus:</strong> Specialized exercises for injury recovery</li>
+            <li><strong>Medical Monitoring:</strong> Continuous health assessment and adaptation</li>
+            <li><strong>Psychological Support:</strong> Counseling for mindset and motivation</li>
+            <li><strong>24/7 Availability:</strong> Coach Aditya's direct support throughout your stay</li>
+          </ul>
+
+          <h3>Luxury Accommodation</h3>
+          <ul>
+            <li>Premium luxury cottage with top-tier amenities</li>
+            <li>Spacious private living area</li>
+            <li>Exclusive mountain-view terrace</li>
+            <li>Premium bedding and furnishings</li>
+            <li>Personal butler service</li>
+            <li>Ultimate privacy and comfort</li>
+          </ul>
+
+          <h3>Specialized Meals & Nutrition</h3>
+          <ul>
+            <li>Fully customized dietary plans</li>
+            <li>Meals designed for health recovery</li>
+            <li>Specialized supplements (if needed)</li>
+            <li>Personal nutritionist consultation</li>
+            <li>Gourmet healthy cuisine</li>
+          </ul>
+
+          <h3>Medical & Wellness Support</h3>
+          <ul>
+            <li>Initial comprehensive health assessment</li>
+            <li>Regular medical check-ups</li>
+            <li>Blood work and vitals monitoring</li>
+            <li>Physiotherapy sessions (if required)</li>
+            <li>Stress management & mental wellness</li>
+          </ul>
+
+          <h3>What's Included</h3>
+          <ul>
+            <li>Luxury cottage accommodation</li>
+            <li>Daily 1-on-1 training with Coach Aditya Sharma</li>
+            <li>Personalized health recovery program</li>
+            <li>Medical consultation & monitoring</li>
+            <li>All meals (specialized diet plans)</li>
+            <li>24/7 dedicated support</li>
+            <li>Priority access to all facilities</li>
+            <li>Personal concierge service</li>
+          </ul>
+
+          <h3>Duration Options</h3>
+          <p><strong>14 Days Program:</strong> Contact for pricing + 5% GST</p>
+          <p><strong>30 Days Program:</strong> Contact for pricing + 5% GST</p>
+          
+          <p style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-left: 4px solid #2c7a3f; border-radius: 5px;">
+            <strong>Note:</strong> This is our most comprehensive program designed for individuals requiring specialized attention for health recovery. Coach Aditya Sharma personally oversees every aspect of your transformation journey with maximum comfort and luxury.
+          </p>
         `;
       }
 
@@ -114,12 +263,12 @@ document.addEventListener("DOMContentLoaded", function(){
 
 });
 
+
 /* ================= LIGHTBOX GALLERY ================= */
 document.addEventListener("DOMContentLoaded", function() {
 
   const lightbox = document.getElementById("lightboxModal");
   const lightboxImage = document.getElementById("lightboxImage");
-  const lightboxVideo = document.getElementById("lightboxVideo");
   const closeLightbox = document.querySelector(".close-lightbox");
   const prevBtn = document.querySelector(".lightbox-prev");
   const nextBtn = document.querySelector(".lightbox-next");
@@ -128,14 +277,14 @@ document.addEventListener("DOMContentLoaded", function() {
   let currentIndex = 0;
   let mediaItems = [];
 
-  /* Open lightbox when clicking images/videos in modal */
+  /* Open lightbox when clicking images in modal */
   document.addEventListener("click", function(e) {
     
-    // Check if clicked element is inside .room-media
-    if (e.target.closest(".room-media") && (e.target.tagName === "IMG" || e.target.tagName === "VIDEO")) {
+    // Check if clicked element is an image inside .room-media
+    if (e.target.closest(".room-media") && e.target.tagName === "IMG") {
       
       const roomMedia = e.target.closest(".room-media");
-      mediaItems = Array.from(roomMedia.querySelectorAll("img, video"));
+      mediaItems = Array.from(roomMedia.querySelectorAll("img"));
       currentIndex = mediaItems.indexOf(e.target);
       
       openLightbox();
@@ -151,18 +300,14 @@ document.addEventListener("DOMContentLoaded", function() {
     
     const item = mediaItems[index];
     
-    // Hide both first
-    lightboxImage.classList.remove("active");
-    lightboxVideo.classList.remove("active");
+    // Hide all images first
+    document.querySelectorAll('.lightbox-content img').forEach(img => {
+      img.classList.remove('active');
+    });
     
-    if (item.tagName === "VIDEO") {
-      lightboxVideo.src = item.querySelector("source").src;
-      lightboxVideo.classList.add("active");
-      lightboxVideo.play();
-    } else {
-      lightboxImage.src = item.src;
-      lightboxImage.classList.add("active");
-    }
+    // Show current image
+    lightboxImage.src = item.src;
+    lightboxImage.classList.add('active');
     
     // Update counter
     counter.textContent = `${index + 1} / ${mediaItems.length}`;
@@ -171,7 +316,6 @@ document.addEventListener("DOMContentLoaded", function() {
   /* Close lightbox */
   closeLightbox.onclick = () => {
     lightbox.classList.remove("show");
-    lightboxVideo.pause();
   };
 
   /* Previous button */
@@ -190,7 +334,6 @@ document.addEventListener("DOMContentLoaded", function() {
   lightbox.onclick = (e) => {
     if (e.target === lightbox) {
       lightbox.classList.remove("show");
-      lightboxVideo.pause();
     }
   };
 
@@ -210,7 +353,6 @@ document.addEventListener("DOMContentLoaded", function() {
     
     if (e.key === "Escape") {
       lightbox.classList.remove("show");
-      lightboxVideo.pause();
     }
   });
 
