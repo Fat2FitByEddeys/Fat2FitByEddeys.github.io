@@ -200,9 +200,8 @@ document.addEventListener("DOMContentLoaded", function(){
           <h3>Ultimate Health Recovery Experience</h3>
           <p><strong>Who Should Join:</strong> Individuals with health issues seeking personalized recovery, luxury comfort, and one-on-one training with Coach Aditya Sharma.</p>
           
-          <h3>Personal Training with Coach Aditya Sharma</h3>
+          <h3>Personal Guidance by Coach Aditya Sharma</h3>
           <ul>
-            <li><strong>1-on-1 Training Sessions:</strong> Daily personal training exclusively with Coach Aditya</li>
             <li><strong>Customized Programs:</strong> Tailored specifically to your health condition</li>
             <li><strong>Rehabilitation Focus:</strong> Specialized exercises for injury recovery</li>
             <li><strong>Medical Monitoring:</strong> Continuous health assessment and adaptation</li>
@@ -235,14 +234,12 @@ document.addEventListener("DOMContentLoaded", function(){
             <li>Initial comprehensive health assessment</li>
             <li>Regular medical check-ups</li>
             <li>Blood work and vitals monitoring</li>
-            <li>Physiotherapy sessions (if required)</li>
             <li>Stress management & mental wellness</li>
           </ul>
 
           <h3>What's Included</h3>
           <ul>
             <li>Luxury cottage accommodation</li>
-            <li>Daily 1-on-1 training with Coach Aditya Sharma</li>
             <li>Personalized health recovery program</li>
             <li>Medical consultation & monitoring</li>
             <li>All meals (specialized diet plans)</li>
