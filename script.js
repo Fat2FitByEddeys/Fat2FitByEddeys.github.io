@@ -171,8 +171,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
           <h3>Pricing</h3>
           <div style="background: rgba(44, 122, 63, 0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
-            <p style="font-size: 22px; margin-bottom: 15px;"><strong>14 Days Program:</strong> <span style="color: #2c7a3f; font-weight: 700;">₹70,000 + 18% GST</span></p>
-            <p style="font-size: 22px; margin-bottom: 0;"><strong>30 Days Program:</strong> <span style="color: #2c7a3f; font-weight: 700;">₹1,25,000 + 18% GST</span></p>
+            <p style="font-size: 22px; margin-bottom: 15px;"><strong>30 Days Program:</strong> <span style="color: #2c7a3f; font-weight: 700;">₹3,00,000 + 18% GST</span></p>
+            
           </div>
 
           <h3>Special Discounts</h3>
@@ -200,8 +200,9 @@ document.addEventListener("DOMContentLoaded", function(){
           <h3>Ultimate Health Recovery Experience</h3>
           <p><strong>Who Should Join:</strong> Individuals with health issues seeking personalized recovery, luxury comfort, and one-on-one training with Coach Aditya Sharma.</p>
           
-          <h3>Personal Guidance by Coach Aditya Sharma</h3>
+          <h3>Personal Training with Coach Aditya Sharma</h3>
           <ul>
+            <li><strong>1-on-1 Training Sessions:</strong> Daily personal training exclusively with Coach Aditya</li>
             <li><strong>Customized Programs:</strong> Tailored specifically to your health condition</li>
             <li><strong>Rehabilitation Focus:</strong> Specialized exercises for injury recovery</li>
             <li><strong>Medical Monitoring:</strong> Continuous health assessment and adaptation</li>
@@ -234,12 +235,14 @@ document.addEventListener("DOMContentLoaded", function(){
             <li>Initial comprehensive health assessment</li>
             <li>Regular medical check-ups</li>
             <li>Blood work and vitals monitoring</li>
+            <li>Physiotherapy sessions (if required)</li>
             <li>Stress management & mental wellness</li>
           </ul>
 
           <h3>What's Included</h3>
           <ul>
             <li>Luxury cottage accommodation</li>
+            <li>Daily 1-on-1 training with Coach Aditya Sharma</li>
             <li>Personalized health recovery program</li>
             <li>Medical consultation & monitoring</li>
             <li>All meals (specialized diet plans)</li>
@@ -250,9 +253,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
           <h3>Pricing Options</h3>
           <div style="background: rgba(44, 122, 63, 0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
-            <p style="font-size: 22px; margin-bottom: 15px;"><strong>14 Days Program:</strong> <span style="color: #2c7a3f; font-weight: 700;">₹1,00,000 + 18% GST</span></p>
-            <p style="font-size: 22px; margin-bottom: 15px;"><strong>30 Days Program (Non-Bathtub):</strong> <span style="color: #2c7a3f; font-weight: 700;">₹1,50,000 + 18% GST</span></p>
-            <p style="font-size: 22px; margin-bottom: 0;"><strong>30 Days Program (With Bathtub):</strong> <span style="color: #2c7a3f; font-weight: 700;">₹1,75,000 + 18% GST</span></p>
+            <p style="font-size: 22px; margin-bottom: 15px;"><strong>30 Days Program (Non-Bathtub):</strong> <span style="color: #2c7a3f; font-weight: 700;">₹4,00,000 + 18% GST</span></p>
+            
           </div>
 
           <h3>Special Discounts</h3>
@@ -319,7 +321,6 @@ document.addEventListener("DOMContentLoaded", function() {
     lightbox.classList.add("show");
     showMedia(currentIndex);
   }
-
   function showMedia(index) {
     
     const item = mediaItems[index];
@@ -329,7 +330,7 @@ document.addEventListener("DOMContentLoaded", function() {
       img.classList.remove('active');
     });
     
-    // Show current image
+   
     lightboxImage.src = item.src;
     lightboxImage.classList.add('active');
     

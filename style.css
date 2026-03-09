@@ -596,7 +596,7 @@ p, li {
 }
 
 .download-brochure-btn {
-  display: inline-block;
+  display: inline-flex;
   background: #2c7a3f;
   color: #fff;
   padding: 16px 40px;
@@ -606,6 +606,7 @@ p, li {
   font-size: 18px;
   transition: all 0.3s ease;
   border: 2px solid #2c7a3f;
+  margin: 18px;
 }
 
 .download-brochure-btn:hover {
