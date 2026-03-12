@@ -615,6 +615,159 @@ p, li {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(44, 122, 63, 0.3);
 }
+/* =========================
+   PRICING HIGHLIGHTS
+========================= */
+
+.pricing-highlights-section {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  border-top: 3px solid #2c7a3f;
+  border-bottom: 3px solid #2c7a3f;
+}
+
+.pricing-highlights-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pricing-title {
+  font-family: 'Anton', sans-serif;
+  font-size: 48px;
+  color: #fff;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.pricing-subtitle {
+  font-size: 20px;
+  color: #2c7a3f;
+  margin-bottom: 50px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.pricing-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.pricing-category {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px 30px;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-category::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #2c7a3f, #45a557);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.pricing-category:hover {
+  transform: translateY(-10px);
+  border-color: #2c7a3f;
+  box-shadow: 0 15px 40px rgba(44, 122, 63, 0.3);
+}
+
+.pricing-category:hover::before {
+  transform: scaleX(1);
+}
+
+.budget-option {
+  border-color: rgba(44, 122, 63, 0.3);
+}
+
+.luxury-option {
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+.category-icon {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.pricing-category h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 28px;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.price-range {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2c7a3f;
+  margin-bottom: 15px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.luxury-option .price-range {
+  color: #ffd700;
+}
+
+.category-desc {
+  font-size: 16px;
+  color: #bbb;
+  line-height: 1.6;
+}
+
+.pricing-note {
+  font-size: 14px;
+  color: #888;
+  font-style: italic;
+  margin-top: 30px;
+}
+
+/* Mobile Responsive for Pricing Highlights */
+@media (max-width: 768px) {
+  .pricing-title {
+    font-size: 32px;
+  }
+
+  .pricing-subtitle {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+
+  .pricing-categories {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .category-icon {
+    font-size: 50px;
+  }
+
+  .pricing-category h3 {
+    font-size: 24px;
+  }
+
+  .price-range {
+    font-size: 28px;
+  }
+
+  .category-desc {
+    font-size: 18px;
+  }
+
+  .pricing-note {
+    font-size: 16px;
+  }
+}
 
 /* =========================
    PROGRAM MODAL
