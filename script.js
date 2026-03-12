@@ -50,6 +50,184 @@ document.addEventListener("DOMContentLoaded", function(){
 
       const type = this.dataset.program;
 
+      // Add these cases after the existing if(type === "basic") block and before if(type === "premium")
+
+if(type === "wooden-villa"){
+  title.innerText = "Wooden Room Villa - Cozy Mountain Retreat";
+  
+  // UPDATE IMAGES FOR WOODEN VILLA
+  roomMedia.innerHTML = `
+    <img src="assets/villa-1.jpeg" alt="Wooden villa exterior">
+    <img src="assets/villa-2.jpeg" alt="Wooden villa interior">
+    <img src="assets/villa-3.jpeg" alt="Wooden villa balcony view">
+    <img src="assets/villa-4.jpeg" alt="Wooden villa amenities">
+  `;
+  
+  details.innerHTML = `
+    <h3>Authentic Wooden Living Experience</h3>
+    <p><strong>Who Should Join:</strong> Budget-conscious individuals seeking an authentic mountain retreat experience with all essential wellness amenities.</p>
+    
+    <h3>Accommodation Details</h3>
+    <ul>
+      <li><strong>Room Type:</strong> Traditional Wooden Villa (Non-AC)</li>
+      <li><strong>Room Size:</strong> private balcony</li>
+      <li><strong>View:</strong> Panoramic mountain and valley views</li>
+      <li><strong>Architecture:</strong> Authentic wooden construction with natural ventilation</li>
+      <li><strong>Balcony:</strong> Private sit-out area overlooking mountains</li>
+      <li><strong>Furniture:</strong> Comfortable bed, study table, wardrobe</li>
+      <li><strong>Bathroom:</strong> Attached with running hot water</li>
+    </ul>
+
+    <h3>Training & Workouts</h3>
+    <ul>
+      <li><strong>Morning Sessions:</strong> Group workouts and cardio training</li>
+      <li><strong>Evening Sessions:</strong> Strength training and flexibility exercises</li>
+      <li><strong>Guided Treks:</strong> Mountain trails and nature walks</li>
+      <li><strong>Yoga Classes:</strong> Daily morning yoga and meditation</li>
+      <li><strong>Wellness Workshops:</strong> Nutrition and lifestyle guidance</li>
+    </ul>
+
+    <h3>Meals & Nutrition</h3>
+    <ul>
+      <li>3 wholesome meals per day (Pure Vegetarian)</li>
+      <li>Balanced macro-nutrient diet plan</li>
+      <li>Fresh, locally sourced ingredients</li>
+      <li>Portion-controlled servings for weight management</li>
+      <li>Herbal teas and healthy snacks included</li>
+    </ul>
+
+    <h3>Facilities & Amenities</h3>
+    <ul>
+      <li>WiFi connectivity in common areas</li>
+      <li>Swimming pool access</li>
+      <li>Badminton court</li>
+      <li>Sunset point viewing area</li>
+      <li>Resort cafe access</li>
+      <li>Common recreation room</li>
+      <li>Laundry service (paid)</li>
+    </ul>
+
+    <h3>What's Included</h3>
+    <ul>
+      <li>30 days accommodation in wooden villa</li>
+      <li>All meals (Breakfast, Lunch, Dinner)</li>
+      <li>Group fitness and wellness sessions</li>
+      <li>Initial health assessment</li>
+      <li>Daily activity schedule</li>
+      <li>Access to all resort facilities</li>
+      <li>Weekly progress tracking</li>
+    </ul>
+
+    <h3>Pricing</h3>
+    <div style="background: rgba(44, 122, 63, 0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
+      <p style="font-size: 22px; margin-bottom: 0;"><strong>30 Days Program:</strong> <span style="color: #2c7a3f; font-weight: 700;">₹95,000 + 18% GST</span></p>
+      <p style="font-size: 14px; color: #666; margin-top: 10px;">Final Amount: ₹1,12,100 (including GST)</p>
+    </div>
+
+    <div style="margin-top: 30px; padding: 20px; background: rgba(44, 122, 63, 0.15); border-left: 5px solid #2c7a3f; border-radius: 8px;">
+      <p style="margin: 0; font-size: 19px; line-height: 1.9;">
+        <strong style="color: #2c7a3f; font-size: 21px;">🏡 Perfect Budget Option:</strong><br><br>
+        Experience authentic mountain living without compromising on quality. Our wooden villas offer the perfect balance of comfort, natural ambiance, and affordability while you work towards your health transformation goals.
+      </p>
+    </div>
+  `;
+}
+
+if(type === "duplex"){
+  title.innerText = "Duplex Cottages - Exclusive Two-Story Living";
+  
+  // UPDATE IMAGES FOR DUPLEX COTTAGES
+  roomMedia.innerHTML = `
+    <img src="assets/duplex-1.jpeg" alt="Duplex cottage exterior">
+    <img src="assets/duplex-2.jpeg" alt="Duplex cottage living area">
+    <img src="assets/duplex-3.jpeg" alt="Duplex private garden">
+    <img src="assets/duplex-4.jpeg" alt="Duplex parking area">
+  `;
+  
+  details.innerHTML = `
+    <h3>Exclusive Duplex Living - Limited to Only 5 Units</h3>
+    <p><strong>Who Should Join:</strong> Families, couples, or individuals seeking premium comfort with private outdoor space and exclusive parking facilities.</p>
+    
+    <h3>Accommodation Details</h3>
+    <ul>
+      <li><strong>Cottage Type:</strong> Exclusive Two-Story Duplex Cottage</li>
+      <li><strong>Ground Floor:</strong> Living area, dining space, attached bathroom</li>
+      <li><strong>First Floor:</strong> Separate bedroom with mountain view balcony</li>
+      <li><strong>Private Garden:</strong>personal garden area</li>
+      <li><strong>Parking:</strong> Dedicated private parking space</li>
+      <li><strong>Privacy:</strong> Standalone cottage with complete privacy</li>
+      <li><strong>Furniture:</strong> Premium furnishings throughout</li>
+    </ul>
+
+    <h3>Key Features</h3>
+    <ul>
+      <li><strong>🚗 Private Parking Space:</strong> Your own designated parking area</li>
+      <li><strong>🏠 Two-Story Layout:</strong> Separate living and sleeping areas</li>
+      <li><strong>🔒 Complete Privacy:</strong> Standalone cottage design</li>
+      <li><strong>🪟 Panoramic Views:</strong> Mountain views from both floors</li>
+      <li><strong>⭐ Limited Availability:</strong> Only 5 exclusive units available</li>
+    </ul>
+
+    <h3>Training & Workouts</h3>
+    <ul>
+      <li><strong>Enhanced Group Training:</strong> Premium group fitness sessions</li>
+      <li><strong>Personalized Attention:</strong> Smaller group sizes for better coaching</li>
+      <li><strong>Strength & Cardio:</strong> Comprehensive training programs</li>
+      <li><strong>Outdoor Activities:</strong> Garden yoga and meditation sessions</li>
+      <li><strong>Progress Tracking:</strong> Weekly assessments and body composition analysis</li>
+      <li><strong>Nutritional Counseling:</strong> One-on-one diet planning sessions</li>
+    </ul>
+
+    <h3>Meals & Nutrition</h3>
+    <ul>
+      <li>Customized meal plans based on individual goals (Pure Veg)</li>
+      <li>Macro-balanced nutrition for optimal results</li>
+      <li>High-protein vegetarian options</li>
+      <li>Fresh organic ingredients from local farms</li>
+      <li>Flexible dining options in your private space</li>
+      <li>Monthly nutritionist consultation included</li>
+    </ul>
+
+    <h3>Premium Facilities Access</h3>
+    <ul>
+      <li>Priority access to swimming pool</li>
+      <li>Private garden for personal workouts</li>
+      <li>Dedicated parking - no hassle</li>
+      <li>WiFi connectivity throughout cottage</li>
+      <li>Sunset point exclusive access hours</li>
+      <li>Resort cafe with priority seating</li>
+      <li>Badminton court reservation priority</li>
+      <li>Enhanced housekeeping services</li>
+    </ul>
+
+    <h3>What's Included</h3>
+    <ul>
+      <li>30 days in exclusive duplex cottage</li>
+      <li>Private parking space for entire stay</li>
+      <li>Personal garden area</li>
+      <li>All meals with customized diet plans</li>
+      <li>Enhanced group training sessions</li>
+      <li>Weekly progress assessments</li>
+      <li>Nutritional counseling sessions</li>
+      <li>Priority facility access</li>
+      <li>Daily housekeeping service</li>
+    </ul>
+
+    <h3>Pricing</h3>
+    <div style="background: rgba(44, 122, 63, 0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
+      <p style="font-size: 22px; margin-bottom: 0;"><strong>30 Days Program:</strong> <span style="color: #2c7a3f; font-weight: 700;">₹1,25,000 + 18% GST</span></p>
+      <p style="font-size: 14px; color: #666; margin-top: 10px;">Final Amount: ₹1,47,500 (including GST)</p>
+    </div>
+    
+    <div style="margin-top: 30px; padding: 20px; background: rgba(255, 215, 0, 0.1); border-left: 5px solid #ffd700; border-radius: 8px;">
+      <p style="margin: 0; font-size: 19px; line-height: 1.9;">
+        <strong style="color: #ffd700; font-size: 21px;">⚠️ Limited Availability Alert:</strong><br><br>
+        Only 5 exclusive duplex cottages available! These premium two-story cottages with private parking and garden areas are our most sought-after accommodations. Book early to secure your spot in this exclusive retreat experience.
+      </p>
+    </div>
+  `;
+}
+
       if(type === "basic"){
         title.innerText = "Basic Program - General Health Vacation";
         
@@ -106,12 +284,6 @@ document.addEventListener("DOMContentLoaded", function(){
             <p style="font-size: 22px; margin-bottom: 0;"><strong>30 Days Program:</strong> <span style="color: #2c7a3f; font-weight: 700;">₹90,000 + 18% GST</span></p>
           </div>
 
-          <h3>Special Discounts</h3>
-          <ul>
-            <li><strong>Shared Room with Activities:</strong> 10% discount on Grand Total</li>
-            <li><strong>Shared Room without Activities:</strong> 25% discount on Grand Total</li>
-          </ul>
-          
           <p style="margin-top: 20px;"><em>Ideal for those seeking general wellness, relaxation, and a healthy lifestyle reset in a supportive group environment.</em></p>
         `;
       }
@@ -174,12 +346,6 @@ document.addEventListener("DOMContentLoaded", function(){
             <p style="font-size: 22px; margin-bottom: 15px;"><strong>30 Days Program:</strong> <span style="color: #2c7a3f; font-weight: 700;">₹3,00,000 + 18% GST</span></p>
             
           </div>
-
-          <h3>Special Discounts</h3>
-          <ul>
-            <li><strong>Shared Room with Activities:</strong> 10% discount on Grand Total</li>
-            <li><strong>Shared Room without Activities:</strong> 25% discount on Grand Total</li>
-          </ul>
           
           <p style="margin-top: 20px;"><em>Perfect for those committed to serious health transformation with enhanced training, premium accommodation, and dedicated support.</em></p>
         `;
@@ -257,11 +423,7 @@ document.addEventListener("DOMContentLoaded", function(){
             
           </div>
 
-          <h3>Special Discounts</h3>
-          <ul>
-            <li><strong>Shared Room with Activities:</strong> 10% discount on Grand Total</li>
-            <li><strong>Shared Room without Activities:</strong> 25% discount on Grand Total</li>
-          </ul>
+         
           
           <div style="margin-top: 30px; padding: 20px; background: rgba(44, 122, 63, 0.15); border-left: 5px solid #2c7a3f; border-radius: 8px;">
             <p style="margin: 0; font-size: 19px; line-height: 1.9;">
