@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="modal-price-box">
             <p>
               <strong>30 Days Program:</strong>
-              <span>₹1,15,000</span>
+              <span>₹1,35,000</span>
             </p>
             <small>Private Wooden Room • Single Accommodation</small>
           </div>
