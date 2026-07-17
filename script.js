@@ -47,107 +47,238 @@ document.addEventListener("DOMContentLoaded", () => {
   const details = document.getElementById("programDetails");
   const roomMedia = document.querySelector(".room-media");
 
-  document.querySelectorAll(".view-room-btn").forEach((btn) => {
-    btn.addEventListener("click", function () {
-      if (!modal || !title || !details || !roomMedia) return;
+  /* open modal */
+  document.querySelectorAll(".view-room-btn").forEach(btn => {
+
+    btn.addEventListener("click", function(){
+
+      modal.classList.add("show");
 
       const type = this.dataset.program;
 
-      if (type === "single-program") {
-        modal.classList.add("show");
-
-        title.innerText = "30 Days Weight Loss Reset - Private Wooden Room";
-
+      if(type === "basic"){
+        title.innerText = "Basic Program - General Health Vacation";
+        
+        // UPDATE IMAGES FOR BASIC PROGRAM
         roomMedia.innerHTML = `
-          <img src="assets/room-1.jpeg" alt="Program image 1">
-          <img src="assets/room-2.jpeg" alt="Program image 2">
-          <img src="assets/room-3.jpeg" alt="Program image 3">
-          <img src="assets/villa-4.jpeg" alt="Program image 4">
+          <img src="assets/basicroom1.jpeg" alt="Basic accommodation">
+          <img src="assets/basicroom2.jpeg" alt="Basic room view">
+          <img src="assets/basicroom3.jpeg" alt="Basic facilities">
+          <img src="assets/basicroom4.jpeg" alt="Basic dining">
         `;
-
+        
         details.innerHTML = `
-          <h3>This Is Not A Holiday. This Is A Weight Loss Reset.</h3>
-          <p>
-            This is a structured, supervised weight-loss program for people who
-            are stuck despite trying diets, gyms, and home workouts. The program
-            removes guesswork and replaces it with routine, discipline, and consistency.
-          </p>
-
-          <h3>What Makes This Bootcamp Different</h3>
-          <p>
-            Most programs depend only on motivation and flexibility. This program
-            works because it removes decision-making. You follow a fixed routine
-            in a controlled environment so your body can finally respond.
-          </p>
-
-          <h3>What The Program Includes</h3>
+          <h3>Perfect For General Wellness</h3>
+          <p><strong>Who Should Join:</strong> Anyone looking for a general health vacation while enjoying private comfort at our resort.</p>
+          
+          <h3>Training & Workouts</h3>
           <ul>
-            <li>Fixed daily routine</li>
-            <li>Controlled and timed meals</li>
-            <li>Guided workouts and walks</li>
-            <li>Supervision and accountability</li>
-            <li>Workout learnings</li>
-            <li>Breakfast, lunch and dinner</li>
-            <li>Precise attention to workouts and meals</li>
+            <li><strong>Group Fitness Sessions:</strong> Daily morning and evening group workouts</li>
+            <li><strong>Yoga & Stretching:</strong> Flexibility and relaxation sessions</li>
+            <li><strong>Nature Walks:</strong> Guided treks through scenic mountain trails</li>
+            <li><strong>Outdoor Activities:</strong> Group exercises in fresh mountain air</li>
+            <li><strong>Wellness Workshops:</strong> Nutrition and healthy living sessions</li>
           </ul>
 
-          <h3>Who Should Join</h3>
+          <h3>Accommodation</h3>
           <ul>
-            <li>People serious about weight loss</li>
-            <li>Those who need routine and discipline</li>
-            <li>Men and women ready to commit for results</li>
-            <li>People who want to improve stamina</li>
+            <li><strong>Tent Style Cottage</strong> - Non AC</li>
+            <li>Comfortable private resort rooms</li>
+            <li>Clean and hygienic facilities</li>
+            <li>Peaceful mountain views</li>
+            <li>Shared resort amenities</li>
           </ul>
 
-          <h3>Investment</h3>
-          <div class="modal-price-box">
-            <p>
-              <strong>30 Days Program:</strong>
-              <span>₹1,35,000</span>
-            </p>
-            <small>Private Wooden Room • Single Accommodation</small>
+          <h3>Meals & Nutrition</h3>
+          <ul>
+            <li>3 healthy meals per day (Pure Veg)</li>
+            <li>Balanced vegetarian diet</li>
+            <li>Portion-controlled servings</li>
+            <li>Fresh, locally sourced ingredients</li>
+          </ul>
+
+          <h3>What's Included</h3>
+          <ul>
+            <li>Resort Stay with Breakfast, Lunch & Dinner (Pure Veg)</li>
+            <li>Group workout sessions & walks</li>
+            <li>Initial health consultation</li>
+            <li>Daily activity schedule</li>
+            <li>Facilities: WiFi, Swimming Pool, Badminton, Cafe, Sunset Point</li>
+          </ul>
+
+          <h3>Pricing</h3>
+          <div style="background: rgba(44, 122, 63, 0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
+            <p style="font-size: 22px; margin-bottom: 15px;"><strong>14 Days Program:</strong> <span style="color: #2c7a3f; font-weight: 700;">₹60,000 + 18% GST</span></p>
+            <p style="font-size: 22px; margin-bottom: 0;"><strong>30 Days Program:</strong> <span style="color: #2c7a3f; font-weight: 700;">₹90,000 + 18% GST</span></p>
           </div>
 
-          <h3>How To Join</h3>
+          <h3>Special Discounts</h3>
           <ul>
-            <li>Message us on WhatsApp.</li>
-            <li>Share your goal and availability.</li>
-            <li>Choose your slot and confirm your booking.</li>
-            <li>Make 50% payment to book your slot.</li>
-            <li>Receive confirmation with all essential details.</li>
+            <li><strong>Shared Room with Activities:</strong> 10% discount on Grand Total</li>
+            <li><strong>Shared Room without Activities:</strong> 25% discount on Grand Total</li>
           </ul>
-
-          <h3>Paid Services Extra</h3>
-          <ul>
-            <li>Car parking</li>
-            <li>Massages</li>
-            <li>Laundry</li>
-            <li>Blood test</li>
-            <li>Doctor visit</li>
-            <li>Local cab service</li>
-          </ul>
-
-          <h3>Rules</h3>
-          <ul>
-            <li>No discounts</li>
-            <li>No transportation</li>
-            <li>No non-vegetarian food</li>
-            <li>No alcohol</li>
-            <li>No smoking</li>
-            <li>No foul language</li>
-            <li>No disrespect to anyone</li>
-          </ul>
-
-          <h3>Location</h3>
-          <p>
-            <a href="https://maps.app.goo.gl/SNdd1Ea5osSbSBqU8?g_st=iwb" target="_blank" class="modal-location-link">
-              View program location on Google Maps
-            </a>
-          </p>
+          
+          <p style="margin-top: 20px;"><em>Ideal for those seeking general wellness, relaxation, and a healthy lifestyle reset in a supportive group environment.</em></p>
         `;
-
-        initializeLightbox();
       }
+
+      if(type === "premium"){
+        title.innerText = "Premium Program - Serious Goals & Private Cottages";
+        
+        // UPDATE IMAGES FOR PREMIUM PROGRAM
+        roomMedia.innerHTML = `
+          <img src="assets/premium1.jpeg" alt="Premium cottage exterior">
+          <img src="assets/premium2.jpeg" alt="Premium cottage interior">
+          <img src="assets/premium3.jpeg" alt="Premium facilities">
+          <img src="assets/premium4.jpeg" alt="Premium training area">
+        `;
+        
+        details.innerHTML = `
+          <h3>For Serious Health Transformation</h3>
+          <p><strong>Who Should Join:</strong> Individuals serious about achieving health goals and making lasting lifestyle changes in premium private cottages.</p>
+          
+          <h3>Training & Workouts</h3>
+          <ul>
+            <li><strong>Enhanced Group Sessions:</strong> Intensive group training with advanced techniques</li>
+            <li><strong>Strength & Conditioning:</strong> Focused muscle-building and endurance training</li>
+            <li><strong>High-Intensity Workouts:</strong> HIIT and circuit training sessions</li>
+            <li><strong>Functional Training:</strong> Real-world movement patterns</li>
+            <li><strong>Progress Tracking:</strong> Weekly assessments and body composition analysis</li>
+          </ul>
+
+          <h3>Accommodation</h3>
+          <ul>
+            <li><strong>Wooden Cottage</strong> - Non AC</li>
+            <li>Premium private cottage with modern amenities</li>
+            <li>Spacious and comfortable living space</li>
+            <li>Private balcony with mountain views</li>
+            <li>Enhanced privacy and comfort</li>
+            <li>Premium resort facilities access</li>
+          </ul>
+
+          <h3>Meals & Nutrition</h3>
+          <ul>
+            <li>Customized meal plans based on goals (Pure Veg)</li>
+            <li>Macro-balanced nutrition</li>
+            <li>High-protein vegetarian options</li>
+            <li>Nutritional counseling sessions</li>
+          </ul>
+
+          <h3>What's Included</h3>
+          <ul>
+            <li>Premium private cottage accommodation</li>
+            <li>Enhanced group training sessions</li>
+            <li>Lifestyle & nutrition coaching</li>
+            <li>Weekly progress assessments</li>
+            <li>All meals (customized plans)</li>
+            <li>Dedicated support team</li>
+            <li>Priority access to facilities</li>
+          </ul>
+
+          <h3>Pricing</h3>
+          <div style="background: rgba(44, 122, 63, 0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
+            <p style="font-size: 22px; margin-bottom: 15px;"><strong>14 Days Program:</strong> <span style="color: #2c7a3f; font-weight: 700;">₹70,000 + 18% GST</span></p>
+            <p style="font-size: 22px; margin-bottom: 0;"><strong>30 Days Program:</strong> <span style="color: #2c7a3f; font-weight: 700;">₹1,25,000 + 18% GST</span></p>
+          </div>
+
+          <h3>Special Discounts</h3>
+          <ul>
+            <li><strong>Shared Room with Activities:</strong> 10% discount on Grand Total</li>
+            <li><strong>Shared Room without Activities:</strong> 25% discount on Grand Total</li>
+          </ul>
+          
+          <p style="margin-top: 20px;"><em>Perfect for those committed to serious health transformation with enhanced training, premium accommodation, and dedicated support.</em></p>
+        `;
+      }
+
+      if(type === "luxury"){
+        title.innerText = "Luxury Program - Personal Training & Ultimate Recovery";
+        
+        // UPDATE IMAGES FOR LUXURY PROGRAM
+        roomMedia.innerHTML = `
+          <img src="assets/luxury1.jpeg" alt="Luxury cottage exterior">
+          <img src="assets/luxury2.jpeg" alt="Luxury cottage interior">
+          <img src="assets/luxury3.jpeg" alt="Luxury amenities">
+          <img src="assets/luxury4.jpeg" alt="Personal training area">
+        `;
+        
+        details.innerHTML = `
+          <h3>Ultimate Health Recovery Experience</h3>
+          <p><strong>Who Should Join:</strong> Individuals with health issues seeking personalized recovery, luxury comfort, and one-on-one training with Coach Aditya Sharma.</p>
+          
+          <h3>Personal Training with Coach Aditya Sharma</h3>
+          <ul>
+            <li><strong>1-on-1 Training Sessions:</strong> Daily personal training exclusively with Coach Aditya</li>
+            <li><strong>Customized Programs:</strong> Tailored specifically to your health condition</li>
+            <li><strong>Rehabilitation Focus:</strong> Specialized exercises for injury recovery</li>
+            <li><strong>Medical Monitoring:</strong> Continuous health assessment and adaptation</li>
+            <li><strong>Psychological Support:</strong> Counseling for mindset and motivation</li>
+            <li><strong>24/7 Availability:</strong> Coach Aditya's direct support throughout your stay</li>
+          </ul>
+
+          <h3>Luxury Accommodation</h3>
+          <ul>
+            <li><strong>AC Cottage</strong> with premium amenities</li>
+            <li>Premium luxury cottage with top-tier facilities</li>
+            <li>Spacious private living area</li>
+            <li>Exclusive mountain-view terrace</li>
+            <li>Premium bedding and furnishings</li>
+            <li>Personal butler service</li>
+            <li>Ultimate privacy and comfort</li>
+          </ul>
+
+          <h3>Specialized Meals & Nutrition</h3>
+          <ul>
+            <li>Fully customized dietary plans (Pure Veg)</li>
+            <li>Meals designed for health recovery</li>
+            <li>Specialized supplements (if needed)</li>
+            <li>Personal nutritionist consultation</li>
+            <li>Gourmet healthy cuisine</li>
+          </ul>
+
+          <h3>Medical & Wellness Support</h3>
+          <ul>
+            <li>Initial comprehensive health assessment</li>
+            <li>Regular medical check-ups</li>
+            <li>Blood work and vitals monitoring</li>
+            <li>Physiotherapy sessions (if required)</li>
+            <li>Stress management & mental wellness</li>
+          </ul>
+
+          <h3>What's Included</h3>
+          <ul>
+            <li>Luxury cottage accommodation</li>
+            <li>Daily 1-on-1 training with Coach Aditya Sharma</li>
+            <li>Personalized health recovery program</li>
+            <li>Medical consultation & monitoring</li>
+            <li>All meals (specialized diet plans)</li>
+            <li>24/7 dedicated support</li>
+            <li>Priority access to all facilities</li>
+            <li>Personal concierge service</li>
+          </ul>
+
+          <h3>Pricing Options</h3>
+          <div style="background: rgba(44, 122, 63, 0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
+            <p style="font-size: 22px; margin-bottom: 15px;"><strong>14 Days Program:</strong> <span style="color: #2c7a3f; font-weight: 700;">₹1,00,000 + 18% GST</span></p>
+            <p style="font-size: 22px; margin-bottom: 15px;"><strong>30 Days Program (Non-Bathtub):</strong> <span style="color: #2c7a3f; font-weight: 700;">₹1,50,000 + 18% GST</span></p>
+            <p style="font-size: 22px; margin-bottom: 0;"><strong>30 Days Program (With Bathtub):</strong> <span style="color: #2c7a3f; font-weight: 700;">₹1,75,000 + 18% GST</span></p>
+          </div>
+
+          <h3>Special Discounts</h3>
+          <ul>
+            <li><strong>Shared Room with Activities:</strong> 10% discount on Grand Total</li>
+            <li><strong>Shared Room without Activities:</strong> 25% discount on Grand Total</li>
+          </ul>
+          
+          <div style="margin-top: 30px; padding: 20px; background: rgba(44, 122, 63, 0.15); border-left: 5px solid #2c7a3f; border-radius: 8px;">
+            <p style="margin: 0; font-size: 19px; line-height: 1.9;">
+              <strong style="color: #2c7a3f; font-size: 21px;">📌 Important Note:</strong><br><br>
+              This is our most comprehensive program designed for individuals requiring specialized attention for health recovery. Coach Aditya Sharma personally oversees every aspect of your transformation journey with maximum comfort and luxury.
+            </p>
+          </div>
+        `;
+      }
+
     });
   });
 
