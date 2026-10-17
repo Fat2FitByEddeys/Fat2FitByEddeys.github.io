@@ -1,0 +1,1907 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fat2Fit — Admin Portal &amp; Bookings Management</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --primary: #1a5336;
+      --primary-dark: #123d26;
+      --primary-light: #2c7a3f;
+      --primary-subtle: #e8f5ed;
+      --accent: #d97706;
+      --accent-light: #fef3c7;
+      --dark: #0f172a;
+      --slate: #334155;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #f8fafc;
+      --white: #ffffff;
+      --card-bg: #ffffff;
+      --success: #16a34a;
+      --success-light: #dcfce7;
+      --warning: #ca8a04;
+      --warning-light: #fef9c3;
+      --danger: #dc2626;
+      --danger-light: #fee2e2;
+      --radius-sm: 6px;
+      --radius: 10px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* TYPOGRAPHY */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    .brand-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+    }
+
+    /* -------------------------------------------------------------
+       LOGIN VIEW
+       ------------------------------------------------------------- */
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: radial-gradient(circle at 10% 20%, rgba(26, 83, 54, 0.08) 0%, rgba(15, 23, 42, 0.04) 90%), var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-container::before {
+      content: '';
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(44, 122, 63, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+      top: -100px;
+      right: -100px;
+      pointer-events: none;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      position: relative;
+      z-index: 10;
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    .login-logo {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .login-logo img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      border-radius: 14px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 12px;
+    }
+
+    .login-logo h1 {
+      font-size: 24px;
+      color: var(--primary);
+    }
+
+    .login-logo p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--slate);
+      margin-bottom: 6px;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--dark);
+      background: var(--white);
+      transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(44, 122, 63, 0.15);
+    }
+
+    .toggle-pwd {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      padding: 4px;
+    }
+
+    .toggle-pwd:hover {
+      color: var(--dark);
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .login-btn:hover {
+      background: var(--primary-dark);
+      box-shadow: 0 4px 12px rgba(26, 83, 54, 0.25);
+    }
+
+    .login-btn:active {
+      transform: scale(0.99);
+    }
+
+    .login-error {
+      background: var(--danger-light);
+      color: var(--danger);
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 16px;
+      display: none;
+      border: 1px solid rgba(220, 38, 38, 0.2);
+    }
+
+    .login-hint {
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .login-hint code {
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    /* -------------------------------------------------------------
+       DASHBOARD VIEW
+       ------------------------------------------------------------- */
+    .dashboard-app {
+      display: none;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    /* TOP NAVBAR */
+    .topbar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .topbar-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-logo-img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .brand-title {
+      font-size: 19px;
+      line-height: 1.1;
+      color: var(--primary);
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 500;
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--success-light);
+      color: var(--success);
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.25);
+      animation: pulse 2s infinite;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-outline {
+      background: var(--white);
+      color: var(--slate);
+      border-color: var(--border);
+    }
+
+    .btn-outline:hover {
+      background: #f1f5f9;
+      color: var(--dark);
+    }
+
+    .btn-success {
+      background: #15803d;
+      color: var(--white);
+    }
+
+    .btn-success:hover {
+      background: #166534;
+    }
+
+    .btn-danger-outline {
+      background: transparent;
+      color: var(--danger);
+      border-color: rgba(220, 38, 38, 0.3);
+    }
+
+    .btn-danger-outline:hover {
+      background: var(--danger-light);
+    }
+
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+
+    /* MAIN CONTAINER */
+    .dashboard-main {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* METRICS / STATS CARDS */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .metric-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .metric-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .icon-green {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .icon-emerald {
+      background: #d1fae5;
+      color: #047857;
+    }
+
+    .icon-amber {
+      background: #fef3c7;
+      color: #b45309;
+    }
+
+    .icon-blue {
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .metric-content h4 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .metric-value {
+      font-size: 24px;
+      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
+      color: var(--dark);
+      line-height: 1.1;
+    }
+
+    .metric-sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* FILTER BAR */
+    .filters-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .filters-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filters-header h3 {
+      font-size: 15px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .results-count {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      background: var(--primary-subtle);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .filters-grid {
+      display: grid;
+      grid-template-columns: 2fr 1.2fr 1fr 1fr 1fr auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    @media (max-width: 1024px) {
+      .filters-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .filters-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .filter-input {
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      font-family: inherit;
+      color: var(--dark);
+      background: var(--white);
+      transition: all 0.2s ease;
+    }
+
+    .filter-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(26, 83, 54, 0.12);
+    }
+
+    /* TABLE SECTION */
+    .table-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .bookings-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+      min-width: 980px;
+    }
+
+    .bookings-table th {
+      background: #f8fafc;
+      color: var(--slate);
+      font-weight: 600;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+    }
+
+    .bookings-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: middle;
+      color: var(--dark);
+    }
+
+    .bookings-table tr:hover td {
+      background: #fcfdfd;
+      cursor: pointer;
+    }
+
+    .booking-id-tag {
+      font-family: monospace;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--primary-subtle);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      display: inline-block;
+    }
+
+    .date-sub {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .client-cell strong {
+      display: block;
+      font-size: 14px;
+      color: var(--dark);
+    }
+
+    .client-meta {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .client-link {
+      color: var(--primary-light);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .client-link:hover {
+      text-decoration: underline;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .badge-camp {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .badge-online {
+      background: #e0e7ff;
+      color: #3730a3;
+    }
+
+    .badge-confirmed {
+      background: var(--success-light);
+      color: var(--success);
+    }
+
+    .badge-pending {
+      background: var(--warning-light);
+      color: var(--warning);
+    }
+
+    .amount-strong {
+      font-weight: 700;
+      color: var(--dark);
+      font-size: 14px;
+    }
+
+    .balance-tag {
+      font-size: 11px;
+      color: var(--danger);
+      font-weight: 600;
+      display: block;
+    }
+
+    .balance-tag.zero {
+      color: var(--success);
+    }
+
+    .copy-id-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted);
+      padding: 2px;
+      font-size: 12px;
+      transition: color 0.15s ease;
+    }
+
+    .copy-id-btn:hover {
+      color: var(--primary);
+    }
+
+    /* EMPTY / LOADING STATES */
+    .empty-state {
+      padding: 60px 24px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .empty-state h4 {
+      font-size: 18px;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 0.8s linear infinite;
+    }
+
+    .spinner-dark {
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      border-top-color: var(--primary);
+    }
+
+    /* -------------------------------------------------------------
+       CLIENT DETAILS MODAL / DRAWER
+       ------------------------------------------------------------- */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    .modal-box {
+      background: var(--white);
+      width: 100%;
+      max-width: 760px;
+      max-height: 90vh;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      overflow-y: auto;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      z-index: 10;
+    }
+
+    .modal-title-group h3 {
+      font-size: 20px;
+      color: var(--dark);
+    }
+
+    .modal-title-group p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--muted);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .close-modal:hover {
+      background: #f1f5f9;
+      color: var(--dark);
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .detail-section {
+      background: #f8fafc;
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+    }
+
+    .detail-section-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px 20px;
+    }
+
+    .detail-item label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .detail-item span {
+      font-size: 13px;
+      color: var(--dark);
+      font-weight: 600;
+    }
+
+    .detail-item.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .notes-box {
+      background: var(--white);
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--slate);
+      line-height: 1.4;
+      margin-top: 4px;
+    }
+
+    .modal-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* TOAST NOTIFICATION */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--dark);
+      color: var(--white);
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      animation: slideUp 0.3s ease-out;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.4;
+      }
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* PRINT STYLES FOR CLIENT SHEET */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+
+      #detailModal,
+      #detailModal * {
+        visibility: visible;
+      }
+
+      #detailModal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: white;
+        display: block !important;
+      }
+
+      .modal-actions,
+      .close-modal {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================================
+       1. ADMIN LOGIN VIEW
+       ========================================================= -->
+  <div id="adminLoginApp" class="login-container">
+    <div class="login-card">
+      <div class="login-logo">
+        <img src="assets/logo.png" alt="Fat2Fit Logo" onerror="this.src='assets/logo.jpg'" />
+        <h1>FAT2FIT ADMIN</h1>
+        <p>Retreat &amp; Online Coaching Bookings Portal</p>
+      </div>
+
+      <div id="loginError" class="login-error"></div>
+
+      <form id="adminLoginForm" autocomplete="on">
+        <div class="form-group">
+          <label for="adminUsername">Username</label>
+          <div class="input-wrap">
+            <input type="text" id="adminUsername" class="form-control" placeholder="username" required autofocus />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="adminPassword">Password</label>
+          <div class="input-wrap">
+            <input type="password" id="adminPassword" class="form-control" placeholder="••••••••••••" required />
+            <button type="button" class="toggle-pwd" id="togglePasswordBtn">Show</button>
+          </div>
+        </div>
+
+        <div class="form-group"
+          style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+          <label
+            style="display: flex; align-items: center; gap: 6px; font-weight: 500; cursor: pointer; margin: 0; font-size: 13px;">
+            <input type="checkbox" id="rememberMe" checked /> Remember session
+          </label>
+          <a href="index.html"
+            style="font-size: 12px; color: var(--primary-light); text-decoration: none; font-weight: 600;">&larr; Back
+            to Site</a>
+        </div>
+
+        <button type="submit" id="loginSubmitBtn" class="login-btn">
+          <span>Sign In to Dashboard</span>
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+
+  <!-- =========================================================
+       2. ADMIN DASHBOARD VIEW
+       ========================================================= -->
+  <div id="adminDashboardApp" class="dashboard-app">
+
+    <!-- TOP NAV -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="adminlogin.html" class="brand-section">
+          <img class="brand-logo-img" src="assets/logo.png" alt="Fat2Fit logo" onerror="this.src='assets/logo.jpg'" />
+          <div>
+            <div class="brand-title">FAT2FIT</div>
+            <span class="brand-sub">Bookings Management &amp; Analytics</span>
+          </div>
+        </a>
+
+        <div class="topbar-actions">
+          <span class="live-badge">
+            <span class="live-dot"></span>
+            Supabase Live
+          </span>
+
+          <button id="refreshBtn" class="btn btn-outline" title="Reload live data">
+            <span id="refreshIcon">&#x21bb;</span> Refresh
+          </button>
+
+          <button id="exportCsvBtn" class="btn btn-success" title="Download all bookings as CSV">
+            <span>&#x2193;</span> Export CSV
+          </button>
+
+          <button id="logoutBtn" class="btn btn-danger-outline btn-sm">
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN BODY -->
+    <main class="dashboard-main">
+
+      <!-- KEY METRICS ROW -->
+      <section class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-icon icon-green">&#x1F4CB;</div>
+          <div class="metric-content">
+            <h4>Total Bookings</h4>
+            <div class="metric-value" id="statTotalBookings">0</div>
+            <div class="metric-sub" id="statBookingsSub">All time registrations</div>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon icon-emerald">&#x20B9;</div>
+          <div class="metric-content">
+            <h4>Revenue Collected</h4>
+            <div class="metric-value" id="statTotalRevenue">&#x20B9;0</div>
+            <div class="metric-sub">Advance &amp; full payments via Razorpay</div>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon icon-amber">&#x23F3;</div>
+          <div class="metric-content">
+            <h4>Balance Due</h4>
+            <div class="metric-value" id="statBalanceDue">&#x20B9;0</div>
+            <div class="metric-sub">Payable upon arrival at camp</div>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon icon-blue">&#x1F3D5;</div>
+          <div class="metric-content">
+            <h4>Program Breakdown</h4>
+            <div class="metric-value" id="statCampVsOnline">0 / 0</div>
+            <div class="metric-sub">Retreat Camps vs Online Passes</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FILTERS TOOLBAR -->
+      <section class="filters-card">
+        <div class="filters-header">
+          <h3>
+            <span>&#x1F50D;</span> Search &amp; Filters
+          </h3>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span id="resultsCount" class="results-count">Showing 0 bookings</span>
+            <button id="resetFiltersBtn" class="btn btn-outline btn-sm">Reset</button>
+          </div>
+        </div>
+
+        <div class="filters-grid">
+          <!-- Live Text Search -->
+          <div>
+            <input type="text" id="filterSearch" class="filter-input"
+              placeholder="Search name, phone, email, booking ID, city..." />
+          </div>
+
+          <!-- Program Filter -->
+          <div>
+            <select id="filterProgram" class="filter-input">
+              <option value="">All Programs</option>
+              <option value="Hostel">Fat2Fit Hostel</option>
+              <option value="Villa">Fat2Fit Villa</option>
+              <option value="Resort">Fat2Fit Resort</option>
+              <option value="Online">Online 3-Month Pass</option>
+            </select>
+          </div>
+
+          <!-- Batch / Month Filter -->
+          <div>
+            <select id="filterMonth" class="filter-input">
+              <option value="">All Batches / Months</option>
+            </select>
+          </div>
+
+          <!-- Payment Status -->
+          <div>
+            <select id="filterStatus" class="filter-input">
+              <option value="">All Statuses</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="pending">Pending</option>
+            </select>
+          </div>
+
+          <!-- Sort Order -->
+          <div>
+            <select id="filterSort" class="filter-input">
+              <option value="date-desc">Newest First</option>
+              <option value="date-asc">Oldest First</option>
+              <option value="amount-desc">Amount: High &rarr; Low</option>
+              <option value="amount-asc">Amount: Low &rarr; High</option>
+              <option value="name-asc">Name (A &rarr; Z)</option>
+            </select>
+          </div>
+
+          <!-- Quick Action -->
+          <div>
+            <a href="index.html" target="_blank" class="btn btn-outline" style="white-space: nowrap; font-size: 12px;">
+              Open Public Site &nearr;
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- BOOKINGS TABLE -->
+      <section class="table-card">
+        <div class="table-responsive">
+          <table class="bookings-table">
+            <thead>
+              <tr>
+                <th>Booking ID &amp; Date</th>
+                <th>Client Details</th>
+                <th>Program &amp; Schedule</th>
+                <th>Payment Summary</th>
+                <th>Biometrics &amp; Goal</th>
+                <th>Transaction Details</th>
+                <th>Status</th>
+                <th style="text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="bookingsTableBody">
+              <!-- Dynamically populated via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Empty & Loading Placeholders -->
+        <div id="tableEmptyState" class="empty-state" style="display: none;">
+          <h4>No bookings found matching your filters</h4>
+          <p>Try clearing your search query or adjusting your filters.</p>
+        </div>
+
+        <div id="tableLoadingState" class="empty-state">
+          <div class="spinner spinner-dark" style="margin-bottom: 12px; width: 28px; height: 28px;"></div>
+          <h4>Loading bookings from Supabase...</h4>
+          <p>Fetching real-time registration data...</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+
+  <!-- =========================================================
+       3. CLIENT DETAIL MODAL
+       ========================================================= -->
+  <div id="detailModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h3 id="modalClientName">Client Full Profile</h3>
+          <p id="modalBookingSub">Booking FTF-0000 &middot; Registered on date</p>
+        </div>
+        <button type="button" class="close-modal" id="closeDetailModalBtn">&times;</button>
+      </div>
+
+      <div class="modal-body" id="modalBodyContent">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST MESSAGE -->
+  <div id="toast" class="toast"></div>
+
+
+  <!-- =========================================================
+       JAVASCRIPT LOGIC
+       ========================================================= -->
+  <script>
+    // Supabase Configuration
+    const SUPABASE_URL = "https://xizhqapprrojjftplqbi.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_C7z4mUIERb9kTQseuMJQhA_FODOq_Ei";
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // Admin Credentials
+    const ADMIN_CREDENTIALS = {
+      username: "admin",
+      password: "fat2fit@admin2026",
+      altUsername: "fat2fit"
+    };
+
+    // State
+    let rawBookings = [];
+    let filteredBookings = [];
+    let selectedBooking = null;
+
+    // DOM Elements
+    const loginApp = document.getElementById("adminLoginApp");
+    const dashboardApp = document.getElementById("adminDashboardApp");
+    const loginForm = document.getElementById("adminLoginForm");
+    const loginError = document.getElementById("loginError");
+    const adminUsername = document.getElementById("adminUsername");
+    const adminPassword = document.getElementById("adminPassword");
+    const togglePasswordBtn = document.getElementById("togglePasswordBtn");
+    const rememberMe = document.getElementById("rememberMe");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    const refreshBtn = document.getElementById("refreshBtn");
+    const refreshIcon = document.getElementById("refreshIcon");
+    const exportCsvBtn = document.getElementById("exportCsvBtn");
+    const resetFiltersBtn = document.getElementById("resetFiltersBtn");
+
+    const statTotalBookings = document.getElementById("statTotalBookings");
+    const statBookingsSub = document.getElementById("statBookingsSub");
+    const statTotalRevenue = document.getElementById("statTotalRevenue");
+    const statBalanceDue = document.getElementById("statBalanceDue");
+    const statCampVsOnline = document.getElementById("statCampVsOnline");
+    const resultsCount = document.getElementById("resultsCount");
+
+    const filterSearch = document.getElementById("filterSearch");
+    const filterProgram = document.getElementById("filterProgram");
+    const filterMonth = document.getElementById("filterMonth");
+    const filterStatus = document.getElementById("filterStatus");
+    const filterSort = document.getElementById("filterSort");
+
+    const bookingsTableBody = document.getElementById("bookingsTableBody");
+    const tableEmptyState = document.getElementById("tableEmptyState");
+    const tableLoadingState = document.getElementById("tableLoadingState");
+
+    const detailModal = document.getElementById("detailModal");
+    const closeDetailModalBtn = document.getElementById("closeDetailModalBtn");
+    const modalClientName = document.getElementById("modalClientName");
+    const modalBookingSub = document.getElementById("modalBookingSub");
+    const modalBodyContent = document.getElementById("modalBodyContent");
+    const toast = document.getElementById("toast");
+
+    // -------------------------------------------------------------
+    // AUTHENTICATION
+    // -------------------------------------------------------------
+    function checkAuth() {
+      const session = sessionStorage.getItem("f2f_admin_logged") || localStorage.getItem("f2f_admin_logged");
+      if (session === "true") {
+        loginApp.style.display = "none";
+        dashboardApp.style.display = "flex";
+        loadBookings();
+      } else {
+        loginApp.style.display = "flex";
+        dashboardApp.style.display = "none";
+      }
+    }
+
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      loginError.style.display = "none";
+
+      const user = adminUsername.value.trim().toLowerCase();
+      const pass = adminPassword.value.trim();
+
+      const validUser = (user === ADMIN_CREDENTIALS.username || user === ADMIN_CREDENTIALS.altUsername);
+      const validPass = (pass === ADMIN_CREDENTIALS.password);
+
+      if (validUser && validPass) {
+        if (rememberMe.checked) {
+          localStorage.setItem("f2f_admin_logged", "true");
+        } else {
+          sessionStorage.setItem("f2f_admin_logged", "true");
+        }
+        showToast("Signed in successfully!");
+        checkAuth();
+      } else {
+        loginError.textContent = "Invalid username or password. Please try again.";
+        loginError.style.display = "block";
+      }
+    });
+
+    togglePasswordBtn.addEventListener("click", () => {
+      if (adminPassword.type === "password") {
+        adminPassword.type = "text";
+        togglePasswordBtn.textContent = "Hide";
+      } else {
+        adminPassword.type = "password";
+        togglePasswordBtn.textContent = "Show";
+      }
+    });
+
+    logoutBtn.addEventListener("click", () => {
+      sessionStorage.removeItem("f2f_admin_logged");
+      localStorage.removeItem("f2f_admin_logged");
+      showToast("Signed out successfully.");
+      checkAuth();
+    });
+
+    // -------------------------------------------------------------
+    // DATA FETCHING FROM SUPABASE
+    // -------------------------------------------------------------
+    async function loadBookings() {
+      tableLoadingState.style.display = "block";
+      tableEmptyState.style.display = "none";
+      bookingsTableBody.innerHTML = "";
+      refreshIcon.style.display = "inline-block";
+      refreshIcon.style.animation = "spin 0.8s linear infinite";
+
+      try {
+        const { data, error } = await supabaseClient
+          .from("bookings")
+          .select("*")
+          .order("created_at", { ascending: false });
+
+        if (error) throw error;
+
+        rawBookings = data || [];
+        populateFilterMonths(rawBookings);
+        applyFilters();
+        updateMetrics(rawBookings);
+      } catch (err) {
+        console.error("Error loading bookings:", err);
+        showToast("Error loading bookings: " + err.message);
+        tableLoadingState.style.display = "none";
+        tableEmptyState.style.display = "block";
+        tableEmptyState.querySelector("h4").textContent = "Failed to load bookings";
+        tableEmptyState.querySelector("p").textContent = err.message;
+      } finally {
+        refreshIcon.style.animation = "";
+        tableLoadingState.style.display = "none";
+      }
+    }
+
+    refreshBtn.addEventListener("click", () => {
+      loadBookings();
+      showToast("Refreshed bookings data");
+    });
+
+    // -------------------------------------------------------------
+    // METRICS CALCULATION
+    // -------------------------------------------------------------
+    function updateMetrics(list) {
+      statTotalBookings.textContent = list.length;
+      statBookingsSub.textContent = `${list.length} total registrations`;
+
+      let totalPaid = 0;
+      let totalBalance = 0;
+      let campCount = 0;
+      let onlineCount = 0;
+
+      list.forEach((b) => {
+        totalPaid += Number(b.amount_paid) || 0;
+        totalBalance += Number(b.balance_due) || 0;
+
+        const isOnline = (b.package && b.package.toLowerCase().includes("online")) ||
+          (b.joining_date && b.joining_date.toLowerCase().includes("immediate"));
+        if (isOnline) {
+          onlineCount++;
+        } else {
+          campCount++;
+        }
+      });
+
+      statTotalRevenue.textContent = formatINR(totalPaid);
+      statBalanceDue.textContent = formatINR(totalBalance);
+      statCampVsOnline.textContent = `${campCount} / ${onlineCount}`;
+    }
+
+    // -------------------------------------------------------------
+    // FILTERS & SEARCH LOGIC
+    // -------------------------------------------------------------
+    function populateFilterMonths(list) {
+      const currentVal = filterMonth.value;
+      const monthSet = new Set();
+
+      list.forEach((b) => {
+        if (b.joining_date && !b.joining_date.toLowerCase().includes("immediate")) {
+          // e.g. "April 2026 1" or "May 2026 15"
+          const parts = b.joining_date.trim().split(" ");
+          if (parts.length >= 2) {
+            monthSet.add(`${parts[0]} ${parts[1]}`);
+          }
+        }
+      });
+
+      filterMonth.innerHTML = `<option value="">All Batches / Months</option>`;
+      Array.from(monthSet).sort().forEach((m) => {
+        const opt = document.createElement("option");
+        opt.value = m;
+        opt.textContent = m;
+        filterMonth.appendChild(opt);
+      });
+
+      filterMonth.value = currentVal;
+    }
+
+    function applyFilters() {
+      const q = filterSearch.value.trim().toLowerCase();
+      const progFilter = filterProgram.value.toLowerCase();
+      const monthFilter = filterMonth.value.toLowerCase();
+      const statusFilter = filterStatus.value.toLowerCase();
+      const sortVal = filterSort.value;
+
+      filteredBookings = rawBookings.filter((b) => {
+        // Query search
+        if (q) {
+          const matchName = (b.name || "").toLowerCase().includes(q);
+          const matchEmail = (b.email || "").toLowerCase().includes(q);
+          const matchPhone = (b.phone || "").toLowerCase().includes(q);
+          const matchPlace = (b.place || "").toLowerCase().includes(q);
+          const matchBookingId = (b.booking_id || "").toLowerCase().includes(q);
+          const matchPaymentId = (b.payment_id || "").toLowerCase().includes(q);
+          const matchGoal = (b.goal || "").toLowerCase().includes(q);
+          if (!matchName && !matchEmail && !matchPhone && !matchPlace && !matchBookingId && !matchPaymentId && !matchGoal) {
+            return false;
+          }
+        }
+
+        // Program filter
+        if (progFilter) {
+          const pkg = (b.package || "").toLowerCase();
+          if (!pkg.includes(progFilter)) return false;
+        }
+
+        // Month filter
+        if (monthFilter) {
+          const dateStr = (b.joining_date || "").toLowerCase();
+          if (!dateStr.includes(monthFilter)) return false;
+        }
+
+        // Status filter
+        if (statusFilter) {
+          const st = (b.status || "confirmed").toLowerCase();
+          if (st !== statusFilter) return false;
+        }
+
+        return true;
+      });
+
+      // Sorting
+      filteredBookings.sort((a, b) => {
+        if (sortVal === "date-desc") {
+          return new Date(b.created_at || 0) - new Date(a.created_at || 0);
+        }
+        if (sortVal === "date-asc") {
+          return new Date(a.created_at || 0) - new Date(b.created_at || 0);
+        }
+        if (sortVal === "amount-desc") {
+          return (Number(b.amount_paid) || 0) - (Number(a.amount_paid) || 0);
+        }
+        if (sortVal === "amount-asc") {
+          return (Number(a.amount_paid) || 0) - (Number(b.amount_paid) || 0);
+        }
+        if (sortVal === "name-asc") {
+          return (a.name || "").localeCompare(b.name || "");
+        }
+        return 0;
+      });
+
+      resultsCount.textContent = `Showing ${filteredBookings.length} of ${rawBookings.length} bookings`;
+      renderTable(filteredBookings);
+    }
+
+    [filterSearch, filterProgram, filterMonth, filterStatus, filterSort].forEach((el) => {
+      el.addEventListener("input", applyFilters);
+      el.addEventListener("change", applyFilters);
+    });
+
+    resetFiltersBtn.addEventListener("click", () => {
+      filterSearch.value = "";
+      filterProgram.value = "";
+      filterMonth.value = "";
+      filterStatus.value = "";
+      filterSort.value = "date-desc";
+      applyFilters();
+      showToast("Filters reset");
+    });
+
+    // -------------------------------------------------------------
+    // TABLE RENDERING
+    // -------------------------------------------------------------
+    function renderTable(list) {
+      bookingsTableBody.innerHTML = "";
+
+      if (list.length === 0) {
+        tableEmptyState.style.display = "block";
+        return;
+      }
+
+      tableEmptyState.style.display = "none";
+
+      list.forEach((b) => {
+        const tr = document.createElement("tr");
+
+        const isOnline = (b.package && b.package.toLowerCase().includes("online")) ||
+          (b.joining_date && b.joining_date.toLowerCase().includes("immediate"));
+
+        const dateFormatted = b.created_at
+          ? new Date(b.created_at).toLocaleDateString("en-IN", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+          })
+          : "N/A";
+
+        const balanceNum = Number(b.balance_due) || 0;
+        const bId = b.booking_id || "FTF-LEGACY";
+
+        tr.innerHTML = `
+          <td>
+            <span class="booking-id-tag">${escapeHtml(bId)}</span>
+            <span class="date-sub">${dateFormatted}</span>
+          </td>
+          <td>
+            <div class="client-cell">
+              <strong>${escapeHtml(b.name || "N/A")}</strong>
+              <div class="client-meta">
+                <a class="client-link" href="https://wa.me/91${sanitizePhone(b.phone)}" target="_blank" title="Chat on WhatsApp">&#x1F4AC; ${escapeHtml(b.phone || "")}</a>
+                &middot;
+                <span>${escapeHtml(b.place || "")} (${escapeHtml(b.age ? b.age + 'y' : '')})</span>
+              </div>
+              <div class="date-sub">${escapeHtml(b.email || "")}</div>
+            </div>
+          </td>
+          <td>
+            <span class="badge ${isOnline ? 'badge-online' : 'badge-camp'}">
+              ${isOnline ? '💻 ONLINE' : '🏕️ RETREAT'}
+            </span>
+            <div style="font-weight: 600; margin-top: 3px; font-size: 13px;">${escapeHtml(b.package || "Custom Program")}</div>
+            <div class="date-sub">Batch: <strong>${escapeHtml(b.joining_date || "Immediate")}</strong></div>
+          </td>
+          <td>
+            <div class="amount-strong">${formatINR(b.amount_paid)}</div>
+            <div class="date-sub">Total: ${formatINR(b.total_amount)}</div>
+            <span class="balance-tag ${balanceNum === 0 ? 'zero' : ''}">
+              ${balanceNum > 0 ? `Due: ${formatINR(balanceNum)}` : '&#10003; Paid in Full'}
+            </span>
+          </td>
+          <td>
+            <div style="font-weight: 600;">${escapeHtml(b.weight ? b.weight + ' kg' : '—')} &middot; ${escapeHtml(b.height ? b.height : '—')}</div>
+            <div class="date-sub" style="max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${escapeHtml(b.goal || 'General Health')}">
+              Goal: ${escapeHtml(b.goal || "General Health")}
+            </div>
+          </td>
+          <td>
+            <div style="font-family: monospace; font-size: 11px;">
+              ${escapeHtml(b.payment_id || "N/A")}
+              <button type="button" class="copy-id-btn" data-copy="${escapeHtml(b.payment_id || '')}" title="Copy Payment ID">&#x2398;</button>
+            </div>
+            <div class="date-sub" style="font-family: monospace;">Order: ${escapeHtml(b.order_id ? b.order_id.slice(-8) : "N/A")}</div>
+          </td>
+          <td>
+            <span class="badge badge-confirmed">
+              &#10003; ${escapeHtml(b.status || "CONFIRMED")}
+            </span>
+          </td>
+          <td style="text-align: right;">
+            <button type="button" class="btn btn-outline btn-sm view-detail-btn" data-id="${b.id}">
+              View Profile
+            </button>
+          </td>
+        `;
+
+        // Open modal on click
+        tr.querySelector(".view-detail-btn").addEventListener("click", (e) => {
+          e.stopPropagation();
+          openDetailModal(b);
+        });
+
+        tr.addEventListener("click", () => openDetailModal(b));
+
+        // Copy button
+        const copyBtn = tr.querySelector(".copy-id-btn");
+        if (copyBtn) {
+          copyBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const text = copyBtn.getAttribute("data-copy");
+            if (text) {
+              navigator.clipboard.writeText(text);
+              showToast("Payment ID copied: " + text);
+            }
+          });
+        }
+
+        bookingsTableBody.appendChild(tr);
+      });
+    }
+
+    // -------------------------------------------------------------
+    // CLIENT PROFILE MODAL
+    // -------------------------------------------------------------
+    function openDetailModal(b) {
+      selectedBooking = b;
+      modalClientName.textContent = b.name || "Client Details";
+
+      const createdStr = b.created_at
+        ? new Date(b.created_at).toLocaleString("en-IN", {
+          dateStyle: "medium",
+          timeStyle: "short"
+        })
+        : "N/A";
+
+      modalBookingSub.innerHTML = `<strong>Booking ID:</strong> ${escapeHtml(b.booking_id || "N/A")} &middot; Registered on ${createdStr}`;
+
+      const isOnline = (b.package && b.package.toLowerCase().includes("online")) ||
+        (b.joining_date && b.joining_date.toLowerCase().includes("immediate"));
+
+      const cleanPhone = sanitizePhone(b.phone);
+      const waMsg = encodeURIComponent(`Hi ${b.name}, this is Coach Aditya from Fat2Fit regarding your booking (${b.booking_id || 'Fat2Fit Booking'}). Welcome aboard!`);
+
+      modalBodyContent.innerHTML = `
+        <!-- SECTION 1: PERSONAL & CONTACT -->
+        <div class="detail-section">
+          <div class="detail-section-title">&#x1F464; 1. Client &amp; Contact Information</div>
+          <div class="detail-grid">
+            <div class="detail-item">
+              <label>Full Name</label>
+              <span>${escapeHtml(b.name || "—")}</span>
+            </div>
+            <div class="detail-item">
+              <label>Phone (WhatsApp)</label>
+              <span><a class="client-link" href="https://wa.me/91${cleanPhone}?text=${waMsg}" target="_blank">&#x1F4AC; ${escapeHtml(b.phone || "—")}</a></span>
+            </div>
+            <div class="detail-item">
+              <label>Email Address</label>
+              <span><a class="client-link" href="mailto:${escapeHtml(b.email || "")}">&#x2709; ${escapeHtml(b.email || "—")}</a></span>
+            </div>
+            <div class="detail-item">
+              <label>City &amp; Age</label>
+              <span>${escapeHtml(b.place || "—")} &middot; ${escapeHtml(b.age ? b.age + ' years' : '—')}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: HEALTH & BIOMETRICS -->
+        <div class="detail-section">
+          <div class="detail-section-title">&#x1F4AA; 2. Physical &amp; Health Profile</div>
+          <div class="detail-grid">
+            <div class="detail-item">
+              <label>Current Weight</label>
+              <span>${escapeHtml(b.weight ? b.weight + ' kg' : 'Not recorded')}</span>
+            </div>
+            <div class="detail-item">
+              <label>Height</label>
+              <span>${escapeHtml(b.height || 'Not recorded')}</span>
+            </div>
+            <div class="detail-item full-width">
+              <label>Primary Transformation Goal</label>
+              <span>${escapeHtml(b.goal || 'General Health & Fitness')}</span>
+            </div>
+            <div class="detail-item full-width">
+              <label>Food Allergies / Dietary Needs</label>
+              <div class="notes-box">${escapeHtml(b.allergies || 'None declared')}</div>
+            </div>
+            <div class="detail-item full-width">
+              <label>Medical History / Past Injuries / Health Issues</label>
+              <div class="notes-box">${escapeHtml(b.additional_info || 'None declared')}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: PROGRAM & ENROLLMENT -->
+        <div class="detail-section">
+          <div class="detail-section-title">&#x1F3D5; 3. Program &amp; Schedule Details</div>
+          <div class="detail-grid">
+            <div class="detail-item full-width">
+              <label>Enrolled Program</label>
+              <span style="font-size: 15px; color: var(--primary);">${escapeHtml(b.package || "Custom Program")}</span>
+            </div>
+            <div class="detail-item">
+              <label>Program Type</label>
+              <span><span class="badge ${isOnline ? 'badge-online' : 'badge-camp'}">${isOnline ? 'Online Home Transformation' : 'In-Person Camp (Shimla)'}</span></span>
+            </div>
+            <div class="detail-item">
+              <label>Joining Batch / Schedule</label>
+              <span>${escapeHtml(b.joining_date || "Immediate")}</span>
+            </div>
+            <div class="detail-item">
+              <label>Registration Status</label>
+              <span><span class="badge badge-confirmed">&#10003; ${escapeHtml(b.status || "CONFIRMED")}</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 4: PAYMENT & INVOICE -->
+        <div class="detail-section">
+          <div class="detail-section-title">&#x1F4B3; 4. Payment &amp; Razorpay Transaction</div>
+          <div class="detail-grid">
+            <div class="detail-item">
+              <label>Amount Paid Now</label>
+              <span class="amount-strong" style="color: var(--success); font-size: 16px;">${formatINR(b.amount_paid)}</span>
+            </div>
+            <div class="detail-item">
+              <label>Total Package Fee</label>
+              <span class="amount-strong">${formatINR(b.total_amount)}</span>
+            </div>
+            <div class="detail-item">
+              <label>Remaining Balance (Due On Arrival)</label>
+              <span class="amount-strong" style="color: ${Number(b.balance_due) > 0 ? 'var(--danger)' : 'var(--success)'}; font-size: 16px;">
+                ${Number(b.balance_due) > 0 ? formatINR(b.balance_due) : '&#10003; Paid in Full'}
+              </span>
+            </div>
+            <div class="detail-item full-width">
+              <label>Razorpay Payment ID</label>
+              <span style="font-family: monospace;">${escapeHtml(b.payment_id || "N/A")}</span>
+            </div>
+            <div class="detail-item full-width">
+              <label>Razorpay Order ID</label>
+              <span style="font-family: monospace;">${escapeHtml(b.order_id || "N/A")}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTIONS ROW -->
+        <div class="modal-actions">
+          <div style="display: flex; gap: 8px;">
+            <a href="https://wa.me/91${cleanPhone}?text=${waMsg}" target="_blank" class="btn btn-success">
+              <span>&#x1F4AC;</span> WhatsApp Client
+            </a>
+            <a href="mailto:${escapeHtml(b.email || '')}" class="btn btn-outline">
+              <span>&#x2709;</span> Send Email
+            </a>
+          </div>
+
+          <div style="display: flex; gap: 8px;">
+            <button type="button" class="btn btn-primary" onclick="window.print()">
+              <span>&#x1F5B6;</span> Print Profile Sheet
+            </button>
+            <button type="button" class="btn btn-outline" id="modalCloseBtn">
+              Close
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.getElementById("modalCloseBtn").addEventListener("click", closeDetailModal);
+      detailModal.style.display = "flex";
+    }
+
+    function closeDetailModal() {
+      detailModal.style.display = "none";
+      selectedBooking = null;
+    }
+
+    closeDetailModalBtn.addEventListener("click", closeDetailModal);
+    detailModal.addEventListener("click", (e) => {
+      if (e.target === detailModal) closeDetailModal();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && detailModal.style.display === "flex") {
+        closeDetailModal();
+      }
+    });
+
+    // -------------------------------------------------------------
+    // CSV EXPORT FUNCTION
+    // -------------------------------------------------------------
+    exportCsvBtn.addEventListener("click", () => {
+      const dataToExport = filteredBookings.length > 0 ? filteredBookings : rawBookings;
+
+      if (!dataToExport || dataToExport.length === 0) {
+        showToast("No bookings data to export");
+        return;
+      }
+
+      const headers = [
+        "Booking ID",
+        "Registration Date",
+        "Client Name",
+        "Phone",
+        "Email",
+        "City",
+        "Age",
+        "Weight (kg)",
+        "Height",
+        "Primary Goal",
+        "Allergies & Dietary",
+        "Medical History & Injuries",
+        "Package Program",
+        "Joining Batch / Schedule",
+        "Amount Paid (INR)",
+        "Total Fee (INR)",
+        "Balance Due (INR)",
+        "Payment ID (Razorpay)",
+        "Order ID (Razorpay)",
+        "Status"
+      ];
+
+      const csvRows = [headers.join(",")];
+
+      dataToExport.forEach((b) => {
+        const row = [
+          csvEscape(b.booking_id || "FTF-LEGACY"),
+          csvEscape(b.created_at ? new Date(b.created_at).toISOString() : ""),
+          csvEscape(b.name || ""),
+          csvEscape(b.phone || ""),
+          csvEscape(b.email || ""),
+          csvEscape(b.place || ""),
+          csvEscape(b.age || ""),
+          csvEscape(b.weight || ""),
+          csvEscape(b.height || ""),
+          csvEscape(b.goal || ""),
+          csvEscape(b.allergies || ""),
+          csvEscape(b.additional_info || ""),
+          csvEscape(b.package || ""),
+          csvEscape(b.joining_date || ""),
+          csvEscape(b.amount_paid || 0),
+          csvEscape(b.total_amount || 0),
+          csvEscape(b.balance_due || 0),
+          csvEscape(b.payment_id || ""),
+          csvEscape(b.order_id || ""),
+          csvEscape(b.status || "confirmed")
+        ];
+        csvRows.push(row.join(","));
+      });
+
+      // UTF-8 BOM for Microsoft Excel compatibility
+      const blob = new Blob(["\uFEFF" + csvRows.join("\r\n")], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      const dateTag = new Date().toISOString().split("T")[0];
+      link.setAttribute("href", url);
+      link.setAttribute("download", `Fat2Fit_Bookings_Export_${dateTag}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      showToast(`Exported ${dataToExport.length} bookings to CSV`);
+    });
+
+    function csvEscape(val) {
+      if (val === null || val === undefined) return '""';
+      let str = String(val).replace(/"/g, '""');
+      return `"${str}"`;
+    }
+
+    // -------------------------------------------------------------
+    // HELPERS
+    // -------------------------------------------------------------
+    function formatINR(n) {
+      const num = Number(n) || 0;
+      return "₹" + Math.round(num).toLocaleString("en-IN");
+    }
+
+    function sanitizePhone(p) {
+      return String(p || "").replace(/\D/g, "").slice(-10);
+    }
+
+    function escapeHtml(str) {
+      if (str === null || str === undefined) return "";
+      const div = document.createElement("div");
+      div.textContent = String(str);
+      return div.innerHTML;
+    }
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.style.display = "flex";
+      setTimeout(() => {
+        toast.style.display = "none";
+      }, 3200);
+    }
+
+    // Auto-initialize
+    document.addEventListener("DOMContentLoaded", checkAuth);
+  </script>
+</body>
+
+</html>
