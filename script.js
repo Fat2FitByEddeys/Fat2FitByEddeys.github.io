@@ -49,8 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "hostel-program": {
       packageKey: "hostel4",
       title: "Fat2Fit Hostel — Dual Sharing & Private Room",
-      images: [{ src: "assets/hostel-1.jpeg" }, { src: "assets/hostel-2.jpeg" }, { src: "assets/hostel-3.jpeg" },
-      { src: "assets/hostel.jpeg" },],
+      images: [{ src: "assets/hostel-1.jpeg" }, { src: "assets/hostel-2.jpeg" }, { src: "assets/hostel-3.jpeg" },],
       html: `
         <h3>This Is Not A Holiday. This Is A Weight Loss Reset.</h3>
         <p>
