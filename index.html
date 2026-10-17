@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>FAT2FIT</title>
+    <title>FAT2FIT | Weight Loss & Detox Camp Shimla & Online Training</title>
 
     <link rel="stylesheet" href="style.css" />
 
@@ -12,6 +12,9 @@
       href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- PDF Generation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   </head>
 
   <body>
@@ -27,7 +30,9 @@
 
       <nav class="menu" id="menu">
         <a href="#home">Home</a>
-        <a href="#programs">Program</a>
+        <a href="#programs">Camp Programs</a>
+        <a href="#founder-pt">1-on-1 PT</a>
+        <a href="#online-pass">Online Pass</a>
         <a href="#routine">Routine</a>
         <a href="#location">Location</a>
         <a href="#testimonials">Transformations</a>
@@ -61,15 +66,21 @@
           bodies and lives.
         </p>
 
-        <p>Still have questions?</p>
+        <p>Choose your transformation path:</p>
 
         <div class="hero-buttons">
+          <a href="#programs" class="hero-btn primary-btn">
+            Explore Camp Programs
+          </a>
+          <a href="#online-pass" class="hero-btn online-btn">
+            3-Month Online Pass (₹9,999)
+          </a>
           <a
             href="https://wa.me/919873420987?text=Hi%2C%20I%20have%20some%20questions%20about%20Fat2Fit"
             target="_blank"
             class="hero-btn secondary"
           >
-            Book an Appointment
+            Book Appointment
           </a>
         </div>
       </div>
@@ -80,12 +91,12 @@
       <div class="popup-box">
         <span class="close-popup">&times;</span>
 
-        <h2>Transform Your Life in the Hills</h2>
+        <h2>Transform Your Life in the Hills or Online</h2>
 
         <p>
-          Join our structured weight-loss transformation program designed to help
-          you lose weight, rebuild routine, and build long-term healthy habits
-          in a peaceful retreat environment.
+          Join our structured 30-day Shimla weight loss camp or start from home
+          with our curated 3-Month Fat2Fit Pass. Lose weight, rebuild routine,
+          and gain permanent discipline.
         </p>
 
         <div class="popup-buttons">
@@ -94,7 +105,7 @@
             target="_blank"
             class="btn-primary"
           >
-            Know More
+            Know More via WhatsApp
           </a>
         </div>
       </div>
@@ -125,304 +136,524 @@
         </div>
       </div>
     </section>
-    <!-- PROGRAM -->
-<section class="dark section" id="programs">
-  <p class="mini center">[ THE PROGRAM ]</p>
-  <h2 class="center">30 DAYS &middot; 10 KGS PROGRAM</h2>
-  <p class="programs-intro">
-    Structured weight loss in Shimla for men &amp; women. Choose your batch —
-    every tier gets the same routine, meals, training, and supervision.
-    Join on the <strong>1st or 15th of every month</strong> (Premium tier can join anytime).
-    All prices are <strong>per person</strong> and <strong>+18% GST</strong>. Book your slot at least
-    <strong>10 days in advance</strong> — slots are first-come, first-served.
-  </p>
 
-  <div class="packages-grid">
+    <!-- IN-PERSON RETREAT PROGRAMS -->
+    <section class="dark section" id="programs">
+      <p class="mini center">[ THE CAMP PROGRAMS ]</p>
+      <h2 class="center">EXPLORE OUR 3 PREMIER FAT2FIT WEIGHT LOSS CAMP PROGRAMS</h2>
+      <p class="programs-intro">
+        Structured weight loss in Shimla for men &amp; women. Choose between
+        <strong>Fat2Fit Hostel</strong> (budget friendly, basic experience),
+        <strong>Fat2Fit Villa</strong> (private stay, premium comfort), or
+        <strong>Fat2Fit Resorts</strong> (luxury cottages, scenic views) — every
+        tier follows the same routine, meals, training and supervision. Join on
+        the <strong>1st or 15th of every month</strong>, all year round. All
+        prices are <strong>per person</strong> and <strong>+18% GST</strong>. Book
+        your slot at least <strong>15 days in advance</strong> — slots are
+        first-come, first-served.
+      </p>
 
-    <!-- TYPE 1: TRIPLE SHARING -->
-    <div class="hotel-package-card">
-      <div class="hotel-package-header">
-        <span>TYPE 1 &middot; BASIC</span>
-        <p>Triple Sharing Room + Group Training</p>
-      </div>
+      <div class="packages-grid">
 
-      <div class="hotel-main-image">
-        <img src="assets/tripleroom.jpeg" alt="Triple sharing room">
-      </div>
-
-      <div class="hotel-price-box">
-        <h3>₹54,000</h3>
-        <p>per person for 30 days · +18% GST</p>
-
-        <a
-          href="https://wa.me/919873420987?text=Hi%2C%20I%20want%20to%20register%20for%20the%20Triple%20Sharing%20Fat2Fit%20program"
-          target="_blank"
-          class="register-now-btn"
-        >
-          REGISTER NOW
-        </a>
-      </div>
-
-      <div class="hotel-package-content">
-        <div class="package-point">
-          <span>✓</span>
-          <p><strong>Room:</strong> Triple sharing, with attached bathroom</p>
-        </div>
-
-        <div class="package-point">
-          <span>✓</span>
-          <p><strong>Training:</strong> Group workout, batch of 10 people</p>
-        </div>
-
-        <div class="package-point">
-          <span>✓</span>
-          <p><strong>Joining dates:</strong> 1st or 15th of every month</p>
-        </div>
-
-        <div class="package-point">
-          <span>✓</span>
-          <div>
-            <p><strong>Inclusions:</strong></p>
-            <ul>
-              <li>Stay, breakfast, lunch and dinner</li>
-              <li>Full body transformation training</li>
-              <li>Regular consultation</li>
-              <li>24/7 supervision &amp; accountability</li>
-            </ul>
+        <!-- FAT2FIT HOSTEL -->
+        <div class="hotel-package-card">
+          <div class="hotel-package-header">
+            <span>FAT2FIT HOSTEL</span>
+            <p>Basic &middot; Budget Friendly &middot; Basic Experience</p>
           </div>
-        </div>
-      </div>
 
-      <div class="hotel-action-row">
-        <button class="view-room-btn" data-program="triple-program">
-          View Full Details
-        </button>
-      </div>
-    </div>
+          <div class="hotel-main-image">
+            <img src="assets/hostel-1.jpeg" alt="Fat2Fit Hostel dual sharing room">
+          </div>
 
-    <!-- TYPE 2: DOUBLE SHARING -->
-    <div class="hotel-package-card">
-      <div class="hotel-package-header">
-        <span>TYPE 2 &middot; BASIC+</span>
-        <p>Double Sharing Room + Group Training</p>
-      </div>
+          <div class="hotel-price-box">
+            <div class="price-tier">
+              <h3 data-package-price="hostel4">₹56,000</h3>
+              <p data-package-desc="hostel4">per person / 30 days &middot; Dual Sharing Room &middot; +18% GST</p>
+            </div>
+            <div class="price-tier price-tier-alt">
+              <h3 data-package-price="hostel1">₹76,000</h3>
+              <p data-package-desc="hostel1">per person / 30 days &middot; Private Room &middot; +18% GST</p>
+            </div>
 
-      <div class="hotel-main-image">
-        <img src="assets/roomphoto.jpeg" alt="Double sharing room">
-      </div>
+            <button
+              type="button"
+              class="register-now-btn"
+              data-register-package="hostel4"
+            >
+              REGISTER NOW
+            </button>
+          </div>
 
-      <div class="hotel-price-box">
-        <h3>₹78,000</h3>
-        <p>per person for 30 days · +18% GST</p>
+          <div class="hotel-package-content">
+            <div class="package-point">
+              <span>✓</span>
+              <p><strong>Stay:</strong> Dual sharing room or Private room option</p>
+            </div>
 
-        <a
-          href="https://wa.me/919873420987?text=Hi%2C%20I%20want%20to%20register%20for%20the%20Double%20Sharing%20Fat2Fit%20program"
-          target="_blank"
-          class="register-now-btn"
-        >
-          REGISTER NOW
-        </a>
-      </div>
+            <div class="package-point">
+              <span>✓</span>
+              <p><strong>Experience:</strong> Budget-focused, gaining camp experience</p>
+            </div>
 
-      <div class="hotel-package-content">
-        <div class="package-point">
-          <span>✓</span>
-          <p><strong>Room:</strong> Double sharing, attached washroom</p>
-        </div>
+            <div class="package-point">
+              <span>✓</span>
+              <p><strong>Training:</strong> Large group sessions, led by our Junior Coaches</p>
+            </div>
 
-        <div class="package-point">
-          <span>✓</span>
-          <p><strong>Training:</strong> Group workout, batch of 10 people</p>
-        </div>
+            <div class="package-point">
+              <span>✓</span>
+              <p><strong>Group size:</strong> 20 People</p>
+            </div>
 
-        <div class="package-point">
-          <span>✓</span>
-          <p><strong>Joining dates:</strong> 1st &amp; 15th of every month</p>
-        </div>
+            <div class="package-point">
+              <span>✓</span>
+              <div>
+                <p><strong>Inclusions:</strong></p>
+                <ul>
+                  <li>Stay (dual sharing or private room)</li>
+                  <li>Structured daily training</li>
+                  <li>Healthy balanced meals</li>
+                  <li>Wi-Fi available</li>
+                  <li>Attached washroom</li>
+                  <li>24/7 supervision &amp; accountability</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-        <div class="package-point">
-          <span>✓</span>
-          <div>
-            <p><strong>Inclusions:</strong></p>
-            <ul>
-              <li>Stay, breakfast, lunch and dinner</li>
-              <li>Full body transformation training</li>
-              <li>Regular consultation</li>
-              <li>24/7 supervision &amp; accountability</li>
-            </ul>
+          <div class="hotel-action-row">
+            <button class="view-room-btn" data-program="hostel-program">
+              View Full Details
+            </button>
           </div>
         </div>
 
-        <div class="package-point">
-          <span>✓</span>
-          <p><strong>Optional upgrade:</strong> Balcony room at +₹15,000</p>
-        </div>
-      </div>
+        <!-- FAT2FIT VILLA -->
+        <div class="hotel-package-card featured-package">
+          <div class="hotel-package-header">
+            <span>FAT2FIT VILLA</span>
+            <p>Intermediate &middot; Private Stay &middot; Premium Comfort</p>
+          </div>
 
-      <div class="hotel-action-row">
-        <button class="view-room-btn" data-program="double-program">
-          View Full Details
-        </button>
-      </div>
-    </div>
+          <div class="hotel-main-image">
+            <img src="assets/vila/img1.jpeg" alt="Fat2Fit Villa private room">
+          </div>
 
-    <!-- TYPE 3: PREMIUM PRIVATE -->
-    <div class="hotel-package-card featured-package">
-      <div class="hotel-package-header">
-        <span>TYPE 3 &middot; PREMIUM</span>
-        <p>Private Wooden Room + Small Batch Training</p>
-      </div>
+          <div class="hotel-price-box">
+            <div class="price-tier">
+              <h3 data-package-price="villacozy">₹1,11,000</h3>
+              <p data-package-desc="villacozy">per person / 30 days &middot; Cozy Private Room Option &middot; +18% GST</p>
+            </div>
+            <div class="price-tier price-tier-alt">
+              <h3 data-package-price="villapremium">₹1,39,000</h3>
+              <p data-package-desc="villapremium">per person / 30 days &middot; Private Room, Premium Villa &middot; +18% GST</p>
+            </div>
 
-      <div class="hotel-main-image">
-        <img src="assets/premiumroom.jpeg" alt="Private wooden room">
-      </div>
+            <button
+              type="button"
+              class="register-now-btn"
+              data-register-package="villacozy"
+            >
+              REGISTER NOW
+            </button>
+          </div>
 
-      <div class="hotel-price-box">
-        <h3>₹1,35,000</h3>
-        <p>per person for 30 days · +18% GST</p>
+          <div class="hotel-package-content">
+            <div class="package-point">
+              <span>✓</span>
+              <p><strong>Stay:</strong> Private Room in a Premium Villa, with a cozy room option</p>
+            </div>
 
-        <a
-          href="https://wa.me/919873420987?text=Hi%2C%20I%20want%20to%20register%20for%20the%2030%20days%20Fat2Fit%20program"
-          target="_blank"
-          class="register-now-btn"
-        >
-          REGISTER NOW
-        </a>
-      </div>
+            <div class="package-point">
+              <span>✓</span>
+              <p><strong>Experience:</strong> Independent living, elevated comfort</p>
+            </div>
 
-      <div class="hotel-package-content">
-        <div class="package-point">
-          <span>✓</span>
-          <p><strong>Room:</strong> Private wooden room, private washroom, great view</p>
-        </div>
+            <div class="package-point">
+              <span>✓</span>
+              <p><strong>Training:</strong> Semi-Private Sessions, led by Head Coach (Program Designer)</p>
+            </div>
 
-        <div class="package-point">
-          <span>✓</span>
-          <p><strong>Training:</strong> Small batch training, group of 4</p>
-        </div>
+            <div class="package-point">
+              <span>✓</span>
+              <p><strong>Group size:</strong> 10 People</p>
+            </div>
 
-        <div class="package-point">
-          <span>✓</span>
-          <p><strong>Joining dates:</strong> Anytime</p>
-        </div>
+            <div class="package-point">
+              <span>✓</span>
+              <div>
+                <p><strong>Inclusions:</strong></p>
+                <ul>
+                  <li>Upscale, comfortable villa accommodation</li>
+                  <li>Semi-private training &amp; personalized coaching</li>
+                  <li>Curated healthy meals</li>
+                  <li>Advanced amenities</li>
+                  <li>Attached washroom</li>
+                  <li>24/7 supervision &amp; accountability</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-        <div class="package-point">
-          <span>✓</span>
-          <div>
-            <p><strong>Inclusions:</strong></p>
-            <ul>
-              <li>Stay, breakfast, lunch and dinner</li>
-              <li>Full body transformation training</li>
-              <li>Weekly personal guidance call with the coach</li>
-              <li>24/7 supervision &amp; accountability</li>
-            </ul>
+          <div class="hotel-action-row">
+            <button class="view-room-btn" data-program="villa-program">
+              View Full Details
+            </button>
           </div>
         </div>
 
-        <div class="package-point">
-          <span>✓</span>
-          <p><strong>Optional add-on:</strong> Private 1-on-1 training at +₹60,000 / 30 days</p>
+        <!-- FAT2FIT RESORT -->
+        <div class="hotel-package-card featured-package">
+          <div class="hotel-package-header">
+            <span>FAT2FIT RESORTS</span>
+            <p>Ultimate &middot; Luxury Cottages &middot; Scenic Views</p>
+          </div>
+
+          <div class="hotel-main-image">
+            <img src="assets/premium-main.jpeg" alt="Fat2Fit Resort individual cottage">
+          </div>
+
+          <div class="hotel-price-box">
+            <div class="price-tier">
+              <h3 data-package-price="resortsingle">₹2,35,000</h3>
+              <p data-package-desc="resortsingle">per person / 30 days &middot; Individual Resort Cottage &middot; +18% GST</p>
+            </div>
+
+            <button
+              type="button"
+              class="register-now-btn"
+              data-register-package="resortsingle"
+            >
+              REGISTER NOW
+            </button>
+          </div>
+
+          <div class="hotel-package-content">
+            <div class="package-point">
+              <span>✓</span>
+              <p><strong>Stay:</strong> Individual Luxury Resort Cottage</p>
+            </div>
+
+            <div class="package-point">
+              <span>✓</span>
+              <p><strong>Experience:</strong> Luxury, total comfort, scenic tranquility</p>
+            </div>
+
+            <div class="package-point">
+              <span>✓</span>
+              <p><strong>Training:</strong> Precise, Small-Group Sessions, led by Head Coach</p>
+            </div>
+
+            <div class="package-point">
+              <span>✓</span>
+              <p><strong>Group size:</strong> 7 People</p>
+            </div>
+
+            <div class="package-point">
+              <span>✓</span>
+              <div>
+                <p><strong>Inclusions:</strong></p>
+                <ul>
+                  <li>Individual luxury resort cottage</li>
+                  <li>Personalized concierge &amp; private training attention</li>
+                  <li>Sophisticated, specially curated dining</li>
+                  <li>High-end facilities</li>
+                  <li>Attached washroom</li>
+                  <li>24/7 supervision &amp; accountability</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="hotel-action-row">
+            <button class="view-room-btn" data-program="resort-program">
+              View Full Details
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="brochure-download">
+        <a
+          href="brochure.jpeg"
+          download
+          class="download-brochure-btn"
+        >
+          Download Full Brochure
+        </a>
+      </div>
+
+      <div class="paid-extras-note">
+        <p class="mini center">[ PAID SERVICES · ALL TIERS ]</p>
+        <p class="center">Car Parking &middot; Massages &middot; Laundry &middot; Blood Test &middot; Doctor Visit &middot; Local Cab Service</p>
+      </div>
+
+      <div class="business-details-strip">
+        <p class="mini center">[ REGISTERED BUSINESS DETAILS ]</p>
+        <div class="business-details-grid">
+          <div><span>GSTIN</span><p>07FJKPS7637P1Z1</p></div>
+          <div><span>Legal Name</span><p>Aditya Sharma</p></div>
+          <div><span>Trade Name</span><p>Eddey's</p></div>
         </div>
       </div>
 
-      <div class="hotel-action-row">
-        <button class="view-room-btn" data-program="single-program">
-          View Full Details
-        </button>
+      <div class="rules-strip">
+        <span>No alcohol</span>
+        <span>No smoking</span>
+        <span>No non-vegetarian food</span>
+        <span>No transportation</span>
+        <span>No discounts</span>
+        <span>No foul language</span>
+        <span>No disrespect to anyone</span>
       </div>
-    </div>
+    </section>
 
-  </div>
+    <!-- EXTRA ADD-ON: PERSONAL TRAINING WITH FOUNDER -->
+    <section class="founder-pt-section" id="founder-pt">
+      <div class="container">
+        <div class="founder-pt-card">
+          <div class="founder-pt-badge">EXCLUSIVE 1-ON-1 ADD-ON</div>
+          <h2>PERSONAL TRAINING WITH FOUNDER</h2>
+          <p class="founder-pt-name">Led Personally by Aditya Sharma &middot; 5+ Years Sports &amp; Rehab Background</p>
 
-  <div class="brochure-download">
-    <a
-      href="30daystay.jpeg"
-      download
-      class="download-brochure-btn"
-    >
-      Download Full Brochure
-    </a>
-  </div>
+          <div class="founder-pt-pricing">
+            <span class="pt-price" data-package-price="founderPt">₹80,000</span>
+            <span class="pt-term">for 30 Days</span>
+          </div>
 
-  <div class="paid-extras-note">
-    <p class="mini center">[ PAID SERVICES · ALL TIERS ]</p>
-    <p class="center">Car Parking · Massages · Laundry · Blood Test · Doctor Visit · Local Cab Service</p>
-  </div>
+          <div class="founder-pt-recommendation">
+            <div class="rec-icon">⚡</div>
+            <p>
+              <strong>Recommended for:</strong> People who have serious health issues, chronic pain,
+              post-rehab needs, or those seeking extraordinary results &amp; learning to build
+              superior muscle with professional biomechanics.
+            </p>
+          </div>
 
-  <div class="rules-strip">
-    <span>No alcohol</span>
-    <span>No smoking</span>
-    <span>No non-vegetarian food</span>
-    <span>No transportation</span>
-    <span>No discounts</span>
-    <span>No foul language</span>
-    <span>No disrespect to anyone</span>
-  </div>
-</section>
+          <div class="founder-pt-grid">
+            <div class="founder-pt-item">
+              <h4>🎯 1-on-1 Workout Guidance</h4>
+              <p>Dedicated private training hour daily with personal movement correction, intensity scaling, and fatigue monitoring.</p>
+            </div>
+            <div class="founder-pt-item">
+              <h4>🛡️ Advanced Injury &amp; Rehab Protocols</h4>
+              <p>Specialized corrective exercises for spinal disc issues, knee pain, posture imbalances, and structural recovery.</p>
+            </div>
+            <div class="founder-pt-item">
+              <h4>🥗 Precision Nutrition &amp; Metabolism</h4>
+              <p>Daily bespoke diet adjustments tailored to your metabolic adaptation, insulin sensitivity, and energy output.</p>
+            </div>
+            <div class="founder-pt-item">
+              <h4>🧠 Psychological Resilience &amp; Habit Reset</h4>
+              <p>Direct mental conditioning and daily accountability with our Counselling Psychologist and Founder.</p>
+            </div>
+          </div>
+
+          <div class="founder-pt-cta">
+            <a
+              href="https://wa.me/919873420987?text=Hi%20Coach%20Aditya%2C%20I%20am%20interested%20in%20the%20Personal%20Training%20with%20Founder%20(80k%2F30%20days)%20Add-On.%20Please%20share%20details."
+              target="_blank"
+              class="founder-pt-btn"
+            >
+              Book Personal Training on WhatsApp
+            </a>
+            <p class="pt-note">*Strictly limited slots per batch to guarantee undivided personal attention.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW SECTION: 3-MONTH ONLINE PASS -->
+    <section class="online-pass-section" id="online-pass">
+      <div class="container">
+        <p class="mini center">[ NEW SUBSCRIPTION ALERT ]</p>
+        <h2 class="center">FAT2FIT 3-MONTHS PASS</h2>
+        <p class="pass-sub center">
+          Can't make it to Shimla right now? Get the exact same structured discipline, custom workouts,
+          and curated nutrition delivered directly to you at home.
+        </p>
+
+        <!-- MAIN PASS PROMO CARD -->
+        <div class="pass-hero-card">
+          <div class="pass-hero-image">
+            <img src="assets/pass_promo.png" alt="Fat2Fit 3-Months Pass promotion">
+          </div>
+
+          <div class="pass-hero-info">
+            <div class="pass-discount-tag">FLAT 50% OFF &middot; FIRST 10 INDIVIDUALS</div>
+            <h3>WHAT YOU GET OVER 3 MONTHS:</h3>
+
+            <ul class="pass-perks-list">
+              <li>
+                <span class="perk-bullet">🏋️</span>
+                <div>
+                  <strong>Custom Workout Routines</strong>
+                  <p>Scientifically designed for progressive fat loss, core stability, and athletic conditioning.</p>
+                </div>
+              </li>
+              <li>
+                <span class="perk-bullet">🥗</span>
+                <div>
+                  <strong>Nutritional Plans &amp; Recipes</strong>
+                  <p>Simple, wholesome eating guidelines with realistic Indian meal structures — no starving.</p>
+                </div>
+              </li>
+              <li>
+                <span class="perk-bullet">💡</span>
+                <div>
+                  <strong>Weekly Insights &amp; Reviews</strong>
+                  <p>Regular check-ins, habit feedback, and guidance directly on Instagram &amp; Email.</p>
+                </div>
+              </li>
+            </ul>
+
+            <div class="pass-price-banner">
+              <div class="pass-price-details">
+                <span class="pass-only">ONLY</span>
+                <span class="pass-current-price" data-package-price="online3m" data-price-suffix="/-">₹9,999/-</span>
+                <span class="pass-original-price" data-package-original="online3m">Original Price: ₹20,000/-</span>
+              </div>
+
+              <button
+                type="button"
+                class="register-now-btn pass-enroll-btn"
+                data-register-package="online3m"
+              >
+                SUBSCRIBE NOW
+              </button>
+            </div>
+
+            <!-- SPECIAL BONUS CALLOUT -->
+            <div class="pass-bonus-box">
+              <div class="bonus-badge">SPECIAL BONUS OFFER!</div>
+              <h4>COMPLETE 3 MONTHS, GET A</h4>
+              <h3>3-DAY BOOT CAMP ABSOLUTELY FREE!</h3>
+              <p>Experience the real in-person Shimla Fat2Fit Boot Camp at no extra accommodation or training fee upon completing your 3-month online commitment.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOW THE 3-MONTH PASS WORKS (7 STEPS) -->
+        <div class="pass-steps-container">
+          <div class="section-header-center">
+            <p class="mini">[ THE PROCESS ]</p>
+            <h2>HOW THE 3-MONTH FAT2FIT PASS WORKS</h2>
+            <p class="steps-intro">7 systematic steps from enrollment to body transformation and free camp graduation.</p>
+          </div>
+
+          <div class="pass-steps-grid">
+            <div class="pass-step-card">
+              <div class="step-num">1</div>
+              <h4>Enroll &amp; Activate</h4>
+              <p>Enroll for the 3-Month Plan. Pay the <span data-package-price="online3m" data-price-suffix="/-">₹9,999/-</span> fee once via our secure Razorpay gateway.</p>
+            </div>
+
+            <div class="pass-step-card">
+              <div class="step-num">2</div>
+              <h4>Onboarding &amp; Coaching Curation</h4>
+              <p>Onboarding with Coach Aditya. Personalized biometric &amp; lifestyle data collection starts.</p>
+            </div>
+
+            <div class="pass-step-card">
+              <div class="step-num">3</div>
+              <h4>Month 1 - Week 1: First Guide</h4>
+              <p>Receive your Week 1 Nutrition &amp; Workout Guide over email — the first of 4 detailed guides this month.</p>
+            </div>
+
+            <div class="pass-step-card">
+              <div class="step-num">4</div>
+              <h4>Follow Plans &amp; Share Progress</h4>
+              <p>Execute your curated plan and submit your Weight, Inches, and Progress Photos every single week.</p>
+            </div>
+
+            <div class="pass-step-card">
+              <div class="step-num">5</div>
+              <h4>Month 1 - Weeks 2-4: Review &amp; Adapt</h4>
+              <p>Coach Aditya reviews your week-on-week data and alters plans for Weeks 2–4 (3 more guides over email).</p>
+            </div>
+
+            <div class="pass-step-card">
+              <div class="step-num">6</div>
+              <h4>Repeat Month 2 &amp; 3</h4>
+              <p>Continue for two more months with weekly check-ins and tailored modifications (12 total guides over 3 months).</p>
+            </div>
+
+            <div class="pass-step-card pass-step-highlight">
+              <div class="step-num bonus-num">7</div>
+              <h4>Achieve Transformation &amp; Bonus</h4>
+              <p>Complete your 3 months, achieve your dream fitness goals, and qualify for your <strong>FREE 3-DAY BOOT CAMP EXPERIENCE!</strong></p>
+            </div>
+          </div>
+
+          <div class="pass-steps-cta">
+            <button
+              type="button"
+              class="register-now-btn pass-cta-btn"
+              data-register-package="online3m"
+            >
+              Start 3-Month Online Pass Now (<span data-package-price="online3m">₹9,999</span>)
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
 
     <!-- DAILY ROUTINE -->
     <section class="light section" id="routine">
       <p class="mini center">[ THE ROUTINE ]</p>
-      <h2 class="center">DISCIPLINE TODAY.<br />TRANSFORMATION TOMORROW.</h2>
+      <h2 class="center">DAILY ROUTINES BY PROGRAM</h2>
 
-      <div class="routine-timeline">
-        <div class="routine-item">
-          <div class="routine-time">6:00 AM</div>
-          <div class="routine-dot"></div>
-          <div class="routine-info">
-            <h4>Walk</h4>
-            <p>Start your day with a refreshing walk to boost energy and focus.</p>
-          </div>
+      <div class="routine-grid">
+
+        <div class="routine-col routine-col-hostel">
+          <div class="routine-col-header">FAT2FIT HOSTEL</div>
+          <p class="routine-col-sub">Routine for Hostel Participants</p>
+          <ul class="routine-list">
+            <li><span class="routine-list-time">6:00 AM</span><span>Morning Walk</span></li>
+            <li><span class="routine-list-time">9:30 AM</span><span>Breakfast</span></li>
+            <li><span class="routine-list-time">2:30 PM</span><span>Lunch</span></li>
+            <li><span class="routine-list-time">5:00 PM</span><span>Workout by Team Fit2Fit</span></li>
+            <li><span class="routine-list-time">7:30 PM</span><span>Dinner</span></li>
+          </ul>
+          <div class="routine-col-coaching">Coaching: All workouts by Junior Coaches</div>
         </div>
 
-        <div class="routine-item">
-          <div class="routine-time">9:30 AM</div>
-          <div class="routine-dot"></div>
-          <div class="routine-info">
-            <h4>Breakfast is Served</h4>
-            <p>Fuel your body with a nutritious breakfast.</p>
-          </div>
+        <div class="routine-col routine-col-villa">
+          <div class="routine-col-header">FAT2FIT VILLA</div>
+          <p class="routine-col-sub">Premium Routine for Villa Guests</p>
+          <ul class="routine-list">
+            <li><span class="routine-list-time">6:00 AM</span><span>Walk</span></li>
+            <li><span class="routine-list-time">9:30 AM</span><span>Breakfast</span></li>
+            <li><span class="routine-list-time">11:00 AM</span><span>Rehab Session</span></li>
+            <li><span class="routine-list-time">2:30 PM</span><span>Lunch</span></li>
+            <li><span class="routine-list-time">5:00 PM</span><span>Main Workout</span></li>
+            <li><span class="routine-list-time">7:30 PM</span><span>Dinner</span></li>
+          </ul>
+          <div class="routine-col-coaching">Coaching: Sessions by Head Coach (Program Designer)</div>
         </div>
 
-        <div class="routine-item">
-          <div class="routine-time">11:00 AM</div>
-          <div class="routine-dot"></div>
-          <div class="routine-info">
-            <h4>Rehab Session (at Gym)</h4>
-            <p>Focus on mobility, recovery and injury prevention to keep your body strong.</p>
-          </div>
+        <div class="routine-col routine-col-resort">
+          <div class="routine-col-header">FAT2FIT RESORT</div>
+          <p class="routine-col-sub">Luxury Resort Routine (Customizable)</p>
+          <ul class="routine-list">
+            <li><span class="routine-list-time">6:00 AM</span><span>Walk</span></li>
+            <li><span class="routine-list-time">9:30 AM</span><span>Breakfast</span></li>
+            <li><span class="routine-list-time">11:00 AM</span><span>Rehab Session</span></li>
+            <li><span class="routine-list-time">2:30 PM</span><span>Lunch</span></li>
+            <li><span class="routine-list-time">5:00 / 6:00 PM</span><span>Main Workout</span></li>
+            <li><span class="routine-list-time">7:30 PM</span><span>Dinner</span></li>
+          </ul>
+          <p class="routine-col-note">Resort timings are tentative — planned with participants for maximum suitability.</p>
+          <div class="routine-col-coaching">Coaching: Sessions by Head Coach (Program Designer)</div>
         </div>
 
-        <div class="routine-item">
-          <div class="routine-time">2:30 PM</div>
-          <div class="routine-dot"></div>
-          <div class="routine-info">
-            <h4>Lunch is Served</h4>
-            <p>Enjoy a balanced and wholesome lunch to refuel.</p>
-          </div>
-        </div>
-
-        <div class="routine-item">
-          <div class="routine-time">6:00 PM</div>
-          <div class="routine-dot"></div>
-          <div class="routine-info">
-            <h4>Main Workout (at Gym)</h4>
-            <p>Your main training session of the day. Push hard, stay focused, get results.</p>
-          </div>
-        </div>
-
-        <div class="routine-item">
-          <div class="routine-time">7:30 PM</div>
-          <div class="routine-dot"></div>
-          <div class="routine-info">
-            <h4>Dinner is Served</h4>
-            <p>End your day with a healthy, satisfying dinner to support recovery.</p>
-          </div>
-        </div>
       </div>
 
       <div class="rest-day-banner">
-        <p><strong>Sundays = Rest Day</strong> — Recovery Day · Off Day. Rest. Recover. Recharge. Come back stronger.</p>
+        <p><strong>Sundays = Rest Day</strong> — Recovery Day &middot; Off Day. Rest. Recover. Recharge. Come back stronger.</p>
       </div>
     </section>
 
@@ -437,39 +668,40 @@
         <div class="location-content">
           <div class="location-text">
             <p>
-              The Fat2Fit program is hosted in a peaceful hill environment
-              designed to remove distractions and support focused
-              transformation.
+              Fat2Fit Hostel &amp; Resort is tucked into the hills off the NH5
+              highway, on the Delhi/Chandigarh–Shimla route, pincode
+              <strong>171219</strong> — just 13 km before Shimla.
             </p>
 
             <p>
-              The location gives participants a calm setting for structured
-              meals, guided workouts, walking sessions, routine building, and
-              daily accountability.
+              <strong>Fat2Fit Resort &amp; Villa</strong> is about 6 km up from the highway,
+              and <strong>Fat2Fit Hostel</strong> is roughly 1 km up the hill,
+              close to Shoghi Police Chowki and the Kawara Chowki Police
+              Station checkpoint on NH5.
             </p>
 
             <div class="location-features">
               <div class="location-feature">
-                <span class="feature-icon">🏔️</span>
+                <span class="feature-icon">✈️</span>
                 <div>
-                  <h4>Hill Environment</h4>
-                  <p>Peaceful surroundings for better focus and discipline.</p>
+                  <h4>By Flight</h4>
+                  <p>Nearest airport is Chandigarh (IXC). Connect onward by cab or Volvo bus.</p>
                 </div>
               </div>
 
               <div class="location-feature">
-                <span class="feature-icon">🥗</span>
+                <span class="feature-icon">🚌</span>
                 <div>
-                  <h4>Controlled Routine</h4>
-                  <p>Meals, movement, and rest planned with structure.</p>
+                  <h4>By Road</h4>
+                  <p>Regular cabs &amp; Volvo buses run from Delhi or Chandigarh.</p>
                 </div>
               </div>
 
               <div class="location-feature">
-                <span class="feature-icon">💪</span>
+                <span class="feature-icon">⏱️</span>
                 <div>
-                  <h4>Transformation Focus</h4>
-                  <p>Built for people serious about weight loss and stamina.</p>
+                  <h4>Travel Times</h4>
+                  <p>From Delhi: ~8 hours (~340 km). From Chandigarh: ~2.5 hours (~100 km).</p>
                 </div>
               </div>
             </div>
@@ -484,32 +716,29 @@
           </div>
 
           <div class="location-gallery">
-            <div class="location-image main-image">
-              <img src="assets/location1.jpeg" alt="Program location image" />
+            <div class="location-hero">
+              <img src="assets/RouteMap.jpeg" alt="Route map to Fat2Fit Hostel and Resort, pincode 171219" />
             </div>
-
-            <div class="location-images-grid">
+            <div class="location-grid">
               <div class="location-image">
-                <img src="assets/location2.jpeg" alt="Program location image 2" />
+                <img src="assets/stay-2.jpeg" alt="Fat2Fit property in the hills near Shimla" />
               </div>
-
               <div class="location-image">
-                <img src="assets/location3.jpeg" alt="Program location image 3" />
+                <img src="assets/stay-3.jpeg" alt="Fat2Fit location photo 3" />
               </div>
-
               <div class="location-image">
-                <img src="assets/location4.jpeg" alt="Program location image 4" />
+                <img src="assets/stay-4.jpeg" alt="Fat2Fit location photo 4" />
               </div>
-
               <div class="location-image">
-                <img src="assets/location5.jpeg" alt="Program location image 5" />
+                <img src="assets/location-4.jpeg" alt="Fat2Fit location photo 5" />
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- PROGRAM MODAL -->
+
+    <!-- PROGRAM DETAILS MODAL -->
     <div id="programModal" class="program-modal">
       <div class="program-modal-box">
         <span class="close-program">&times;</span>
@@ -522,14 +751,13 @@
 
         <div id="programDetails" class="program-details"></div>
 
-        <a
-          id="programWhatsappBtn"
-          href="https://wa.me/919873420987?text=Hi%2C%20I%20want%20to%20book%20the%2030%20days%20Fat2Fit%20program"
-          target="_blank"
-          class="payment-btn"
+        <button
+          type="button"
+          id="programRegisterBtn"
+          class="register-now-btn payment-btn"
         >
-          Book via WhatsApp
-        </a>
+          REGISTER NOW
+        </button>
       </div>
     </div>
 
@@ -548,6 +776,167 @@
       </div>
     </div>
 
+    <!-- REGISTRATION / PAYMENT / INVOICE MODAL -->
+    <div id="registrationModal" class="reg-modal">
+      <div class="reg-modal-box">
+        <span class="close-registration">&times;</span>
+
+        <!-- STEP 1: REGISTRATION FORM WITH HEALTH/FITNESS PROFILE -->
+        <div id="regStep1" class="reg-step">
+          <p class="mini">[ REGISTRATION &amp; ASSESSMENT ]</p>
+          <h2 class="reg-step-title">TELL US ABOUT YOURSELF</h2>
+          <p class="reg-sub-hint">Please provide accurate health and biometric details so our coaching team can curate your nutrition and training safely.</p>
+
+          <form id="registrationForm" novalidate>
+
+            <!-- SECTION A: PERSONAL & CONTACT -->
+            <div class="reg-section-block">
+              <h4 class="reg-block-title">1. Personal &amp; Contact Details</h4>
+              
+              <div class="reg-field">
+                <label for="regName">Full Name *</label>
+                <input type="text" id="regName" name="regName" autocomplete="name" placeholder="Your full name" required />
+              </div>
+
+              <div class="reg-field-row">
+                <div class="reg-field">
+                  <label for="regEmail">Email Address *</label>
+                  <input type="email" id="regEmail" name="regEmail" autocomplete="email" placeholder="you@example.com" required />
+                </div>
+                <div class="reg-field">
+                  <label for="regPhone">Phone Number (WhatsApp) *</label>
+                  <input type="tel" id="regPhone" name="regPhone" autocomplete="tel" placeholder="+91 9XXXXXXXXX" required />
+                </div>
+              </div>
+
+              <div class="reg-field-row">
+                <div class="reg-field">
+                  <label for="regPlace">City / Place of Origin *</label>
+                  <input type="text" id="regPlace" name="regPlace" placeholder="e.g. Delhi, Mumbai, Chandigarh" required />
+                </div>
+                <div class="reg-field">
+                  <label for="regAge">Age (Years) *</label>
+                  <input type="number" id="regAge" name="regAge" min="14" max="90" placeholder="e.g. 28" required />
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION B: BIOMETRICS & FITNESS PROFILE -->
+            <div class="reg-section-block">
+              <h4 class="reg-block-title">2. Physical &amp; Health Profile</h4>
+
+              <div class="reg-field-row">
+                <div class="reg-field">
+                  <label for="regWeight">Current Weight (kg) *</label>
+                  <input type="text" id="regWeight" name="regWeight" placeholder="e.g. 85 kg" required />
+                </div>
+                <div class="reg-field">
+                  <label for="regHeight">Height (cm or ft/in) *</label>
+                  <input type="text" id="regHeight" name="regHeight" placeholder="e.g. 175 cm or 5'9&quot;" required />
+                </div>
+              </div>
+
+              <div class="reg-field">
+                <label for="regGoal">Primary Transformation Goal *</label>
+                <select id="regGoal" name="regGoal" required>
+                  <option value="Fat Loss & Weight Reduction">Fat Loss &amp; Weight Reduction</option>
+                  <option value="Metabolic Reset & Habit Building">Metabolic Reset &amp; Habit Building</option>
+                  <option value="Muscle Building & Athletic Conditioning">Muscle Building &amp; Athletic Conditioning</option>
+                  <option value="Injury Rehab & Chronic Pain Recovery">Injury Rehab &amp; Chronic Pain Recovery</option>
+                  <option value="Lifestyle Detox & Stress Management">Lifestyle Detox &amp; Stress Management</option>
+                </select>
+              </div>
+
+              <div class="reg-field">
+                <label for="regAllergies">Food Allergies / Dietary Restrictions</label>
+                <input type="text" id="regAllergies" name="regAllergies" placeholder="e.g. Lactose intolerant, Gluten sensitive, Nut allergy, or None" />
+              </div>
+
+              <div class="reg-field">
+                <label for="regAdditional">Medical History / Past Injuries / Health Issues</label>
+                <textarea id="regAdditional" name="regAdditional" rows="2" placeholder="e.g. High BP, Thyroid, PCOS, Lower back disc issue, Knee pain, or None"></textarea>
+              </div>
+            </div>
+
+            <!-- SECTION C: PACKAGE & DATES -->
+            <div class="reg-section-block">
+              <h4 class="reg-block-title">3. Program Selection &amp; Schedule</h4>
+
+              <div class="reg-field">
+                <label for="regPackage">Choose Program / Option of Stay *</label>
+                <select id="regPackage" name="regPackage" required>
+                  <optgroup label="30-Day In-Person Camp (Shimla)">
+                    <option value="hostel4">Fat2Fit Hostel — Dual Sharing (₹56,000 + 18% GST)</option>
+                    <option value="hostel1">Fat2Fit Hostel — Private Room (₹76,000 + 18% GST)</option>
+                    <option value="villacozy">Fat2Fit Villa — Cozy Private Room (₹1,11,000 + 18% GST)</option>
+                    <option value="villapremium">Fat2Fit Villa — Premium Private Room (₹1,39,000 + 18% GST)</option>
+                    <option value="resortsingle">Fat2Fit Resort — Individual Resort Cottage (₹2,35,000 + 18% GST)</option>
+                  </optgroup>
+                  <optgroup label="Online Transformation Subscription">
+                    <option value="online3m">Fat2Fit 3-Month Pass — Online Workout &amp; Nutrition (₹9,999 One-Time)</option>
+                  </optgroup>
+                </select>
+              </div>
+
+              <div id="campDatesRow" class="reg-field-row">
+                <div class="reg-field">
+                  <label for="regMonth">Joining Month</label>
+                  <select id="regMonth" name="regMonth"></select>
+                </div>
+
+                <div class="reg-field">
+                  <label>Joining Batch Day</label>
+                  <div class="reg-radio-row">
+                    <label class="reg-radio" id="regDay1Label"><input type="radio" id="regDay1" name="regDay" value="1" checked /> 1st of Month</label>
+                    <label class="reg-radio" id="regDay15Label"><input type="radio" id="regDay15" name="regDay" value="15" /> 15th of Month</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="reg-error" id="regFormError"></p>
+
+            <button type="submit" class="register-now-btn reg-full-btn">Continue to Review &amp; Payment</button>
+          </form>
+        </div>
+
+        <!-- STEP 2: PAYMENT REVIEW -->
+        <div id="regStep2" class="reg-step" style="display:none;">
+          <p class="mini">[ REVIEW &amp; PAY ]</p>
+          <h2 class="reg-step-title">CONFIRM YOUR REGISTRATION</h2>
+
+          <div id="regSummary" class="reg-summary"></div>
+
+          <button type="button" id="regPayBtn" class="register-now-btn reg-full-btn">
+            Proceed with Payment via Razorpay
+          </button>
+
+          <p class="reg-note" id="regLoadingNote" style="display: none; text-align: center; margin-top: 15px;">
+            Securely opening Razorpay... Please wait.
+          </p>
+
+          <button type="button" id="regBackBtn" class="reg-link-btn" style="margin-top: 15px;">&larr; Back to edit details</button>
+        </div>
+
+        <!-- STEP 3: INVOICE / BOOKING CONFIRMATION -->
+        <div id="regStep3" class="reg-step" style="display:none;">
+          <div id="invoiceContent" class="invoice"></div>
+
+          <div class="reg-invoice-actions">
+            <button type="button" id="regPrintBtn" class="register-now-btn">
+              Download Invoice
+            </button>
+            <a id="regWhatsappCopyBtn" class="register-now-btn reg-secondary-btn" href="#" target="_blank" rel="noopener">
+              Send via WhatsApp
+            </a>
+          </div>
+          <button type="button" id="regNewBookingBtn" class="reg-link-btn" style="margin-top: 20px; display: block; width: 100%; text-align: center;">
+            &larr; Book Another Program / New Registration
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- TERMS -->
     <section class="light section">
       <p class="mini">[ INCLUSIONS VS RULES ]</p>
@@ -558,11 +947,11 @@
           <h3>WHAT YOU GET</h3>
           <ul>
             <li>Fixed daily routine</li>
-            <li>Controlled meals</li>
-            <li>Guided workouts</li>
-            <li>Walking sessions</li>
-            <li>Structured stay</li>
-            <li>Accountability</li>
+            <li>Controlled wholesome meals</li>
+            <li>Guided workouts &amp; rehab sessions</li>
+            <li>Morning walking sessions</li>
+            <li>Structured stay &amp; peaceful environment</li>
+            <li>Uncompromising accountability</li>
           </ul>
         </div>
 
@@ -571,9 +960,10 @@
           <ul>
             <li>No alcohol</li>
             <li>No smoking</li>
-            <li>No non-veg</li>
-            <li>No transport</li>
+            <li>No non-veg food</li>
+            <li>No transport included</li>
             <li>No discounts</li>
+            <li>No foul language</li>
           </ul>
         </div>
       </div>
@@ -619,6 +1009,18 @@
             View Details
           </button>
         </div>
+
+        <div class="person">
+          <img src="assets/transform.jpeg" alt="Transformation 4" />
+          <h4>Fat2Fit Bootcamp Batch</h4>
+          <p>-17 kgs &amp; -34 kgs in 30 days</p>
+          <button
+            class="person-details-btn"
+            onclick="window.open('https://www.instagram.com/fat2fitbyeddeys/', '_blank')"
+          >
+            View Details
+          </button>
+        </div>
       </div>
     </section>
 
@@ -626,7 +1028,7 @@
     <section id="coach" class="coach-section">
       <div class="coach-container">
         <div class="coach-image">
-          <img src="assets/coach.jpeg" alt="Coach" />
+          <img src="assets/coach.jpeg" alt="Coach Aditya Sharma" />
         </div>
 
         <div class="coach-content">
@@ -668,7 +1070,7 @@
         Fat2Fit is a structured weight-loss and lifestyle reset program for
         people who need routine, discipline, supervision, and a controlled
         environment. The goal is not only short-term weight loss, but also
-        building habits that can continue after the program ends.
+        building habits that continue for life.
       </p>
     </section>
 
@@ -698,7 +1100,7 @@
       <div class="footer-content">
         <h3>FAT2FIT</h3>
 
-        <p>30 Days Weight Loss Reset Program</p>
+        <p>30 Days Weight Loss Reset Program &amp; 3-Month Online Pass</p>
 
         <p>
           Location:
@@ -709,6 +1111,7 @@
           >
             View on Google Maps
           </a>
+          &middot; Pincode 171219
         </p>
 
         <a
@@ -719,10 +1122,15 @@
           Join via WhatsApp
         </a>
 
-        <p class="copyright">© 2026 FAT2FIT. All Rights Reserved.</p>
+        <p class="footer-gst">GSTIN: 07FJKPS7637P1Z1 &middot; Aditya Sharma, trading as Eddey's</p>
+
+        <p class="copyright">© 2026 FAT2FIT. All Rights Reserved. &middot; <a href="adminlogin.html" style="color: inherit; text-decoration: none; opacity: 0.7;" title="Admin Portal">Admin Login</a></p>
       </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="pricing.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
