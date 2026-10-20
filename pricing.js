@@ -27,16 +27,16 @@
       desc: "per person / 30 days · Private Room · +18% GST",
     },
     villacozy: {
-      label: "Fat2Fit Villa — Cozy Private Room",
+      label: "Fat2Fit Villa — Cozy Private Room (No View)",
       base: 121000,
       type: "camp",
-      desc: "per person / 30 days · Cozy Private Room Option · +18% GST",
+      desc: "per person / 30 days · Cozy Private Room · Compact size, no view · +18% GST",
     },
     villapremium: {
-      label: "Fat2Fit Villa — Premium Private Room",
+      label: "Fat2Fit Villa — Premium Room (Scenic View)",
       base: 141000,
       type: "camp",
-      desc: "per person / 30 days · Private Room, Premium Villa · +18% GST",
+      desc: "per person / 30 days · Premium Villa Room · Room with a scenic view · +18% GST",
     },
     resortsingle: {
       label: "Fat2Fit Resort — Individual Resort Cottage",
