@@ -96,13 +96,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     "villa-program": {
       packageKey: "villacozy",
-      title: "Fat2Fit Villa — Cozy Private Room & Premium Villa",
+      title: "Fat2Fit Villa — Cozy Private Room & Premium Villa Room",
       images: [
         { src: "assets/vila/img1.jpeg" },
         { src: "assets/vila/img2.jpeg" },
         { src: "assets/vila/img3.jpeg" },
         { src: "assets/vila/img4.jpeg" },
         { src: "assets/vila/img5.jpeg" },
+        { src: "assets/vila/aerial-villa.jpeg" },
+        { src: "assets/vila/swimming-villa.jpeg" },
       ],
       html: `
         <h3>This Is Not A Holiday. This Is A Weight Loss Reset.</h3>
@@ -115,15 +117,35 @@ document.addEventListener("DOMContentLoaded", () => {
           results alongside real comfort.
         </p>
 
+        <h3>Choose Your Room Category</h3>
+        <p>
+          Both categories offer the same villa, programme, training and meals.
+          The only difference is the room you stay in — its size and whether it
+          comes with a view.
+        </p>
+        <ul>
+          <li>
+            <strong>Cozy Private Room (₹1,21,000):</strong> A compact private
+            room without a view. A practical and comfortable choice for guests
+            who spend most of their day in training and want privacy at a more
+            accessible price.
+          </li>
+          <li>
+            <strong>Premium Villa Room (₹1,41,000):</strong> A private room
+            with a scenic view. Suited to guests who prefer a more relaxing,
+            immersive setting for rest and recovery between sessions.
+          </li>
+        </ul>
+
         <h3>Room &amp; Batch</h3>
         <ul>
-          <li>Private room in a premium villa, with cozy private room option</li>
+          <li>Private room in the villa — Cozy (compact, no view) or Premium (with view)</li>
           <li>Group size: 10 people, semi-private training sessions</li>
           <li>Training led directly by our Head Coach (Program Designer)</li>
           <li>Joining dates: 1st &amp; 15th of every month, all year round</li>
         </ul>
 
-        <h3>What The Program Includes</h3>
+        <h3>What The Program Includes (Both Room Categories)</h3>
         <ul>
           <li>Independent living in an upscale, private villa room</li>
           <li>Semi-private training &amp; personalized coaching</li>
@@ -135,8 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <h3>Investment</h3>
         <div class="modal-price-box">
-          <p><strong>30 Days &middot; Cozy Private Room:</strong> <span>₹1,21,000</span></p>
-          <p><strong>30 Days &middot; Premium Villa Room:</strong> <span>₹1,41,000</span></p>
+          <p><strong>30 Days &middot; Cozy Private Room (compact, no view):</strong> <span>₹1,21,000</span></p>
+          <p><strong>30 Days &middot; Premium Villa Room (with view):</strong> <span>₹1,41,000</span></p>
           <small>Per person &middot; Attached washroom &middot; +18% GST extra</small>
         </div>
       `,
@@ -150,6 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { src: "assets/premiumbamboo.jpeg" },
         { src: "assets/pre-1.jpeg" },
         { src: "assets/pre-2.jpeg" },
+        { src: "assets/aerial-resort.jpeg" },
       ],
       html: `
         <h3>This Is Not A Holiday. This Is A Weight Loss Reset.</h3>
