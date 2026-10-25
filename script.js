@@ -81,8 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <h3>Investment</h3>
         <div class="modal-price-box">
-          <p><strong>30 Days &middot; Dual Sharing:</strong> <span>₹56,000</span></p>
-          <p><strong>30 Days &middot; Private Room:</strong> <span>₹76,000</span></p>
+          <p><strong>30 Days &middot; Dual Sharing:</strong> <span>₹70,000</span></p>
+          <p><strong>30 Days &middot; Private Room:</strong> <span>₹90,000</span></p>
           <small>Per person &middot; Attached washroom &middot; +18% GST extra</small>
         </div>
 
