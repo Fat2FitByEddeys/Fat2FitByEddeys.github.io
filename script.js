@@ -1,3 +1,38 @@
+/* =========================================================
+   META PIXEL TRACKING HELPER LAYER
+   ========================================================= */
+const F2FAnalytics = {
+  track(eventName, params = {}) {
+    if (typeof window.fbq === "function") {
+      window.fbq("track", eventName, params);
+    }
+  },
+  trackCustom(eventName, params = {}) {
+    if (typeof window.fbq === "function") {
+      window.fbq("trackCustom", eventName, params);
+    }
+  },
+  getPackageMeta(packageKey) {
+    const PACKAGES = window.PACKAGES || {};
+    const pkg = PACKAGES[packageKey];
+    const fallbackPrices = {
+      hostel4: 70000,
+      hostel1: 90000,
+      villacozy: 121000,
+      villapremium: 141000,
+      resortsingle: 235000,
+      online3m: 9999,
+      founderPt: 80000,
+    };
+    return {
+      id: packageKey || "unknown",
+      name: pkg ? pkg.label : packageKey || "Fat2Fit Program",
+      value: pkg ? pkg.base : fallbackPrices[packageKey] || 0,
+      category: pkg && pkg.type === "online" ? "Online Pass" : "Shimla Retreat Camp",
+    };
+  },
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   /* POPUP */
   const popup = document.getElementById("popupOverlay");
@@ -6,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (popup && closePopup) {
     setTimeout(() => {
       popup.classList.add("show");
+      F2FAnalytics.trackCustom("PopupShown", { popup_type: "welcome_overlay" });
     }, 800);
 
     closePopup.addEventListener("click", () => {
@@ -49,7 +85,11 @@ document.addEventListener("DOMContentLoaded", () => {
     "hostel-program": {
       packageKey: "hostel4",
       title: "Fat2Fit Hostel — Dual Sharing & Private Room",
-      images: [{ src: "assets/hostel-1.jpeg" }, { src: "assets/hostel-2.jpeg" }, { src: "assets/hostel-3.jpeg" },],
+      images: [
+        { src: "assets/hostel-1.jpeg" },
+        { src: "assets/hostel-2.jpeg" },
+        { src: "assets/hostel-3.jpeg" },
+      ],
       html: `
         <h3>This Is Not A Holiday. This Is A Weight Loss Reset.</h3>
         <p>
@@ -238,6 +278,17 @@ document.addEventListener("DOMContentLoaded", () => {
         programRegisterBtn.dataset.registerPackage = data.packageKey || "hostel4";
       }
 
+      // Track ViewContent when user views full details of a camp tier
+      const meta = F2FAnalytics.getPackageMeta(data.packageKey);
+      F2FAnalytics.track("ViewContent", {
+        content_name: data.title,
+        content_ids: [meta.id],
+        content_type: "product",
+        content_category: meta.category,
+        value: meta.value,
+        currency: "INR",
+      });
+
       initializeLightbox();
     });
   });
@@ -287,6 +338,10 @@ document.addEventListener("DOMContentLoaded", () => {
       img.onclick = () => {
         showImage(index);
         lightboxModal.classList.add("show");
+        F2FAnalytics.trackCustom("ViewRoomPhoto", {
+          image_src: img.getAttribute("src"),
+          image_index: index + 1,
+        });
       };
     });
 
@@ -312,6 +367,115 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.key === "ArrowRight") showImage((currentIndex + 1) % images.length);
       if (e.key === "ArrowLeft") showImage((currentIndex - 1 + images.length) % images.length);
     });
+  }
+
+  /* =========================================================
+     BEHAVIORAL & ENGAGEMENT TRACKING (CTAs, Scroll, Sections)
+     ========================================================= */
+
+  // 1. WhatsApp Contact Clicks (Navbar, Hero, Popup, Founder PT, Footer)
+  document.querySelectorAll('a[href*="wa.me"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      if (link.id === "regWhatsappCopyBtn") return; // Handled separately in invoice flow
+      let placement = "general";
+      if (link.classList.contains("nav-btn")) placement = "navbar_join_now";
+      else if (link.classList.contains("founder-pt-btn")) placement = "founder_1on1_pt";
+      else if (link.classList.contains("footer-whatsapp")) placement = "footer_whatsapp";
+      else if (link.closest("#popupOverlay")) placement = "welcome_popup";
+      else if (link.closest(".hero")) placement = "hero_book_appointment";
+
+      F2FAnalytics.track("Contact", {
+        content_name: "WhatsApp Inquiry",
+        content_category: placement,
+        value: placement === "founder_1on1_pt" ? 80000 : 0,
+        currency: "INR",
+      });
+    });
+  });
+
+  // 2. Brochure Download
+  const brochureBtn = document.querySelector(".download-brochure-btn");
+  if (brochureBtn) {
+    brochureBtn.addEventListener("click", () => {
+      F2FAnalytics.trackCustom("DownloadBrochure", {
+        content_name: "Fat2Fit Camp Brochure",
+      });
+    });
+  }
+
+  // 3. Google Maps Location Clicks
+  document.querySelectorAll(".location-map-btn, .footer-location-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      F2FAnalytics.track("FindLocation", {
+        content_name: "Fat2Fit Shimla Camp Location (171219)",
+      });
+    });
+  });
+
+  // 4. Transformation Reels & Instagram Social Proof
+  document.querySelectorAll(".person-details-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const personCard = btn.closest(".person");
+      const personName = personCard?.querySelector("h4")?.innerText || "Transformation Story";
+      F2FAnalytics.trackCustom("ViewTransformationReel", {
+        person_name: personName,
+      });
+    });
+  });
+
+  document.querySelectorAll('.instagram-section a[href*="instagram.com"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      F2FAnalytics.trackCustom("FollowInstagram", {
+        account: "@fat2fitbyeddeys",
+      });
+    });
+  });
+
+  // 5. Scroll Depth Tracking (25%, 50%, 75%, 100%)
+  const scrollMilestones = new Set();
+  window.addEventListener(
+    "scroll",
+    () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight <= 0) return;
+      const scrolledPct = Math.round((scrollTop / docHeight) * 100);
+
+      [25, 50, 75, 100].forEach((milestone) => {
+        if (scrolledPct >= milestone && !scrollMilestones.has(milestone)) {
+          scrollMilestones.add(milestone);
+          F2FAnalytics.trackCustom("ScrollDepth", {
+            percentage: milestone,
+          });
+        }
+      });
+    },
+    { passive: true }
+  );
+
+  // 6. Section Visibility Tracking (Know which sections users stop and read)
+  if ("IntersectionObserver" in window) {
+    const seenSections = new Set();
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.target.id && !seenSections.has(entry.target.id)) {
+            seenSections.add(entry.target.id);
+            F2FAnalytics.trackCustom("SectionView", {
+              section_id: entry.target.id,
+            });
+          }
+        });
+      },
+      { threshold: 0.35 }
+    );
+
+    ["programs", "founder-pt", "online-pass", "routine", "location", "testimonials", "coach", "about"].forEach(
+      (id) => {
+        const el = document.getElementById(id);
+        if (el) sectionObserver.observe(el);
+      }
+    );
   }
 });
 
@@ -376,7 +540,11 @@ function escapeHtml(str) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const PACKAGES = window.PACKAGES || {};
-  const formatINR = window.formatINR || function(n) { return "₹" + Math.round(n).toLocaleString("en-IN"); };
+  const formatINR =
+    window.formatINR ||
+    function (n) {
+      return "₹" + Math.round(n).toLocaleString("en-IN");
+    };
 
   const regModal = document.getElementById("registrationModal");
   if (!regModal) return;
@@ -497,7 +665,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (packageSelect) {
-    packageSelect.addEventListener("change", handlePackageChange);
+    packageSelect.addEventListener("change", () => {
+      handlePackageChange();
+      const meta = F2FAnalytics.getPackageMeta(packageSelect.value);
+      F2FAnalytics.trackCustom("SelectProgramOption", {
+        content_name: meta.name,
+        content_ids: [meta.id],
+        value: meta.value,
+        currency: "INR",
+      });
+    });
   }
 
   function showStep(step) {
@@ -519,6 +696,18 @@ document.addEventListener("DOMContentLoaded", () => {
     updateBatchDayOptions();
     showStep(step1);
     regModal.classList.add("show");
+
+    // Track AddToCart when user opens registration modal for a specific package
+    const selectedKey = packageSelect ? packageSelect.value : packageKey || "hostel4";
+    const meta = F2FAnalytics.getPackageMeta(selectedKey);
+    F2FAnalytics.track("AddToCart", {
+      content_name: meta.name,
+      content_ids: [meta.id],
+      content_type: "product",
+      content_category: meta.category,
+      value: meta.value,
+      currency: "INR",
+    });
   }
 
   window.openRegModal = openRegModal;
@@ -582,7 +771,8 @@ document.addEventListener("DOMContentLoaded", () => {
       month = monthSelect ? monthSelect.value : "Upcoming Batch";
       const dayInput = form.querySelector('input[name="regDay"]:checked');
       if (!dayInput || dayInput.disabled) {
-        formError.textContent = "The selected batch date has already passed. Please select an upcoming batch date.";
+        formError.textContent =
+          "The selected batch date has already passed. Please select an upcoming batch date.";
         return;
       }
       day = dayInput.value;
@@ -598,7 +788,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
         if (batchDate < todayStart) {
-          formError.textContent = "The selected batch date has already passed. Please select an upcoming joining batch.";
+          formError.textContent =
+            "The selected batch date has already passed. Please select an upcoming joining batch.";
           return;
         }
       }
@@ -648,6 +839,16 @@ document.addEventListener("DOMContentLoaded", () => {
       bookingId: null,
     };
 
+    // Track Lead when user completes registration & health assessment (Step 1)
+    F2FAnalytics.track("Lead", {
+      content_name: currentBooking.packageLabel,
+      content_category: currentBooking.goal,
+      content_ids: [currentBooking.packageKey],
+      city: currentBooking.place,
+      value: currentBooking.total,
+      currency: "INR",
+    });
+
     renderSummary(currentBooking);
     resetPayBtn();
     regPayBtn.textContent = `Pay ${formatINR(currentBooking.advance)} via Razorpay`;
@@ -691,6 +892,16 @@ document.addEventListener("DOMContentLoaded", () => {
   regPayBtn.addEventListener("click", async () => {
     if (!currentBooking) return;
 
+    // Track InitiateCheckout when user clicks Pay via Razorpay
+    F2FAnalytics.track("InitiateCheckout", {
+      content_name: currentBooking.packageLabel,
+      content_ids: [currentBooking.packageKey],
+      content_type: "product",
+      num_items: 1,
+      value: currentBooking.advance,
+      currency: "INR",
+    });
+
     regPayBtn.style.display = "none";
     regBackBtn.style.display = "none";
     if (regLoadingNote) {
@@ -700,9 +911,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // 1. Create Razorpay order on backend
-      const { data: orderData, error: orderError } = await supabaseClient.functions.invoke("create-order", {
-        body: { packageKey: currentBooking.packageKey },
-      });
+      const { data: orderData, error: orderError } = await supabaseClient.functions.invoke(
+        "create-order",
+        {
+          body: { packageKey: currentBooking.packageKey },
+        }
+      );
 
       if (orderError || !orderData) {
         let errorMsg = "Failed to create order on server";
@@ -738,17 +952,19 @@ document.addEventListener("DOMContentLoaded", () => {
             currentBooking.txnId = response.razorpay_payment_id;
             currentBooking.bookingId = generateBookingId();
 
-            if (regLoadingNote) regLoadingNote.innerText = "Verifying payment... Please do not close this window.";
+            if (regLoadingNote)
+              regLoadingNote.innerText = "Verifying payment... Please do not close this window.";
 
             // 3. Verify payment on backend
-            const { data: verifyData, error: verifyError } = await supabaseClient.functions.invoke("verify-payment", {
-              body: {
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_signature: response.razorpay_signature,
-                bookingData: currentBooking,
-              },
-            });
+            const { data: verifyData, error: verifyError } =
+              await supabaseClient.functions.invoke("verify-payment", {
+                body: {
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_signature: response.razorpay_signature,
+                  bookingData: currentBooking,
+                },
+              });
 
             if (verifyError || !verifyData?.success) {
               console.error("Payment Verification Error:", verifyError, verifyData);
@@ -770,6 +986,18 @@ document.addEventListener("DOMContentLoaded", () => {
               currentBooking.pdfBase64 = verifyData.pdfBase64;
             }
 
+            // Track verified Purchase in Meta Pixel
+            F2FAnalytics.track("Purchase", {
+              content_name: currentBooking.packageLabel,
+              content_ids: [currentBooking.packageKey],
+              content_type: "product",
+              value: currentBooking.advance,
+              total_contract_value: currentBooking.total,
+              currency: "INR",
+              order_id: currentBooking.bookingId,
+              transaction_id: currentBooking.txnId,
+            });
+
             // 4. Show Invoice
             renderInvoice(currentBooking);
             saveBookingLocally(currentBooking);
@@ -779,12 +1007,20 @@ document.addEventListener("DOMContentLoaded", () => {
             showStep(step3);
           } catch (err) {
             console.error(err);
+            F2FAnalytics.trackCustom("PaymentVerificationError", {
+              error_message: err.message,
+              package_key: currentBooking?.packageKey,
+            });
             alert("Payment recorded, but server verification failed: " + err.message);
             resetPayBtn();
           }
         },
         modal: {
           ondismiss: function () {
+            F2FAnalytics.trackCustom("CheckoutDismissed", {
+              content_name: currentBooking?.packageLabel,
+              value: currentBooking?.advance,
+            });
             resetPayBtn();
           },
         },
@@ -794,6 +1030,10 @@ document.addEventListener("DOMContentLoaded", () => {
       rzp.open();
     } catch (err) {
       console.error(err);
+      F2FAnalytics.trackCustom("PaymentInitError", {
+        error_message: err.message,
+        package_key: currentBooking?.packageKey,
+      });
       alert("Error initiating payment: " + err.message);
       resetPayBtn();
     }
@@ -880,11 +1120,13 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="invoice-confirmed-icon">${paid ? "&#10003;" : "!"}</div>
         <div>
           <strong>${paid ? "Registration & Payment Confirmed!" : "Booking Received — Pending Confirmation"}</strong>
-          <p>${paid
-        ? (b.isOnline
-          ? "Your 3-Month Online Pass is confirmed! Coach Aditya's team will contact you on WhatsApp/Email for onboarding."
-          : "Thank you for choosing Fat2Fit! Your slot is confirmed. We will follow up with travel and joining guidance.")
-        : "We have recorded your details. Please share your payment ID on WhatsApp to complete verification."}</p>
+          <p>${
+            paid
+              ? b.isOnline
+                ? "Your 3-Month Online Pass is confirmed! Coach Aditya's team will contact you on WhatsApp/Email for onboarding."
+                : "Thank you for choosing Fat2Fit! Your slot is confirmed. We will follow up with travel and joining guidance."
+              : "We have recorded your details. Please share your payment ID on WhatsApp to complete verification."
+          }</p>
         </div>
       </div>
 
@@ -932,6 +1174,15 @@ document.addEventListener("DOMContentLoaded", () => {
     regWhatsappCopyBtn.href = `https://wa.me/${BUSINESS_WHATSAPP}?text=${text}`;
   }
 
+  if (regWhatsappCopyBtn) {
+    regWhatsappCopyBtn.addEventListener("click", () => {
+      F2FAnalytics.track("Contact", {
+        content_name: "Invoice WhatsApp Confirmation",
+        booking_id: currentBooking?.bookingId,
+      });
+    });
+  }
+
   function downloadPdfInvoice(base64Data, filename) {
     try {
       const byteCharacters = atob(base64Data);
@@ -959,6 +1210,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (regPrintBtn) {
     regPrintBtn.addEventListener("click", () => {
+      F2FAnalytics.trackCustom("DownloadInvoice", {
+        booking_id: currentBooking?.bookingId,
+        package_key: currentBooking?.packageKey,
+      });
       if (currentBooking && currentBooking.pdfBase64) {
         const fname = `Fat2Fit_Invoice_${currentBooking.bookingId || "receipt"}.pdf`;
         downloadPdfInvoice(currentBooking.pdfBase64, fname);
