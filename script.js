@@ -1,3 +1,42 @@
+/* =========================================================
+   META PIXEL TRACKING HELPER LAYER
+   ========================================================= */
+const F2FAnalytics = {
+  track(eventName, params = {}) {
+    if (typeof window.fbq === "function") {
+      window.fbq("track", eventName, params);
+    }
+  },
+  trackCustom(eventName, params = {}) {
+    if (typeof window.fbq === "function") {
+      window.fbq("trackCustom", eventName, params);
+    }
+  },
+  getPackageMeta(packageKey) {
+    const PACKAGES = window.PACKAGES || {};
+    const pkg = PACKAGES[packageKey];
+    const fallbackPrices = {
+      hostel4: 70000,
+      hostel1: 90000,
+      villacozy: 121000,
+      villapremium: 141000,
+      resortsingle: 235000,
+      hostel15d: 50000,
+      villa15d: 75000,
+      resort15d: 135000,
+      online3m: 9999,
+      founderPt: 80000,
+    };
+    return {
+      id: packageKey || "unknown",
+      name: pkg ? pkg.label : packageKey || "Fat2Fit Program",
+      value: pkg ? pkg.base : fallbackPrices[packageKey] || 0,
+      durationDays: pkg && pkg.durationDays ? pkg.durationDays : 30,
+      category: pkg && pkg.type === "online" ? "Online Pass" : "Shimla Retreat Camp",
+    };
+  },
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   /* POPUP */
   const popup = document.getElementById("popupOverlay");
@@ -6,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (popup && closePopup) {
     setTimeout(() => {
       popup.classList.add("show");
+      F2FAnalytics.trackCustom("PopupShown", { popup_type: "welcome_overlay" });
     }, 800);
 
     closePopup.addEventListener("click", () => {
@@ -48,8 +88,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const programData = {
     "hostel-program": {
       packageKey: "hostel4",
-      title: "Fat2Fit Hostel — Dual Sharing & Private Room",
-      images: [{ src: "assets/hostel-1.jpeg" }, { src: "assets/hostel-2.jpeg" }, { src: "assets/hostel-3.jpeg" },],
+      title: "Fat2Fit Hostel — 30-Day & 15-Day Camp",
+      images: [
+        { src: "assets/hostel-1.jpeg" },
+        { src: "assets/hostel-2.jpeg" },
+        { src: "assets/hostel-3.jpeg" },
+      ],
       html: `
         <h3>This Is Not A Holiday. This Is A Weight Loss Reset.</h3>
         <p>
@@ -61,10 +105,10 @@ document.addEventListener("DOMContentLoaded", () => {
           challenges, and physical transformation.
         </p>
 
-        <h3>Room &amp; Batch</h3>
+        <h3>Room, Duration &amp; Batch</h3>
         <ul>
-          <li>Dual sharing room, attached washroom</li>
-          <li>Private room option also available</li>
+          <li>Available in <strong>30-Day</strong> and <strong>15-Day</strong> camp durations</li>
+          <li>Dual sharing room or Private room option, attached washroom</li>
           <li>Group size: 20 people, large group training sessions</li>
           <li>Joining dates: 1st &amp; 15th of every month, all year round</li>
         </ul>
@@ -79,10 +123,11 @@ document.addEventListener("DOMContentLoaded", () => {
           <li>Supervision and accountability, 24/7</li>
         </ul>
 
-        <h3>Investment</h3>
+        <h3>Investment (+18% GST Extra)</h3>
         <div class="modal-price-box">
-          <p><strong>30 Days &middot; Dual Sharing:</strong> <span>₹56,000</span></p>
-          <p><strong>30 Days &middot; Private Room:</strong> <span>₹76,000</span></p>
+          <p><strong>30 Days &middot; Dual Sharing:</strong> <span>₹70,000</span></p>
+          <p><strong>30 Days &middot; Private Room:</strong> <span>₹90,000</span></p>
+          <p><strong>15 Days &middot; Hostel Camp:</strong> <span>₹50,000</span></p>
           <small>Per person &middot; Attached washroom &middot; +18% GST extra</small>
         </div>
 
@@ -96,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     "villa-program": {
       packageKey: "villacozy",
-      title: "Fat2Fit Villa — Cozy Private Room & Premium Villa Room",
+      title: "Fat2Fit Villa — 30-Day & 15-Day Camp",
       images: [
         { src: "assets/vila/img1.jpeg" },
         { src: "assets/vila/img2.jpeg" },
@@ -117,35 +162,38 @@ document.addEventListener("DOMContentLoaded", () => {
           results alongside real comfort.
         </p>
 
-        <h3>Choose Your Room Category</h3>
+        <h3>Choose Your Room &amp; Duration</h3>
         <p>
-          Both categories offer the same villa, programme, training and meals.
-          The only difference is the room you stay in — its size and whether it
-          comes with a view.
+          All categories offer the same villa, programme, training and meals.
+          Choose between our full 30-Day transformation or a focused 15-Day reset.
         </p>
         <ul>
           <li>
-            <strong>Cozy Private Room (₹1,21,000):</strong> A compact private
+            <strong>30 Days &middot; Cozy Private Room (₹1,21,000):</strong> A compact private
             room without a view. A practical and comfortable choice for guests
             who spend most of their day in training and want privacy at a more
             accessible price.
           </li>
           <li>
-            <strong>Premium Villa Room (₹1,41,000):</strong> A private room
+            <strong>30 Days &middot; Premium Villa Room (₹1,41,000):</strong> A private room
             with a scenic view. Suited to guests who prefer a more relaxing,
             immersive setting for rest and recovery between sessions.
+          </li>
+          <li>
+            <strong>15 Days &middot; Fat2Fit Villa Camp (₹75,000):</strong> Intensive 15-day
+            villa stay with semi-private Head Coach training and curated nutrition.
           </li>
         </ul>
 
         <h3>Room &amp; Batch</h3>
         <ul>
-          <li>Private room in the villa — Cozy (compact, no view) or Premium (with view)</li>
+          <li>Private room in the villa — available for 30 Days or 15 Days</li>
           <li>Group size: 10 people, semi-private training sessions</li>
           <li>Training led directly by our Head Coach (Program Designer)</li>
           <li>Joining dates: 1st &amp; 15th of every month, all year round</li>
         </ul>
 
-        <h3>What The Program Includes (Both Room Categories)</h3>
+        <h3>What The Program Includes</h3>
         <ul>
           <li>Independent living in an upscale, private villa room</li>
           <li>Semi-private training &amp; personalized coaching</li>
@@ -155,10 +203,11 @@ document.addEventListener("DOMContentLoaded", () => {
           <li>24/7 supervision &amp; accountability</li>
         </ul>
 
-        <h3>Investment</h3>
+        <h3>Investment (+18% GST Extra)</h3>
         <div class="modal-price-box">
-          <p><strong>30 Days &middot; Cozy Private Room (compact, no view):</strong> <span>₹1,21,000</span></p>
+          <p><strong>30 Days &middot; Cozy Private Room (no view):</strong> <span>₹1,21,000</span></p>
           <p><strong>30 Days &middot; Premium Villa Room (with view):</strong> <span>₹1,41,000</span></p>
+          <p><strong>15 Days &middot; Private Villa Camp:</strong> <span>₹75,000</span></p>
           <small>Per person &middot; Attached washroom &middot; +18% GST extra</small>
         </div>
       `,
@@ -166,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     "resort-program": {
       packageKey: "resortsingle",
-      title: "Fat2Fit Resorts — Individual Resort Cottage",
+      title: "Fat2Fit Resorts — 30-Day & 15-Day Camp",
       images: [
         { src: "assets/premium-main.jpeg" },
         { src: "assets/premiumbamboo.jpeg" },
@@ -184,8 +233,9 @@ document.addEventListener("DOMContentLoaded", () => {
           expert fitness.
         </p>
 
-        <h3>Room &amp; Batch</h3>
+        <h3>Room, Duration &amp; Batch</h3>
         <ul>
+          <li>Available in <strong>30-Day</strong> and <strong>15-Day</strong> camp durations</li>
           <li>Individual luxury resort cottage, attached washroom</li>
           <li>Group size: 7 people, precise small-group training sessions</li>
           <li>Training led directly by our Head Coach (Program Designer)</li>
@@ -202,9 +252,10 @@ document.addEventListener("DOMContentLoaded", () => {
           <li>24/7 supervision &amp; accountability</li>
         </ul>
 
-        <h3>Investment</h3>
+        <h3>Investment (+18% GST Extra)</h3>
         <div class="modal-price-box">
           <p><strong>30 Days &middot; Individual Resort Cottage:</strong> <span>₹2,35,000</span></p>
+          <p><strong>15 Days &middot; Individual Resort Cottage:</strong> <span>₹1,35,000</span></p>
           <small>Per person &middot; Attached washroom &middot; +18% GST extra</small>
         </div>
       `,
@@ -237,6 +288,17 @@ document.addEventListener("DOMContentLoaded", () => {
       if (programRegisterBtn) {
         programRegisterBtn.dataset.registerPackage = data.packageKey || "hostel4";
       }
+
+      // Track ViewContent when user views full details of a camp tier
+      const meta = F2FAnalytics.getPackageMeta(data.packageKey);
+      F2FAnalytics.track("ViewContent", {
+        content_name: data.title,
+        content_ids: [meta.id],
+        content_type: "product",
+        content_category: meta.category,
+        value: meta.value,
+        currency: "INR",
+      });
 
       initializeLightbox();
     });
@@ -287,6 +349,10 @@ document.addEventListener("DOMContentLoaded", () => {
       img.onclick = () => {
         showImage(index);
         lightboxModal.classList.add("show");
+        F2FAnalytics.trackCustom("ViewRoomPhoto", {
+          image_src: img.getAttribute("src"),
+          image_index: index + 1,
+        });
       };
     });
 
@@ -313,6 +379,115 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.key === "ArrowLeft") showImage((currentIndex - 1 + images.length) % images.length);
     });
   }
+
+  /* =========================================================
+     BEHAVIORAL & ENGAGEMENT TRACKING (CTAs, Scroll, Sections)
+     ========================================================= */
+
+  // 1. WhatsApp Contact Clicks (Navbar, Hero, Popup, Founder PT, Footer)
+  document.querySelectorAll('a[href*="wa.me"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      if (link.id === "regWhatsappCopyBtn") return;
+      let placement = "general";
+      if (link.classList.contains("nav-btn")) placement = "navbar_join_now";
+      else if (link.classList.contains("founder-pt-btn")) placement = "founder_1on1_pt";
+      else if (link.classList.contains("footer-whatsapp")) placement = "footer_whatsapp";
+      else if (link.closest("#popupOverlay")) placement = "welcome_popup";
+      else if (link.closest(".hero")) placement = "hero_book_appointment";
+
+      F2FAnalytics.track("Contact", {
+        content_name: "WhatsApp Inquiry",
+        content_category: placement,
+        value: placement === "founder_1on1_pt" ? 80000 : 0,
+        currency: "INR",
+      });
+    });
+  });
+
+  // 2. Brochure Download
+  const brochureBtn = document.querySelector(".download-brochure-btn");
+  if (brochureBtn) {
+    brochureBtn.addEventListener("click", () => {
+      F2FAnalytics.trackCustom("DownloadBrochure", {
+        content_name: "Fat2Fit Camp Brochure",
+      });
+    });
+  }
+
+  // 3. Google Maps Location Clicks
+  document.querySelectorAll(".location-map-btn, .footer-location-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      F2FAnalytics.track("FindLocation", {
+        content_name: "Fat2Fit Shimla Camp Location (171219)",
+      });
+    });
+  });
+
+  // 4. Transformation Reels & Instagram Social Proof
+  document.querySelectorAll(".person-details-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const personCard = btn.closest(".person");
+      const personName = personCard?.querySelector("h4")?.innerText || "Transformation Story";
+      F2FAnalytics.trackCustom("ViewTransformationReel", {
+        person_name: personName,
+      });
+    });
+  });
+
+  document.querySelectorAll('.instagram-section a[href*="instagram.com"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      F2FAnalytics.trackCustom("FollowInstagram", {
+        account: "@fat2fitbyeddeys",
+      });
+    });
+  });
+
+  // 5. Scroll Depth Tracking (25%, 50%, 75%, 100%)
+  const scrollMilestones = new Set();
+  window.addEventListener(
+    "scroll",
+    () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight <= 0) return;
+      const scrolledPct = Math.round((scrollTop / docHeight) * 100);
+
+      [25, 50, 75, 100].forEach((milestone) => {
+        if (scrolledPct >= milestone && !scrollMilestones.has(milestone)) {
+          scrollMilestones.add(milestone);
+          F2FAnalytics.trackCustom("ScrollDepth", {
+            percentage: milestone,
+          });
+        }
+      });
+    },
+    { passive: true }
+  );
+
+  // 6. Section Visibility Tracking
+  if ("IntersectionObserver" in window) {
+    const seenSections = new Set();
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.target.id && !seenSections.has(entry.target.id)) {
+            seenSections.add(entry.target.id);
+            F2FAnalytics.trackCustom("SectionView", {
+              section_id: entry.target.id,
+            });
+          }
+        });
+      },
+      { threshold: 0.35 }
+    );
+
+    ["programs", "founder-pt", "online-pass", "routine", "location", "testimonials", "coach", "about"].forEach(
+      (id) => {
+        const el = document.getElementById(id);
+        if (el) sectionObserver.observe(el);
+      }
+    );
+  }
 });
 
 /* =========================================================
@@ -332,6 +507,14 @@ const MONTH_NAMES = [
   "July", "August", "September", "October", "November", "December",
 ];
 
+/**
+ * Strictly populates only upcoming selectable months (never any past month).
+ * Since batches start on the 1st and 15th:
+ * - If today's date is >= 15th, both batches for the current month have already started/passed,
+ *   so we start the dropdown from NEXT month (startOffset = 1).
+ * - If today's date is < 15th, the 15th batch of the current month is still upcoming,
+ *   so the current month is included (startOffset = 0) and the 1st is marked "Passed".
+ */
 function populateMonths(selectEl) {
   if (!selectEl) return;
   selectEl.innerHTML = "";
@@ -340,10 +523,7 @@ function populateMonths(selectEl) {
   const currentMonth = now.getMonth();
   const currentDate = now.getDate();
 
-  // If today is past the 15th of the current month, both batch dates (1st and 15th)
-  // have already passed. We start the selectable months from next month.
-  // If today is on or before the 15th, the current month still has the 15th batch.
-  const startOffset = currentDate > 15 ? 1 : 0;
+  const startOffset = currentDate >= 15 ? 1 : 0;
 
   for (let i = startOffset; i < startOffset + 12; i++) {
     const d = new Date(currentYear, currentMonth + i, 1);
@@ -376,7 +556,11 @@ function escapeHtml(str) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const PACKAGES = window.PACKAGES || {};
-  const formatINR = window.formatINR || function(n) { return "₹" + Math.round(n).toLocaleString("en-IN"); };
+  const formatINR =
+    window.formatINR ||
+    function (n) {
+      return "₹" + Math.round(n).toLocaleString("en-IN");
+    };
 
   const regModal = document.getElementById("registrationModal");
   if (!regModal) return;
@@ -424,8 +608,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const batch1Date = new Date(year, monthIndex, 1);
     const batch15Date = new Date(year, monthIndex, 15);
 
-    const isBatch1Past = batch1Date < todayStart;
-    const isBatch15Past = batch15Date < todayStart;
+    // Strictly require future batch dates (today or earlier is considered passed)
+    const isBatch1Past = batch1Date <= todayStart;
+    const isBatch15Past = batch15Date <= todayStart;
 
     // 1st of Month
     day1Input.disabled = isBatch1Past;
@@ -497,7 +682,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (packageSelect) {
-    packageSelect.addEventListener("change", handlePackageChange);
+    packageSelect.addEventListener("change", () => {
+      handlePackageChange();
+      const meta = F2FAnalytics.getPackageMeta(packageSelect.value);
+      F2FAnalytics.trackCustom("SelectProgramOption", {
+        content_name: meta.name,
+        content_ids: [meta.id],
+        duration_days: meta.durationDays,
+        value: meta.value,
+        currency: "INR",
+      });
+    });
   }
 
   function showStep(step) {
@@ -519,6 +714,19 @@ document.addEventListener("DOMContentLoaded", () => {
     updateBatchDayOptions();
     showStep(step1);
     regModal.classList.add("show");
+
+    // Track AddToCart when user opens registration modal for a specific package
+    const selectedKey = packageSelect ? packageSelect.value : packageKey || "hostel4";
+    const meta = F2FAnalytics.getPackageMeta(selectedKey);
+    F2FAnalytics.track("AddToCart", {
+      content_name: meta.name,
+      content_ids: [meta.id],
+      content_type: "product",
+      content_category: meta.category,
+      duration_days: meta.durationDays,
+      value: meta.value,
+      currency: "INR",
+    });
   }
 
   window.openRegModal = openRegModal;
@@ -575,19 +783,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const pkg = PACKAGES[packageKey];
+    if (!pkg) {
+      formError.textContent = "Please select a valid program package.";
+      return;
+    }
+
     let month = "Immediate Activation";
     let day = "Immediate";
 
     if (pkg.type === "camp") {
-      month = monthSelect ? monthSelect.value : "Upcoming Batch";
+      month = monthSelect ? monthSelect.value : "";
       const dayInput = form.querySelector('input[name="regDay"]:checked');
-      if (!dayInput || dayInput.disabled) {
-        formError.textContent = "The selected batch date has already passed. Please select an upcoming batch date.";
+      if (!month || !dayInput || dayInput.disabled) {
+        formError.textContent =
+          "The selected batch date has already passed. Please select an upcoming batch date.";
         return;
       }
       day = dayInput.value;
 
-      // Ensure joining date is strictly in the future
+      // Strictly block any previous month or past batch date
       const parts = month.split(" ");
       if (parts.length >= 2) {
         const mIdx = MONTH_NAMES.indexOf(parts[0]);
@@ -597,8 +811,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const now = new Date();
         const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-        if (batchDate < todayStart) {
-          formError.textContent = "The selected batch date has already passed. Please select an upcoming joining batch.";
+        if (mIdx < 0 || isNaN(yr) || batchDate <= todayStart) {
+          formError.textContent =
+            "Bookings for past dates or previous months are not allowed. Please select an upcoming joining batch.";
           return;
         }
       }
@@ -616,7 +831,7 @@ document.addEventListener("DOMContentLoaded", () => {
       advance = pkg.base;
       balance = 0;
     } else {
-      // 30-Day In-Person Camp: 50% advance + 18% GST
+      // In-Person Camp (both 30-Day & 15-Day): Base + 18% GST, 50% advance now & 50% on arrival
       gst = Math.round(pkg.base * 0.18);
       total = pkg.base + gst;
       advance = Math.round(total / 2);
@@ -636,6 +851,7 @@ document.addEventListener("DOMContentLoaded", () => {
       additional,
       packageKey,
       packageLabel: pkg.label,
+      durationDays: pkg.durationDays || (pkg.isFullPayment ? 90 : 30),
       isOnline: !!pkg.isFullPayment,
       month,
       day,
@@ -648,6 +864,17 @@ document.addEventListener("DOMContentLoaded", () => {
       bookingId: null,
     };
 
+    // Track Lead when user completes registration & health assessment (Step 1)
+    F2FAnalytics.track("Lead", {
+      content_name: currentBooking.packageLabel,
+      content_category: currentBooking.goal,
+      content_ids: [currentBooking.packageKey],
+      duration_days: currentBooking.durationDays,
+      city: currentBooking.place,
+      value: currentBooking.total,
+      currency: "INR",
+    });
+
     renderSummary(currentBooking);
     resetPayBtn();
     regPayBtn.textContent = `Pay ${formatINR(currentBooking.advance)} via Razorpay`;
@@ -655,6 +882,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function renderSummary(b) {
+    const durationText = b.isOnline ? "3 Months (90 Days)" : `${b.durationDays} Days In-Person Camp`;
     regSummary.innerHTML = `
       <div class="reg-summary-section">
         <h5>Customer &amp; Health Profile</h5>
@@ -669,16 +897,17 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="reg-summary-section">
         <h5>Selected Program &amp; Batch</h5>
         <div class="reg-summary-row"><span>Program</span><span><strong>${escapeHtml(b.packageLabel)}</strong></span></div>
-        <div class="reg-summary-row"><span>Schedule</span><span>${b.isOnline ? "Starts Immediately after onboarding" : `${escapeHtml(b.month)}, ${b.day === "1" ? "1st" : "15th"}`}</span></div>
+        <div class="reg-summary-row"><span>Duration</span><span>${escapeHtml(durationText)}</span></div>
+        <div class="reg-summary-row"><span>Joining Batch</span><span>${b.isOnline ? "Starts Immediately after onboarding" : `${escapeHtml(b.month)}, ${b.day === "1" ? "1st" : "15th"}`}</span></div>
       </div>
 
       <div class="reg-summary-section">
-        <h5>Payment Details</h5>
-        <div class="reg-summary-row"><span>${b.isOnline ? "Plan Fee" : "Base Program Fee"}</span><span>${formatINR(b.base)}</span></div>
-        ${b.gst > 0 ? `<div class="reg-summary-row"><span>GST (18%)</span><span>${formatINR(b.gst)}</span></div>` : ""}
-        <div class="reg-summary-row reg-total"><span>Total Payable</span><span>${formatINR(b.total)}</span></div>
+        <h5>Payment Details (GST Breakdown)</h5>
+        <div class="reg-summary-row"><span>${b.isOnline ? "Plan Fee" : `Base Camp Fee (${b.durationDays} Days)`}</span><span>${formatINR(b.base)}</span></div>
+        ${b.gst > 0 ? `<div class="reg-summary-row"><span>GST (18%)</span><span>+ ${formatINR(b.gst)}</span></div>` : ""}
+        <div class="reg-summary-row reg-total"><span>Total Payable (Incl. GST)</span><span>${formatINR(b.total)}</span></div>
         <div class="reg-summary-row reg-advance"><span>Pay Now (${b.isOnline ? "Full Payment" : "50% Advance"})</span><span>${formatINR(b.advance)}</span></div>
-        ${b.balance > 0 ? `<div class="reg-summary-row"><span>Balance Due on Arrival</span><span>${formatINR(b.balance)}</span></div>` : ""}
+        ${b.balance > 0 ? `<div class="reg-summary-row"><span>Remaining 50% Due on Arrival</span><span>${formatINR(b.balance)}</span></div>` : ""}
       </div>
     `;
   }
@@ -691,6 +920,17 @@ document.addEventListener("DOMContentLoaded", () => {
   regPayBtn.addEventListener("click", async () => {
     if (!currentBooking) return;
 
+    // Track InitiateCheckout when user clicks Pay via Razorpay
+    F2FAnalytics.track("InitiateCheckout", {
+      content_name: currentBooking.packageLabel,
+      content_ids: [currentBooking.packageKey],
+      content_type: "product",
+      duration_days: currentBooking.durationDays,
+      num_items: 1,
+      value: currentBooking.advance,
+      currency: "INR",
+    });
+
     regPayBtn.style.display = "none";
     regBackBtn.style.display = "none";
     if (regLoadingNote) {
@@ -700,9 +940,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // 1. Create Razorpay order on backend
-      const { data: orderData, error: orderError } = await supabaseClient.functions.invoke("create-order", {
-        body: { packageKey: currentBooking.packageKey },
-      });
+      const { data: orderData, error: orderError } = await supabaseClient.functions.invoke(
+        "create-order",
+        {
+          body: { packageKey: currentBooking.packageKey },
+        }
+      );
 
       if (orderError || !orderData) {
         let errorMsg = "Failed to create order on server";
@@ -723,7 +966,9 @@ document.addEventListener("DOMContentLoaded", () => {
         amount: orderData.amount,
         currency: "INR",
         name: "Fat2Fit",
-        description: currentBooking.isOnline ? "3-Month Online Pass" : "Advance Booking Payment",
+        description: currentBooking.isOnline
+          ? "3-Month Online Pass"
+          : `${currentBooking.durationDays}-Day Camp Advance Payment`,
         order_id: orderData.order_id,
         prefill: {
           name: currentBooking.name,
@@ -738,17 +983,19 @@ document.addEventListener("DOMContentLoaded", () => {
             currentBooking.txnId = response.razorpay_payment_id;
             currentBooking.bookingId = generateBookingId();
 
-            if (regLoadingNote) regLoadingNote.innerText = "Verifying payment... Please do not close this window.";
+            if (regLoadingNote)
+              regLoadingNote.innerText = "Verifying payment... Please do not close this window.";
 
             // 3. Verify payment on backend
-            const { data: verifyData, error: verifyError } = await supabaseClient.functions.invoke("verify-payment", {
-              body: {
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_signature: response.razorpay_signature,
-                bookingData: currentBooking,
-              },
-            });
+            const { data: verifyData, error: verifyError } =
+              await supabaseClient.functions.invoke("verify-payment", {
+                body: {
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_signature: response.razorpay_signature,
+                  bookingData: currentBooking,
+                },
+              });
 
             if (verifyError || !verifyData?.success) {
               console.error("Payment Verification Error:", verifyError, verifyData);
@@ -770,6 +1017,19 @@ document.addEventListener("DOMContentLoaded", () => {
               currentBooking.pdfBase64 = verifyData.pdfBase64;
             }
 
+            // Track verified Purchase in Meta Pixel
+            F2FAnalytics.track("Purchase", {
+              content_name: currentBooking.packageLabel,
+              content_ids: [currentBooking.packageKey],
+              content_type: "product",
+              duration_days: currentBooking.durationDays,
+              value: currentBooking.advance,
+              total_contract_value: currentBooking.total,
+              currency: "INR",
+              order_id: currentBooking.bookingId,
+              transaction_id: currentBooking.txnId,
+            });
+
             // 4. Show Invoice
             renderInvoice(currentBooking);
             saveBookingLocally(currentBooking);
@@ -779,12 +1039,20 @@ document.addEventListener("DOMContentLoaded", () => {
             showStep(step3);
           } catch (err) {
             console.error(err);
+            F2FAnalytics.trackCustom("PaymentVerificationError", {
+              error_message: err.message,
+              package_key: currentBooking?.packageKey,
+            });
             alert("Payment recorded, but server verification failed: " + err.message);
             resetPayBtn();
           }
         },
         modal: {
           ondismiss: function () {
+            F2FAnalytics.trackCustom("CheckoutDismissed", {
+              content_name: currentBooking?.packageLabel,
+              value: currentBooking?.advance,
+            });
             resetPayBtn();
           },
         },
@@ -794,6 +1062,10 @@ document.addEventListener("DOMContentLoaded", () => {
       rzp.open();
     } catch (err) {
       console.error(err);
+      F2FAnalytics.trackCustom("PaymentInitError", {
+        error_message: err.message,
+        package_key: currentBooking?.packageKey,
+      });
       alert("Error initiating payment: " + err.message);
       resetPayBtn();
     }
@@ -821,6 +1093,7 @@ document.addEventListener("DOMContentLoaded", () => {
       year: "numeric",
     });
     const paid = !!b.txnId;
+    const durationText = b.isOnline ? "3 Months (Online)" : `${b.durationDays} Days Camp`;
 
     invoiceContent.innerHTML = `
       <div class="invoice-topbar"></div>
@@ -854,6 +1127,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="invoice-box">
           <h4>Program Details</h4>
           <div class="invoice-row"><span>Program</span><span><strong>${escapeHtml(b.packageLabel)}</strong></span></div>
+          <div class="invoice-row"><span>Duration</span><span>${escapeHtml(durationText)}</span></div>
           <div class="invoice-row"><span>Schedule</span><span>${b.isOnline ? "Starts Immediately upon onboarding" : `${escapeHtml(b.month)}, ${b.day === "1" ? "1st" : "15th"}`}</span></div>
           <div class="invoice-row"><span>Location</span><span>${b.isOnline ? "Online (Home Transformation)" : "Retreat Camp, Shimla (Pincode 171219)"}</span></div>
           <div class="invoice-row"><span>Payment Status</span><span><strong>${paid ? "PAID" : "PENDING"}</strong></span></div>
@@ -866,10 +1140,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <tr><th>Description</th><th>Amount (₹)</th></tr>
           </thead>
           <tbody>
-            <tr><td>${b.isOnline ? "3-Month Online Pass Fee" : "Program Fee (per person)"}</td><td>${formatINR(b.base)}</td></tr>
+            <tr><td>${b.isOnline ? "3-Month Online Pass Fee" : `Program Fee (${b.durationDays} Days, per person)`}</td><td>${formatINR(b.base)}</td></tr>
             ${b.gst > 0 ? `<tr><td>GST (18%)</td><td>${formatINR(b.gst)}</td></tr>` : ""}
-            <tr class="invoice-table-total"><td>Total Amount</td><td>${formatINR(b.total)}</td></tr>
-            <tr><td>Amount Paid</td><td>${formatINR(b.advance)}</td></tr>
+            <tr class="invoice-table-total"><td>Total Amount (Incl. GST)</td><td>${formatINR(b.total)}</td></tr>
+            <tr><td>Amount Paid Now</td><td>${formatINR(b.advance)}</td></tr>
             ${b.balance > 0 ? `<tr><td>Remaining Balance Due on Arrival</td><td>${formatINR(b.balance)}</td></tr>` : ""}
             ${b.txnId ? `<tr><td>Razorpay Transaction ID</td><td>${escapeHtml(b.txnId)}</td></tr>` : ""}
           </tbody>
@@ -880,11 +1154,13 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="invoice-confirmed-icon">${paid ? "&#10003;" : "!"}</div>
         <div>
           <strong>${paid ? "Registration & Payment Confirmed!" : "Booking Received — Pending Confirmation"}</strong>
-          <p>${paid
-        ? (b.isOnline
-          ? "Your 3-Month Online Pass is confirmed! Coach Aditya's team will contact you on WhatsApp/Email for onboarding."
-          : "Thank you for choosing Fat2Fit! Your slot is confirmed. We will follow up with travel and joining guidance.")
-        : "We have recorded your details. Please share your payment ID on WhatsApp to complete verification."}</p>
+          <p>${
+            paid
+              ? b.isOnline
+                ? "Your 3-Month Online Pass is confirmed! Coach Aditya's team will contact you on WhatsApp/Email for onboarding."
+                : "Thank you for choosing Fat2Fit! Your slot is confirmed. We will follow up with travel and joining guidance."
+              : "We have recorded your details. Please share your payment ID on WhatsApp to complete verification."
+          }</p>
         </div>
       </div>
 
@@ -922,14 +1198,26 @@ document.addEventListener("DOMContentLoaded", () => {
       `Allergies/Diet: ${b.allergies}`,
       `Medical History: ${b.additional}`,
       `Program: ${b.packageLabel}`,
+      `Duration: ${b.isOnline ? "3 Months Online" : `${b.durationDays} Days Camp`}`,
       `Schedule: ${b.isOnline ? "Immediate Online Start" : `${b.month}, ${b.day === "1" ? "1st" : "15th"}`}`,
+      `Base Fee: ${formatINR(b.base)}`,
+      b.gst > 0 ? `GST (18%): ${formatINR(b.gst)}` : null,
       `Total Fee: ${formatINR(b.total)}`,
       `Amount Paid: ${formatINR(b.advance)}`,
       b.balance > 0 ? `Balance Due on Arrival: ${formatINR(b.balance)}` : "Balance: ₹0 (Paid in Full)",
       b.txnId ? `Razorpay Payment ID: ${b.txnId}` : "Razorpay Payment ID: (Pending)",
-    ];
+    ].filter(Boolean);
     const text = encodeURIComponent(lines.join("\n"));
     regWhatsappCopyBtn.href = `https://wa.me/${BUSINESS_WHATSAPP}?text=${text}`;
+  }
+
+  if (regWhatsappCopyBtn) {
+    regWhatsappCopyBtn.addEventListener("click", () => {
+      F2FAnalytics.track("Contact", {
+        content_name: "Invoice WhatsApp Confirmation",
+        booking_id: currentBooking?.bookingId,
+      });
+    });
   }
 
   function downloadPdfInvoice(base64Data, filename) {
@@ -959,6 +1247,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (regPrintBtn) {
     regPrintBtn.addEventListener("click", () => {
+      F2FAnalytics.trackCustom("DownloadInvoice", {
+        booking_id: currentBooking?.bookingId,
+        package_key: currentBooking?.packageKey,
+      });
       if (currentBooking && currentBooking.pdfBase64) {
         const fname = `Fat2Fit_Invoice_${currentBooking.bookingId || "receipt"}.pdf`;
         downloadPdfInvoice(currentBooking.pdfBase64, fname);
