@@ -15,40 +15,69 @@
   const PACKAGES = {
     // 30-Day In-Person Camp Packages (Shimla)
     hostel4: {
-      label: "Fat2Fit Hostel — Dual Sharing",
+      label: "Fat2Fit Hostel — Dual Sharing (30 Days)",
       base: 70000,
+      durationDays: 30,
       type: "camp",
       desc: "per person / 30 days · Dual Sharing Room · +18% GST",
     },
     hostel1: {
-      label: "Fat2Fit Hostel — Private Room",
+      label: "Fat2Fit Hostel — Private Room (30 Days)",
       base: 90000,
+      durationDays: 30,
       type: "camp",
       desc: "per person / 30 days · Private Room · +18% GST",
     },
     villacozy: {
-      label: "Fat2Fit Villa — Cozy Private Room (No View)",
+      label: "Fat2Fit Villa — Cozy Private Room (30 Days)",
       base: 121000,
+      durationDays: 30,
       type: "camp",
       desc: "per person / 30 days · Cozy Private Room · Compact size, no view · +18% GST",
     },
     villapremium: {
-      label: "Fat2Fit Villa — Premium Room (Scenic View)",
+      label: "Fat2Fit Villa — Premium Room (30 Days)",
       base: 141000,
+      durationDays: 30,
       type: "camp",
       desc: "per person / 30 days · Premium Villa Room · Room with a scenic view · +18% GST",
     },
     resortsingle: {
-      label: "Fat2Fit Resort — Individual Resort Cottage",
+      label: "Fat2Fit Resort — Individual Resort Cottage (30 Days)",
       base: 235000,
+      durationDays: 30,
       type: "camp",
       desc: "per person / 30 days · Individual Resort Cottage · +18% GST",
+    },
+
+    // 15-Day In-Person Camp Packages (Shimla)
+    hostel15d: {
+      label: "Fat2Fit Hostel — 15 Days Camp",
+      base: 50000,
+      durationDays: 15,
+      type: "camp",
+      desc: "per person / 15 days · Hostel Stay · +18% GST",
+    },
+    villa15d: {
+      label: "Fat2Fit Villa — 15 Days Camp",
+      base: 75000,
+      durationDays: 15,
+      type: "camp",
+      desc: "per person / 15 days · Private Villa Stay · +18% GST",
+    },
+    resort15d: {
+      label: "Fat2Fit Resort — 15 Days Camp",
+      base: 135000,
+      durationDays: 15,
+      type: "camp",
+      desc: "per person / 15 days · Individual Resort Cottage · +18% GST",
     },
 
     // Online Transformation Subscription
     online3m: {
       label: "Fat2Fit 3-Month Pass (Online Training & Diet)",
       base: 9999,
+      durationDays: 90,
       type: "online",
       isFullPayment: true,
       originalPrice: 20000,
@@ -59,6 +88,7 @@
     founderPt: {
       label: "Personal Training with Founder (1-on-1)",
       base: 80000,
+      durationDays: 30,
       type: "addon",
       desc: "for 30 Days",
     },
