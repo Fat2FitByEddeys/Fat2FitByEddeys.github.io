@@ -387,7 +387,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1. WhatsApp Contact Clicks (Navbar, Hero, Popup, Founder PT, Footer)
   document.querySelectorAll('a[href*="wa.me"]').forEach((link) => {
     link.addEventListener("click", () => {
-      if (link.id === "regWhatsappCopyBtn") return;
+      if (link.id === "regWhatsappCopyBtn") return; // Handled separately in invoice flow
       let placement = "general";
       if (link.classList.contains("nav-btn")) placement = "navbar_join_now";
       else if (link.classList.contains("founder-pt-btn")) placement = "founder_1on1_pt";
