@@ -15,12 +15,20 @@ const F2FAnalytics = {
   getPackageMeta(packageKey) {
     const PACKAGES = window.PACKAGES || {};
     const pkg = PACKAGES[packageKey];
+    // [NEW/UPDATED] Fallback package prices matching verified brochure pricing
     const fallbackPrices = {
       hostel4: 70000,
       hostel1: 90000,
       villacozy: 121000,
       villapremium: 141000,
       resortsingle: 235000,
+      hostel15d_shared: 35000,
+      hostel15d_private: 45000,
+      hostel15d: 35000, // Alias
+      villa15d_cozy: 60500,
+      villa15d_premium: 70500,
+      villa15d: 60500, // Alias
+      resort15d: 117500,
       online3m: 9999,
       founderPt: 80000,
     };
@@ -28,6 +36,7 @@ const F2FAnalytics = {
       id: packageKey || "unknown",
       name: pkg ? pkg.label : packageKey || "Fat2Fit Program",
       value: pkg ? pkg.base : fallbackPrices[packageKey] || 0,
+      durationDays: pkg && pkg.durationDays ? pkg.durationDays : 30,
       category: pkg && pkg.type === "online" ? "Online Pass" : "Shimla Retreat Camp",
     };
   },
@@ -84,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const programData = {
     "hostel-program": {
       packageKey: "hostel4",
-      title: "Fat2Fit Hostel — Dual Sharing & Private Room",
+      title: "Fat2Fit Hostel — 30-Day & 15-Day Camp",
       images: [
         { src: "assets/hostel-1.jpeg" },
         { src: "assets/hostel-2.jpeg" },
@@ -101,29 +110,41 @@ document.addEventListener("DOMContentLoaded", () => {
           challenges, and physical transformation.
         </p>
 
-        <h3>Room &amp; Batch</h3>
+        <h3>Who It's For &amp; Why Choose It</h3>
         <ul>
-          <li>Dual sharing room, attached washroom</li>
-          <li>Private room option also available</li>
+          <li><strong>Who It's For:</strong> Budget-conscious individuals, groups, solo travelers seeking an economical experience.</li>
+          <li><strong>Why Choose It:</strong> A structured fitness boot camp in Shimla at an accessible price.</li>
+          <li><strong>Stay:</strong> Double Sharing or Single Private room options.</li>
+          <li><strong>Experience:</strong> Budget-focused, camp-oriented.</li>
+          <li><strong>Training:</strong> Large Group Sessions (Group Size: 20 People).</li>
+          <li><strong>Coaching:</strong> All workouts led by Junior Coaches.</li>
+        </ul>
+
+        <h3>Room, Duration &amp; Batch</h3>
+        <ul>
+          <li>Available in <strong>30-Day</strong> and <strong>15-Day</strong> camp durations</li>
+          <li>Double Sharing room or Single Private room options with attached washroom</li>
           <li>Group size: 20 people, large group training sessions</li>
           <li>Joining dates: 1st &amp; 15th of every month, all year round</li>
         </ul>
 
         <h3>What The Program Includes</h3>
         <ul>
-          <li>Stay (dual sharing or private room)</li>
-          <li>Large group training, led by our Junior Coaches</li>
-          <li>Healthy wholesome meals included</li>
-          <li>Wi-Fi available</li>
-          <li>Attached washroom</li>
-          <li>Supervision and accountability, 24/7</li>
+          <li>Stay (Double Sharing or Single Private room)</li>
+          <li>Large group training: Boxing, Lifting, Resistance Training</li>
+          <li>Healthy, wholesome, balanced meals</li>
+          <li>Wi-Fi available &amp; attached washroom</li>
+          <li>24/7 supervision and accountability</li>
         </ul>
 
-        <h3>Investment</h3>
+        <h3>Investment (+18% GST Extra)</h3>
         <div class="modal-price-box">
-          <p><strong>30 Days &middot; Dual Sharing:</strong> <span>₹70,000</span></p>
-          <p><strong>30 Days &middot; Private Room:</strong> <span>₹90,000</span></p>
-          <small>Per person &middot; Attached washroom &middot; +18% GST extra</small>
+          <p><strong>30 Days &middot; Dual Sharing:</strong> <span>₹70,000</span> <small>(+18% GST = ₹82,600 · 50% Advance)</small></p>
+          <p><strong>30 Days &middot; Private Room:</strong> <span>₹90,000</span> <small>(+18% GST = ₹1,06,200 · 50% Advance)</small></p>
+          <hr style="border: 0; border-top: 1px dashed rgba(255,255,255,0.25); margin: 8px 0;" />
+          <p><strong>15 Days &middot; Double Sharing:</strong> <span>₹35,000</span> <small>(Final incl. 18% GST: <strong>₹41,300 Full Payment</strong>)</small></p>
+          <p><strong>15 Days &middot; Single Private Room:</strong> <span>₹45,000</span> <small>(Final incl. 18% GST: <strong>₹53,100 Full Payment</strong>)</small></p>
+          <small>Per person &middot; Attached washroom &middot; 15 Days: Full payment &middot; 30 Days: 50% advance</small>
         </div>
 
         <h3>Rules &amp; Discipline</h3>
@@ -136,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     "villa-program": {
       packageKey: "villacozy",
-      title: "Fat2Fit Villa — Cozy Private Room & Premium Villa Room",
+      title: "Fat2Fit Villa — 30-Day & 15-Day Camp",
       images: [
         { src: "assets/vila/img1.jpeg" },
         { src: "assets/vila/img2.jpeg" },
@@ -157,56 +178,50 @@ document.addEventListener("DOMContentLoaded", () => {
           results alongside real comfort.
         </p>
 
-        <h3>Choose Your Room Category</h3>
-        <p>
-          Both categories offer the same villa, programme, training and meals.
-          The only difference is the room you stay in — its size and whether it
-          comes with a view.
-        </p>
+        <h3>Who It's For &amp; Why Choose It</h3>
+        <ul>
+          <li><strong>Who It's For:</strong> Executives, professionals, busy couples, or friends prioritizing significant results and comfort.</li>
+          <li><strong>Why Choose It:</strong> Achieve optimal physical outcomes and intensive training without compromising on living quality.</li>
+          <li><strong>Stay:</strong> Private Room in a Premium Villa, with a cozy room option.</li>
+          <li><strong>Experience:</strong> Independent living, elevated comfort.</li>
+          <li><strong>Training:</strong> Semi-Private Sessions (Group Size: 10 People).</li>
+          <li><strong>Coaching:</strong> Sessions led by Head Coach (Program Designer).</li>
+        </ul>
+
+        <h3>Choose Your Room &amp; Duration</h3>
         <ul>
           <li>
-            <strong>Cozy Private Room (₹1,21,000):</strong> A compact private
-            room without a view. A practical and comfortable choice for guests
-            who spend most of their day in training and want privacy at a more
-            accessible price.
+            <strong>Cozy Private Room:</strong> A compact private room without a view. Practical and comfortable for guests who spend most of their day in training and want privacy at an accessible price.
           </li>
           <li>
-            <strong>Premium Villa Room (₹1,41,000):</strong> A private room
-            with a scenic view. Suited to guests who prefer a more relaxing,
-            immersive setting for rest and recovery between sessions.
+            <strong>Premium Villa Room:</strong> A private room with a scenic view. Suited to guests who prefer a more relaxing, immersive setting for rest and recovery between sessions.
           </li>
         </ul>
 
-        <h3>Room &amp; Batch</h3>
-        <ul>
-          <li>Private room in the villa — Cozy (compact, no view) or Premium (with view)</li>
-          <li>Group size: 10 people, semi-private training sessions</li>
-          <li>Training led directly by our Head Coach (Program Designer)</li>
-          <li>Joining dates: 1st &amp; 15th of every month, all year round</li>
-        </ul>
-
-        <h3>What The Program Includes (Both Room Categories)</h3>
+        <h3>What The Program Includes</h3>
         <ul>
           <li>Independent living in an upscale, private villa room</li>
-          <li>Semi-private training &amp; personalized coaching</li>
-          <li>Curated healthy meals</li>
-          <li>Advanced amenities &amp; high-speed Wi-Fi</li>
-          <li>Attached washroom</li>
+          <li>Semi-private training: Walks, Rehab, Boxing sessions, Lifting, Resistance, Functional, Compound movement training, Theraband training, German drills</li>
+          <li>Curated healthy meals &amp; advanced amenities</li>
+          <li>Attached washroom &amp; high-speed Wi-Fi</li>
           <li>24/7 supervision &amp; accountability</li>
         </ul>
 
-        <h3>Investment</h3>
+        <h3>Investment (+18% GST Extra)</h3>
         <div class="modal-price-box">
-          <p><strong>30 Days &middot; Cozy Private Room (compact, no view):</strong> <span>₹1,21,000</span></p>
-          <p><strong>30 Days &middot; Premium Villa Room (with view):</strong> <span>₹1,41,000</span></p>
-          <small>Per person &middot; Attached washroom &middot; +18% GST extra</small>
+          <p><strong>30 Days &middot; Cozy Private Room:</strong> <span>₹1,21,000</span> <small>(+18% GST = ₹1,42,780 · 50% Advance)</small></p>
+          <p><strong>30 Days &middot; Premium Villa Room:</strong> <span>₹1,41,000</span> <small>(+18% GST = ₹1,66,380 · 50% Advance)</small></p>
+          <hr style="border: 0; border-top: 1px dashed rgba(255,255,255,0.25); margin: 8px 0;" />
+          <p><strong>15 Days &middot; Cozy Private Room:</strong> <span>₹60,500</span> <small>(Final incl. 18% GST: <strong>₹71,390 Full Payment</strong>)</small></p>
+          <p><strong>15 Days &middot; Premium Villa Room:</strong> <span>₹70,500</span> <small>(Final incl. 18% GST: <strong>₹83,190 Full Payment</strong>)</small></p>
+          <small>Per person &middot; Attached washroom &middot; 15 Days: Full payment &middot; 30 Days: 50% advance</small>
         </div>
       `,
     },
 
     "resort-program": {
       packageKey: "resortsingle",
-      title: "Fat2Fit Resorts — Individual Resort Cottage",
+      title: "Fat2Fit Resorts — 30-Day & 15-Day Camp",
       images: [
         { src: "assets/premium-main.jpeg" },
         { src: "assets/premiumbamboo.jpeg" },
@@ -224,28 +239,39 @@ document.addEventListener("DOMContentLoaded", () => {
           expert fitness.
         </p>
 
-        <h3>Room &amp; Batch</h3>
+        <h3>Who It's For &amp; Why Choose It</h3>
         <ul>
+          <li><strong>Who It's For:</strong> High Net Worth Individuals (HNIs), luxury seekers, and those demanding an ultra-premium experience.</li>
+          <li><strong>Why Choose It:</strong> Immerse yourself in total luxury and exclusive services. Live in an expansive resort-style setting with personalized training.</li>
+          <li><strong>Stay:</strong> Individual Luxury Resort Cottage.</li>
+          <li><strong>Experience:</strong> Luxury, total comfort, scenic tranquility.</li>
+          <li><strong>Training:</strong> Precise, Small-Group Sessions (Group Size: 7 People).</li>
+          <li><strong>Coaching:</strong> Led directly by Head Coach (Program Designer).</li>
+        </ul>
+
+        <h3>Room, Duration &amp; Batch</h3>
+        <ul>
+          <li>Available in <strong>30-Day</strong> and <strong>15-Day</strong> camp durations</li>
           <li>Individual luxury resort cottage, attached washroom</li>
           <li>Group size: 7 people, precise small-group training sessions</li>
-          <li>Training led directly by our Head Coach (Program Designer)</li>
           <li>Joining dates: 1st &amp; 15th of every month, all year round</li>
         </ul>
 
         <h3>What The Program Includes</h3>
         <ul>
           <li>Stay in a scenic, luxury individual resort cottage</li>
-          <li>Precise, small-group training with intensive personal attention</li>
+          <li>Precise, small-group training: Walks, Rehab, Boxing sessions, Lifting, Resistance, Functional, Compound movement training, Theraband training</li>
           <li>Sophisticated, specially curated dining</li>
           <li>Personalized concierge &amp; luxury facilities</li>
-          <li>Attached washroom</li>
-          <li>24/7 supervision &amp; accountability</li>
+          <li>Attached washroom &amp; 24/7 supervision</li>
         </ul>
 
-        <h3>Investment</h3>
+        <h3>Investment (+18% GST Extra)</h3>
         <div class="modal-price-box">
-          <p><strong>30 Days &middot; Individual Resort Cottage:</strong> <span>₹2,35,000</span></p>
-          <small>Per person &middot; Attached washroom &middot; +18% GST extra</small>
+          <p><strong>30 Days &middot; Individual Resort Cottage:</strong> <span>₹2,35,000</span> <small>(+18% GST = ₹2,77,300 · 50% Advance)</small></p>
+          <hr style="border: 0; border-top: 1px dashed rgba(255,255,255,0.25); margin: 8px 0;" />
+          <p><strong>15 Days &middot; Individual Resort Cottage:</strong> <span>₹1,17,500</span> <small>(Final incl. 18% GST: <strong>₹1,38,650 Full Payment</strong>)</small></p>
+          <small>Per person &middot; Attached washroom &middot; 15 Days: Full payment &middot; 30 Days: 50% advance</small>
         </div>
       `,
     },
@@ -453,7 +479,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: true }
   );
 
-  // 6. Section Visibility Tracking (Know which sections users stop and read)
+  // 6. Section Visibility Tracking
   if ("IntersectionObserver" in window) {
     const seenSections = new Set();
     const sectionObserver = new IntersectionObserver(
@@ -477,6 +503,34 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     );
   }
+
+  /* =========================================================
+     [NEW] INTERACTIVE ROUTINE DURATION SWITCHER (15-DAY VS 30-DAY)
+     Toggles between the new 15-day camp routine and 30-day camp routine
+     ========================================================= */
+  const routineTabBtns = document.querySelectorAll(".routine-tab-btn");
+  const routineGrid15d = document.getElementById("routineGrid15d");
+  const routineGrid30d = document.getElementById("routineGrid30d");
+
+  if (routineTabBtns.length > 0 && routineGrid15d && routineGrid30d) {
+    routineTabBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = btn.getAttribute("data-routine-target");
+        routineTabBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        if (target === "15d") {
+          routineGrid15d.style.display = "grid";
+          routineGrid30d.style.display = "none";
+          F2FAnalytics.trackCustom("ViewRoutineDuration", { duration: "15-day" });
+        } else {
+          routineGrid15d.style.display = "none";
+          routineGrid30d.style.display = "grid";
+          F2FAnalytics.trackCustom("ViewRoutineDuration", { duration: "30-day" });
+        }
+      });
+    });
+  }
 });
 
 /* =========================================================
@@ -496,6 +550,14 @@ const MONTH_NAMES = [
   "July", "August", "September", "October", "November", "December",
 ];
 
+/**
+ * Strictly populates only upcoming selectable months (never any past month).
+ * Since batches start on the 1st and 15th:
+ * - If today's date is >= 15th, both batches for the current month have already started/passed,
+ *   so we start the dropdown from NEXT month (startOffset = 1).
+ * - If today's date is < 15th, the 15th batch of the current month is still upcoming,
+ *   so the current month is included (startOffset = 0) and the 1st is marked "Passed".
+ */
 function populateMonths(selectEl) {
   if (!selectEl) return;
   selectEl.innerHTML = "";
@@ -504,10 +566,7 @@ function populateMonths(selectEl) {
   const currentMonth = now.getMonth();
   const currentDate = now.getDate();
 
-  // If today is past the 15th of the current month, both batch dates (1st and 15th)
-  // have already passed. We start the selectable months from next month.
-  // If today is on or before the 15th, the current month still has the 15th batch.
-  const startOffset = currentDate > 15 ? 1 : 0;
+  const startOffset = currentDate >= 15 ? 1 : 0;
 
   for (let i = startOffset; i < startOffset + 12; i++) {
     const d = new Date(currentYear, currentMonth + i, 1);
@@ -592,8 +651,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const batch1Date = new Date(year, monthIndex, 1);
     const batch15Date = new Date(year, monthIndex, 15);
 
-    const isBatch1Past = batch1Date < todayStart;
-    const isBatch15Past = batch15Date < todayStart;
+    // Strictly require future batch dates (today or earlier is considered passed)
+    const isBatch1Past = batch1Date <= todayStart;
+    const isBatch15Past = batch15Date <= todayStart;
 
     // 1st of Month
     day1Input.disabled = isBatch1Past;
@@ -671,6 +731,7 @@ document.addEventListener("DOMContentLoaded", () => {
       F2FAnalytics.trackCustom("SelectProgramOption", {
         content_name: meta.name,
         content_ids: [meta.id],
+        duration_days: meta.durationDays,
         value: meta.value,
         currency: "INR",
       });
@@ -705,6 +766,7 @@ document.addEventListener("DOMContentLoaded", () => {
       content_ids: [meta.id],
       content_type: "product",
       content_category: meta.category,
+      duration_days: meta.durationDays,
       value: meta.value,
       currency: "INR",
     });
@@ -764,20 +826,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const pkg = PACKAGES[packageKey];
+    if (!pkg) {
+      formError.textContent = "Please select a valid program package.";
+      return;
+    }
+
     let month = "Immediate Activation";
     let day = "Immediate";
 
     if (pkg.type === "camp") {
-      month = monthSelect ? monthSelect.value : "Upcoming Batch";
+      month = monthSelect ? monthSelect.value : "";
       const dayInput = form.querySelector('input[name="regDay"]:checked');
-      if (!dayInput || dayInput.disabled) {
+      if (!month || !dayInput || dayInput.disabled) {
         formError.textContent =
           "The selected batch date has already passed. Please select an upcoming batch date.";
         return;
       }
       day = dayInput.value;
 
-      // Ensure joining date is strictly in the future
+      // Strictly block any previous month or past batch date
       const parts = month.split(" ");
       if (parts.length >= 2) {
         const mIdx = MONTH_NAMES.indexOf(parts[0]);
@@ -787,9 +854,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const now = new Date();
         const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-        if (batchDate < todayStart) {
+        if (mIdx < 0 || isNaN(yr) || batchDate <= todayStart) {
           formError.textContent =
-            "The selected batch date has already passed. Please select an upcoming joining batch.";
+            "Bookings for past dates or previous months are not allowed. Please select an upcoming joining batch.";
           return;
         }
       }
@@ -800,14 +867,29 @@ document.addEventListener("DOMContentLoaded", () => {
     let advance = pkg.base;
     let balance = 0;
 
-    if (pkg.isFullPayment) {
-      // Online Pass: One-time all-inclusive fee
+    // [NEW/UPDATED] Pricing & Advance Payment Separation:
+    // 1. Online Transformation Pass (online3m): One-time all-inclusive fee (No separate GST, 100% full payment)
+    // 2. 15-Day Camp Programs (hostel15d, villa15d, resort15d): Base + 18% GST, Requires 100% FULL PAYMENT
+    //    upon registration (Advance = Total, Remaining Balance Due on Arrival = 0).
+    // 3. 30-Day Camp Programs (hostel4, hostel1, villacozy, villapremium, resortsingle): Base + 18% GST,
+    //    Requires 50% Advance now, with the remaining 50% balance due upon arrival at Shimla retreat.
+    const isOnlineProgram = pkg.type === "online";
+    const is15DayCamp = pkg.durationDays === 15 || (pkg.type === "camp" && pkg.isFullPayment);
+
+    if (isOnlineProgram) {
+      // 3-Month Online Pass: Full one-time payment
       gst = 0;
       total = pkg.base;
       advance = pkg.base;
       balance = 0;
+    } else if (is15DayCamp) {
+      // 15-Day In-Person Camp: 100% Full Payment upon registration
+      gst = Math.round(pkg.base * 0.18);
+      total = pkg.finalPrice ? pkg.finalPrice : pkg.base + gst;
+      advance = total; // 100% full payment required for 15-day camp
+      balance = 0;     // Balance due on arrival is ₹0
     } else {
-      // 30-Day In-Person Camp: 50% advance + 18% GST
+      // 30-Day In-Person Camp: 50% advance now & 50% on arrival
       gst = Math.round(pkg.base * 0.18);
       total = pkg.base + gst;
       advance = Math.round(total / 2);
@@ -827,7 +909,8 @@ document.addEventListener("DOMContentLoaded", () => {
       additional,
       packageKey,
       packageLabel: pkg.label,
-      isOnline: !!pkg.isFullPayment,
+      durationDays: pkg.durationDays || (isOnlineProgram ? 90 : 30),
+      isOnline: isOnlineProgram,
       month,
       day,
       base: pkg.base,
@@ -844,6 +927,7 @@ document.addEventListener("DOMContentLoaded", () => {
       content_name: currentBooking.packageLabel,
       content_category: currentBooking.goal,
       content_ids: [currentBooking.packageKey],
+      duration_days: currentBooking.durationDays,
       city: currentBooking.place,
       value: currentBooking.total,
       currency: "INR",
@@ -856,6 +940,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function renderSummary(b) {
+    const durationText = b.isOnline ? "3 Months (90 Days)" : `${b.durationDays} Days In-Person Camp`;
+    // Label depending on package:
+    // Online Pass -> Full Payment
+    // 15-Day Camp -> 100% Full Payment
+    // 30-Day Camp -> 50% Advance
+    const payNowLabel = b.isOnline
+      ? "Full Payment"
+      : b.durationDays === 15
+      ? "100% Full Payment"
+      : "50% Advance";
+
     regSummary.innerHTML = `
       <div class="reg-summary-section">
         <h5>Customer &amp; Health Profile</h5>
@@ -870,16 +965,21 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="reg-summary-section">
         <h5>Selected Program &amp; Batch</h5>
         <div class="reg-summary-row"><span>Program</span><span><strong>${escapeHtml(b.packageLabel)}</strong></span></div>
-        <div class="reg-summary-row"><span>Schedule</span><span>${b.isOnline ? "Starts Immediately after onboarding" : `${escapeHtml(b.month)}, ${b.day === "1" ? "1st" : "15th"}`}</span></div>
+        <div class="reg-summary-row"><span>Duration</span><span>${escapeHtml(durationText)}</span></div>
+        <div class="reg-summary-row"><span>Joining Batch</span><span>${b.isOnline ? "Starts Immediately after onboarding" : `${escapeHtml(b.month)}, ${b.day === "1" ? "1st" : "15th"}`}</span></div>
       </div>
 
       <div class="reg-summary-section">
-        <h5>Payment Details</h5>
-        <div class="reg-summary-row"><span>${b.isOnline ? "Plan Fee" : "Base Program Fee"}</span><span>${formatINR(b.base)}</span></div>
-        ${b.gst > 0 ? `<div class="reg-summary-row"><span>GST (18%)</span><span>${formatINR(b.gst)}</span></div>` : ""}
-        <div class="reg-summary-row reg-total"><span>Total Payable</span><span>${formatINR(b.total)}</span></div>
-        <div class="reg-summary-row reg-advance"><span>Pay Now (${b.isOnline ? "Full Payment" : "50% Advance"})</span><span>${formatINR(b.advance)}</span></div>
-        ${b.balance > 0 ? `<div class="reg-summary-row"><span>Balance Due on Arrival</span><span>${formatINR(b.balance)}</span></div>` : ""}
+        <h5>Payment Details (GST Breakdown)</h5>
+        <div class="reg-summary-row"><span>${b.isOnline ? "Plan Fee" : `Base Camp Fee (${b.durationDays} Days)`}</span><span>${formatINR(b.base)}</span></div>
+        ${b.gst > 0 ? `<div class="reg-summary-row"><span>GST (18%)</span><span>+ ${formatINR(b.gst)}</span></div>` : ""}
+        <div class="reg-summary-row reg-total"><span>Total Payable (Incl. GST)</span><span>${formatINR(b.total)}</span></div>
+        <div class="reg-summary-row reg-advance"><span>Pay Now (${payNowLabel})</span><span>${formatINR(b.advance)}</span></div>
+        ${
+          b.balance > 0
+            ? `<div class="reg-summary-row"><span>Remaining 50% Due on Arrival</span><span>${formatINR(b.balance)}</span></div>`
+            : `<div class="reg-summary-row" style="color:#2c7a3f;"><span>Balance Due on Arrival</span><span><strong>₹0 (Paid in Full)</strong></span></div>`
+        }
       </div>
     `;
   }
@@ -897,6 +997,7 @@ document.addEventListener("DOMContentLoaded", () => {
       content_name: currentBooking.packageLabel,
       content_ids: [currentBooking.packageKey],
       content_type: "product",
+      duration_days: currentBooking.durationDays,
       num_items: 1,
       value: currentBooking.advance,
       currency: "INR",
@@ -937,7 +1038,12 @@ document.addEventListener("DOMContentLoaded", () => {
         amount: orderData.amount,
         currency: "INR",
         name: "Fat2Fit",
-        description: currentBooking.isOnline ? "3-Month Online Pass" : "Advance Booking Payment",
+        // [NEW/UPDATED] 15-Day Camp is 100% Full Payment; 30-Day Camp is 50% Advance
+        description: currentBooking.isOnline
+          ? "3-Month Online Pass (Full Payment)"
+          : currentBooking.durationDays === 15
+          ? "15-Day Camp Full Payment (100%)"
+          : "30-Day Camp 50% Advance Payment",
         order_id: orderData.order_id,
         prefill: {
           name: currentBooking.name,
@@ -991,6 +1097,7 @@ document.addEventListener("DOMContentLoaded", () => {
               content_name: currentBooking.packageLabel,
               content_ids: [currentBooking.packageKey],
               content_type: "product",
+              duration_days: currentBooking.durationDays,
               value: currentBooking.advance,
               total_contract_value: currentBooking.total,
               currency: "INR",
@@ -1061,6 +1168,7 @@ document.addEventListener("DOMContentLoaded", () => {
       year: "numeric",
     });
     const paid = !!b.txnId;
+    const durationText = b.isOnline ? "3 Months (Online)" : `${b.durationDays} Days Camp`;
 
     invoiceContent.innerHTML = `
       <div class="invoice-topbar"></div>
@@ -1094,6 +1202,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="invoice-box">
           <h4>Program Details</h4>
           <div class="invoice-row"><span>Program</span><span><strong>${escapeHtml(b.packageLabel)}</strong></span></div>
+          <div class="invoice-row"><span>Duration</span><span>${escapeHtml(durationText)}</span></div>
           <div class="invoice-row"><span>Schedule</span><span>${b.isOnline ? "Starts Immediately upon onboarding" : `${escapeHtml(b.month)}, ${b.day === "1" ? "1st" : "15th"}`}</span></div>
           <div class="invoice-row"><span>Location</span><span>${b.isOnline ? "Online (Home Transformation)" : "Retreat Camp, Shimla (Pincode 171219)"}</span></div>
           <div class="invoice-row"><span>Payment Status</span><span><strong>${paid ? "PAID" : "PENDING"}</strong></span></div>
@@ -1106,11 +1215,12 @@ document.addEventListener("DOMContentLoaded", () => {
             <tr><th>Description</th><th>Amount (₹)</th></tr>
           </thead>
           <tbody>
-            <tr><td>${b.isOnline ? "3-Month Online Pass Fee" : "Program Fee (per person)"}</td><td>${formatINR(b.base)}</td></tr>
+            <tr><td>${b.isOnline ? "3-Month Online Pass Fee" : `Program Fee (${b.durationDays} Days, per person)`}</td><td>${formatINR(b.base)}</td></tr>
             ${b.gst > 0 ? `<tr><td>GST (18%)</td><td>${formatINR(b.gst)}</td></tr>` : ""}
-            <tr class="invoice-table-total"><td>Total Amount</td><td>${formatINR(b.total)}</td></tr>
-            <tr><td>Amount Paid</td><td>${formatINR(b.advance)}</td></tr>
-            ${b.balance > 0 ? `<tr><td>Remaining Balance Due on Arrival</td><td>${formatINR(b.balance)}</td></tr>` : ""}
+            <tr class="invoice-table-total"><td>Total Amount (Incl. GST)</td><td>${formatINR(b.total)}</td></tr>
+            <!-- [NEW/UPDATED] Distinguish 100% Full Payment (15-day camp & online) vs 50% Advance (30-day camp) -->
+            <tr><td>${b.balance === 0 ? "Amount Paid (100% Full Payment)" : "Advance Paid Now (50%)"}</td><td>${formatINR(b.advance)}</td></tr>
+            ${b.balance > 0 ? `<tr><td>Remaining Balance Due on Arrival (50%)</td><td>${formatINR(b.balance)}</td></tr>` : `<tr><td>Remaining Balance Due on Arrival</td><td>₹0 (Paid in Full)</td></tr>`}
             ${b.txnId ? `<tr><td>Razorpay Transaction ID</td><td>${escapeHtml(b.txnId)}</td></tr>` : ""}
           </tbody>
         </table>
@@ -1150,6 +1260,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function buildWhatsappCopyLink(b) {
+    // [NEW/UPDATED] Clarify Full Payment vs 50% Advance in WhatsApp copy text
     const lines = [
       "New Fat2Fit Registration & Payment",
       `Booking ID: ${b.bookingId}`,
@@ -1164,12 +1275,15 @@ document.addEventListener("DOMContentLoaded", () => {
       `Allergies/Diet: ${b.allergies}`,
       `Medical History: ${b.additional}`,
       `Program: ${b.packageLabel}`,
+      `Duration: ${b.isOnline ? "3 Months Online" : `${b.durationDays} Days Camp`}`,
       `Schedule: ${b.isOnline ? "Immediate Online Start" : `${b.month}, ${b.day === "1" ? "1st" : "15th"}`}`,
+      `Base Fee: ${formatINR(b.base)}`,
+      b.gst > 0 ? `GST (18%): ${formatINR(b.gst)}` : null,
       `Total Fee: ${formatINR(b.total)}`,
-      `Amount Paid: ${formatINR(b.advance)}`,
-      b.balance > 0 ? `Balance Due on Arrival: ${formatINR(b.balance)}` : "Balance: ₹0 (Paid in Full)",
+      `Amount Paid: ${formatINR(b.advance)} (${b.balance === 0 ? "100% Full Payment" : "50% Advance"})`,
+      b.balance > 0 ? `Balance Due on Arrival: ${formatINR(b.balance)}` : "Balance Due on Arrival: ₹0 (Paid in Full)",
       b.txnId ? `Razorpay Payment ID: ${b.txnId}` : "Razorpay Payment ID: (Pending)",
-    ];
+    ].filter(Boolean);
     const text = encodeURIComponent(lines.join("\n"));
     regWhatsappCopyBtn.href = `https://wa.me/${BUSINESS_WHATSAPP}?text=${text}`;
   }

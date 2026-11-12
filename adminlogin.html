@@ -1108,10 +1108,12 @@
           <!-- Program Filter -->
           <div>
             <select id="filterProgram" class="filter-input">
-              <option value="">All Programs</option>
-              <option value="Hostel">Fat2Fit Hostel</option>
-              <option value="Villa">Fat2Fit Villa</option>
-              <option value="Resort">Fat2Fit Resort</option>
+              <option value="">All Programs &amp; Durations</option>
+              <option value="15 Days">15-Day Camps (All)</option>
+              <option value="30 Days">30-Day Camps (All)</option>
+              <option value="Hostel">Fat2Fit Hostel (All)</option>
+              <option value="Villa">Fat2Fit Villa (All)</option>
+              <option value="Resort">Fat2Fit Resort (All)</option>
               <option value="Online">Online 3-Month Pass</option>
             </select>
           </div>
@@ -1561,7 +1563,7 @@
           </td>
           <td>
             <span class="badge ${isOnline ? 'badge-online' : 'badge-camp'}">
-              ${isOnline ? '💻 ONLINE' : '🏕️ RETREAT'}
+              ${isOnline ? '💻 ONLINE' : (b.package || '').includes('15 Days') ? '🏕️ 15-DAY CAMP' : '🏕️ 30-DAY CAMP'}
             </span>
             <div style="font-weight: 600; margin-top: 3px; font-size: 13px;">${escapeHtml(b.package || "Custom Program")}</div>
             <div class="date-sub">Batch: <strong>${escapeHtml(b.joining_date || "Immediate")}</strong></div>

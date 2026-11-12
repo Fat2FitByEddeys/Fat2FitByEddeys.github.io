@@ -1,12 +1,33 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 
-const PACKAGES: Record<string, { label: string; base: number; type?: string; isFullPayment?: boolean }> = {
-  hostel4: { label: "Fat2Fit Hostel — Dual Sharing", base: 70000, type: "camp" },
-  hostel1: { label: "Fat2Fit Hostel — Private Room", base: 90000, type: "camp" },
-  villacozy: { label: "Fat2Fit Villa — Cozy Private Room", base: 121000, type: "camp" },
-  villapremium: { label: "Fat2Fit Villa — Premium Private Room", base: 141000, type: "camp" },
-  resortsingle: { label: "Fat2Fit Resort — Individual Resort Cottage", base: 235000, type: "camp" },
-  online3m: { label: "Fat2Fit 3-Month Pass (Online Training & Diet)", base: 9999, type: "online", isFullPayment: true },
+const PACKAGES: Record<string, { label: string; base: number; durationDays?: number; type?: string; isFullPayment?: boolean }> = {
+  // 30-Day In-Person Camp Packages (Shimla)
+  hostel4: { label: "Fat2Fit Hostel — Dual Sharing (30 Days)", base: 70000, durationDays: 30, type: "camp" },
+  hostel1: { label: "Fat2Fit Hostel — Private Room (30 Days)", base: 90000, durationDays: 30, type: "camp" },
+  villacozy: { label: "Fat2Fit Villa — Cozy Private Room (30 Days)", base: 121000, durationDays: 30, type: "camp" },
+  villapremium: { label: "Fat2Fit Villa — Premium Room (30 Days)", base: 141000, durationDays: 30, type: "camp" },
+  resortsingle: { label: "Fat2Fit Resort — Individual Resort Cottage (30 Days)", base: 235000, durationDays: 30, type: "camp" },
+
+  // ------------------------------------------------------------------------
+  // [NEW/UPDATED] 15-Day In-Person Camp Packages (Shimla)
+  // NOTE: 15-Day Camp requires 100% FULL PAYMENT upon registration.
+  // 50% advance is only available for 30-Day camp packages.
+  // ------------------------------------------------------------------------
+  hostel15d_shared: { label: "Fat2Fit Hostel — Double Sharing Room (15 Days)", base: 35000, durationDays: 15, type: "camp", isFullPayment: true },
+  hostel15d_private: { label: "Fat2Fit Hostel — Single Private Room (15 Days)", base: 45000, durationDays: 15, type: "camp", isFullPayment: true },
+  hostel15d: { label: "Fat2Fit Hostel — Double Sharing Room (15 Days)", base: 35000, durationDays: 15, type: "camp", isFullPayment: true }, // Alias
+
+  villa15d_cozy: { label: "Fat2Fit Villa — Cozy Private Room (15 Days)", base: 60500, durationDays: 15, type: "camp", isFullPayment: true },
+  villa15d_premium: { label: "Fat2Fit Villa — Premium Villa Room (15 Days)", base: 70500, durationDays: 15, type: "camp", isFullPayment: true },
+  villa15d: { label: "Fat2Fit Villa — Cozy Private Room (15 Days)", base: 60500, durationDays: 15, type: "camp", isFullPayment: true }, // Alias
+
+  resort15d: { label: "Fat2Fit Resort — Individual Resort Cottage (15 Days)", base: 117500, durationDays: 15, type: "camp", isFullPayment: true },
+
+  // Online Transformation Subscription
+  online3m: { label: "Fat2Fit 3-Month Pass (Online Training & Diet)", base: 9999, durationDays: 90, type: "online", isFullPayment: true },
+
+  // 1-on-1 Add-On with Founder
+  founderPt: { label: "Personal Training with Founder (1-on-1)", base: 80000, durationDays: 30, type: "addon" },
 };
 
 const corsHeaders = {
@@ -29,11 +50,16 @@ serve(async (req) => {
     const pkg = PACKAGES[packageKey];
     let advance = pkg.base;
 
-    if (pkg.isFullPayment) {
-      // Online Pass: One-time payment in full
+    if (pkg.type === 'online') {
+      // Online Pass: One-time payment in full (no additional GST)
       advance = pkg.base;
+    } else if (pkg.durationDays === 15) {
+      // [NEW] 15-Day In-Person Camp: 100% Full Payment of (Base + 18% GST)
+      const gst = pkg.base * 0.18;
+      const total = pkg.base + gst;
+      advance = Math.round(total);
     } else {
-      // 30-Day Camp: 50% advance on (Base + 18% GST)
+      // 30-Day In-Person Camp: 50% advance on (Base + 18% GST), remaining 50% on arrival
       const gst = pkg.base * 0.18;
       const total = pkg.base + gst;
       advance = Math.round(total / 2);
