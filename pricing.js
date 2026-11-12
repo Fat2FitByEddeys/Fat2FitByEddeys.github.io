@@ -50,27 +50,77 @@
       desc: "per person / 30 days · Individual Resort Cottage · +18% GST",
     },
 
-    // 15-Day In-Person Camp Packages (Shimla)
+    // ------------------------------------------------------------------------
+    // [NEW/UPDATED] 15-Day In-Person Camp Packages (Shimla)
+    // NOTE: 15-Day Camp requires 100% FULL PAYMENT upon registration.
+    // 50% advance is only available for 30-Day camp packages.
+    // ------------------------------------------------------------------------
+    hostel15d_shared: {
+      label: "Fat2Fit Hostel — Double Sharing Room (15 Days)",
+      base: 35000,
+      finalPrice: 41300,
+      durationDays: 15,
+      type: "camp",
+      isFullPayment: true,
+      desc: "per person / 15 days · Double Sharing Room · +18% GST (Final ₹41,300 Full Payment)",
+    },
+    hostel15d_private: {
+      label: "Fat2Fit Hostel — Single Private Room (15 Days)",
+      base: 45000,
+      finalPrice: 53100,
+      durationDays: 15,
+      type: "camp",
+      isFullPayment: true,
+      desc: "per person / 15 days · Single Private Room · +18% GST (Final ₹53,100 Full Payment)",
+    },
+    // Backward-compatible alias for existing hostel15d links
     hostel15d: {
-      label: "Fat2Fit Hostel — 15 Days Camp",
-      base: 50000,
+      label: "Fat2Fit Hostel — Double Sharing Room (15 Days)",
+      base: 35000,
+      finalPrice: 41300,
       durationDays: 15,
       type: "camp",
-      desc: "per person / 15 days · Hostel Stay · +18% GST",
+      isFullPayment: true,
+      desc: "per person / 15 days · Double Sharing Room · +18% GST (Final ₹41,300 Full Payment)",
     },
+
+    villa15d_cozy: {
+      label: "Fat2Fit Villa — Cozy Private Room (15 Days)",
+      base: 60500,
+      finalPrice: 71390,
+      durationDays: 15,
+      type: "camp",
+      isFullPayment: true,
+      desc: "per person / 15 days · Cozy Private Room · +18% GST (Final ₹71,390 Full Payment)",
+    },
+    villa15d_premium: {
+      label: "Fat2Fit Villa — Premium Villa Room (15 Days)",
+      base: 70500,
+      finalPrice: 83190,
+      durationDays: 15,
+      type: "camp",
+      isFullPayment: true,
+      desc: "per person / 15 days · Private Room, Premium Villa · +18% GST (Final ₹83,190 Full Payment)",
+    },
+    // Backward-compatible alias for existing villa15d links
     villa15d: {
-      label: "Fat2Fit Villa — 15 Days Camp",
-      base: 75000,
+      label: "Fat2Fit Villa — Cozy Private Room (15 Days)",
+      base: 60500,
+      finalPrice: 71390,
       durationDays: 15,
       type: "camp",
-      desc: "per person / 15 days · Private Villa Stay · +18% GST",
+      isFullPayment: true,
+      desc: "per person / 15 days · Cozy Private Room · +18% GST (Final ₹71,390 Full Payment)",
     },
+
     resort15d: {
-      label: "Fat2Fit Resort — 15 Days Camp",
-      base: 135000,
+      label: "Fat2Fit Resort — Individual Resort Cottage (15 Days)",
+      base: 117500,
+      finalPrice: 138650,
       durationDays: 15,
       type: "camp",
-      desc: "per person / 15 days · Individual Resort Cottage · +18% GST",
+      isFullPayment: true,
+      desc: "per person / 15 days · Single Sharing Cottage · +18% GST (Final ₹1,38,650 Full Payment)",
     },
 
     // Online Transformation Subscription
@@ -118,6 +168,17 @@
       }
     });
 
+    // 1b. [NEW] Update elements with data-package-final (e.g. final price incl. 18% GST)
+    document.querySelectorAll("[data-package-final]").forEach((el) => {
+      const key = el.getAttribute("data-package-final");
+      const pkg = PACKAGES[key];
+      if (pkg && pkg.finalPrice !== undefined) {
+        const prefix = el.getAttribute("data-final-prefix") || "";
+        const suffix = el.getAttribute("data-final-suffix") || "";
+        el.textContent = prefix + formatINR(pkg.finalPrice) + suffix;
+      }
+    });
+
     // 2. Update elements with data-package-desc
     document.querySelectorAll("[data-package-desc]").forEach((el) => {
       const key = el.getAttribute("data-package-desc");
@@ -142,10 +203,13 @@
       Array.from(regPackageSelect.options).forEach((opt) => {
         const pkg = PACKAGES[opt.value];
         if (pkg) {
-          if (pkg.isFullPayment) {
+          if (pkg.type === "online") {
             opt.textContent = `${pkg.label} (${formatINR(pkg.base)} One-Time)`;
+          } else if (pkg.durationDays === 15 || (pkg.isFullPayment && pkg.type === "camp")) {
+            const finalAmt = pkg.finalPrice || Math.round(pkg.base * 1.18);
+            opt.textContent = `${pkg.label} (${formatINR(finalAmt)} Full Payment incl. GST)`;
           } else {
-            opt.textContent = `${pkg.label} (${formatINR(pkg.base)} + 18% GST)`;
+            opt.textContent = `${pkg.label} (${formatINR(pkg.base)} + 18% GST · 50% Advance)`;
           }
         }
       });

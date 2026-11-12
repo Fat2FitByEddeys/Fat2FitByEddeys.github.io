@@ -509,6 +509,51 @@ li {
   margin-bottom: 2px;
 }
 
+/* -------------------------------------------------------------
+   [NEW/UPDATED] 15-Day Camp Multi-Tier Price Box Styles
+   Displays Double/Cozy vs Single/Premium tiers with incl. GST tags
+   ------------------------------------------------------------- */
+.price-tier-15d-sub {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.price-tier-15d-sub.price-tier-alt {
+  padding-top: 12px;
+  margin-top: 12px;
+  border-top: 1px dashed rgba(224, 164, 21, 0.4);
+}
+
+.price-tier-15d-sub h3 {
+  font-size: 30px;
+  color: #f5dfa2;
+  margin-bottom: 2px;
+}
+
+.room-type-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #fabf33;
+  margin-bottom: 3px;
+}
+
+.final-price-tag {
+  font-size: 11.5px;
+  color: #cbd5e1;
+  margin-top: 2px;
+  margin-bottom: 0;
+  text-transform: none;
+  letter-spacing: 0.2px;
+}
+
+.final-price-tag strong {
+  color: #fabf33;
+  font-weight: 700;
+}
+
 .package-btn-group {
   display: flex;
   gap: 10px;
@@ -1221,6 +1266,81 @@ li {
 .routine-col-resort .routine-col-coaching {
   background: #fdf1ef;
   color: #8a1f24;
+}
+
+/* -------------------------------------------------------------
+   [NEW] Routine Duration Switcher Tabs (15-Day vs 30-Day)
+   ------------------------------------------------------------- */
+.routine-duration-switcher {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 30px auto 10px;
+  max-width: 520px;
+}
+
+.routine-tab-btn {
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: 2px solid #1a202c;
+  background: transparent;
+  color: #1a202c;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.routine-tab-btn:hover {
+  background: #eceff1;
+}
+
+.routine-tab-btn.active {
+  background: #1a202c;
+  color: #fff;
+  border-color: #1a202c;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.routine-tab-btn .badge-pill {
+  background: #e0a415;
+  color: #000;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+
+.routine-tab-btn.active .badge-pill {
+  background: #fabf33;
+}
+
+.routine-inclusions-note {
+  margin: 14px 20px 0;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border-left: 3px solid #2c7a3f;
+  border-radius: 6px;
+  font-size: 12.5px;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.routine-col-villa .routine-inclusions-note {
+  border-left-color: #e0a415;
+  background: #fffdf5;
+}
+
+.routine-col-resort .routine-inclusions-note {
+  border-left-color: #c0272d;
+  background: #fff9f9;
 }
 
 .rest-day-banner {

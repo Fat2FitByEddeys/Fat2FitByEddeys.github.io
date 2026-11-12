@@ -15,15 +15,20 @@ const F2FAnalytics = {
   getPackageMeta(packageKey) {
     const PACKAGES = window.PACKAGES || {};
     const pkg = PACKAGES[packageKey];
+    // [NEW/UPDATED] Fallback package prices matching verified brochure pricing
     const fallbackPrices = {
       hostel4: 70000,
       hostel1: 90000,
       villacozy: 121000,
       villapremium: 141000,
       resortsingle: 235000,
-      hostel15d: 50000,
-      villa15d: 75000,
-      resort15d: 135000,
+      hostel15d_shared: 35000,
+      hostel15d_private: 45000,
+      hostel15d: 35000, // Alias
+      villa15d_cozy: 60500,
+      villa15d_premium: 70500,
+      villa15d: 60500, // Alias
+      resort15d: 117500,
       online3m: 9999,
       founderPt: 80000,
     };
@@ -105,30 +110,41 @@ document.addEventListener("DOMContentLoaded", () => {
           challenges, and physical transformation.
         </p>
 
+        <h3>Who It's For &amp; Why Choose It</h3>
+        <ul>
+          <li><strong>Who It's For:</strong> Budget-conscious individuals, groups, solo travelers seeking an economical experience.</li>
+          <li><strong>Why Choose It:</strong> A structured fitness boot camp in Shimla at an accessible price.</li>
+          <li><strong>Stay:</strong> Double Sharing or Single Private room options.</li>
+          <li><strong>Experience:</strong> Budget-focused, camp-oriented.</li>
+          <li><strong>Training:</strong> Large Group Sessions (Group Size: 20 People).</li>
+          <li><strong>Coaching:</strong> All workouts led by Junior Coaches.</li>
+        </ul>
+
         <h3>Room, Duration &amp; Batch</h3>
         <ul>
           <li>Available in <strong>30-Day</strong> and <strong>15-Day</strong> camp durations</li>
-          <li>Dual sharing room or Private room option, attached washroom</li>
+          <li>Double Sharing room or Single Private room options with attached washroom</li>
           <li>Group size: 20 people, large group training sessions</li>
           <li>Joining dates: 1st &amp; 15th of every month, all year round</li>
         </ul>
 
         <h3>What The Program Includes</h3>
         <ul>
-          <li>Stay (dual sharing or private room)</li>
-          <li>Large group training, led by our Junior Coaches</li>
-          <li>Healthy wholesome meals included</li>
-          <li>Wi-Fi available</li>
-          <li>Attached washroom</li>
-          <li>Supervision and accountability, 24/7</li>
+          <li>Stay (Double Sharing or Single Private room)</li>
+          <li>Large group training: Boxing, Lifting, Resistance Training</li>
+          <li>Healthy, wholesome, balanced meals</li>
+          <li>Wi-Fi available &amp; attached washroom</li>
+          <li>24/7 supervision and accountability</li>
         </ul>
 
         <h3>Investment (+18% GST Extra)</h3>
         <div class="modal-price-box">
-          <p><strong>30 Days &middot; Dual Sharing:</strong> <span>₹70,000</span></p>
-          <p><strong>30 Days &middot; Private Room:</strong> <span>₹90,000</span></p>
-          <p><strong>15 Days &middot; Hostel Camp:</strong> <span>₹50,000</span></p>
-          <small>Per person &middot; Attached washroom &middot; +18% GST extra</small>
+          <p><strong>30 Days &middot; Dual Sharing:</strong> <span>₹70,000</span> <small>(+18% GST = ₹82,600 · 50% Advance)</small></p>
+          <p><strong>30 Days &middot; Private Room:</strong> <span>₹90,000</span> <small>(+18% GST = ₹1,06,200 · 50% Advance)</small></p>
+          <hr style="border: 0; border-top: 1px dashed rgba(255,255,255,0.25); margin: 8px 0;" />
+          <p><strong>15 Days &middot; Double Sharing:</strong> <span>₹35,000</span> <small>(Final incl. 18% GST: <strong>₹41,300 Full Payment</strong>)</small></p>
+          <p><strong>15 Days &middot; Single Private Room:</strong> <span>₹45,000</span> <small>(Final incl. 18% GST: <strong>₹53,100 Full Payment</strong>)</small></p>
+          <small>Per person &middot; Attached washroom &middot; 15 Days: Full payment &middot; 30 Days: 50% advance</small>
         </div>
 
         <h3>Rules &amp; Discipline</h3>
@@ -162,53 +178,43 @@ document.addEventListener("DOMContentLoaded", () => {
           results alongside real comfort.
         </p>
 
-        <h3>Choose Your Room &amp; Duration</h3>
-        <p>
-          All categories offer the same villa, programme, training and meals.
-          Choose between our full 30-Day transformation or a focused 15-Day reset.
-        </p>
+        <h3>Who It's For &amp; Why Choose It</h3>
         <ul>
-          <li>
-            <strong>30 Days &middot; Cozy Private Room (₹1,21,000):</strong> A compact private
-            room without a view. A practical and comfortable choice for guests
-            who spend most of their day in training and want privacy at a more
-            accessible price.
-          </li>
-          <li>
-            <strong>30 Days &middot; Premium Villa Room (₹1,41,000):</strong> A private room
-            with a scenic view. Suited to guests who prefer a more relaxing,
-            immersive setting for rest and recovery between sessions.
-          </li>
-          <li>
-            <strong>15 Days &middot; Fat2Fit Villa Camp (₹75,000):</strong> Intensive 15-day
-            villa stay with semi-private Head Coach training and curated nutrition.
-          </li>
+          <li><strong>Who It's For:</strong> Executives, professionals, busy couples, or friends prioritizing significant results and comfort.</li>
+          <li><strong>Why Choose It:</strong> Achieve optimal physical outcomes and intensive training without compromising on living quality.</li>
+          <li><strong>Stay:</strong> Private Room in a Premium Villa, with a cozy room option.</li>
+          <li><strong>Experience:</strong> Independent living, elevated comfort.</li>
+          <li><strong>Training:</strong> Semi-Private Sessions (Group Size: 10 People).</li>
+          <li><strong>Coaching:</strong> Sessions led by Head Coach (Program Designer).</li>
         </ul>
 
-        <h3>Room &amp; Batch</h3>
+        <h3>Choose Your Room &amp; Duration</h3>
         <ul>
-          <li>Private room in the villa — available for 30 Days or 15 Days</li>
-          <li>Group size: 10 people, semi-private training sessions</li>
-          <li>Training led directly by our Head Coach (Program Designer)</li>
-          <li>Joining dates: 1st &amp; 15th of every month, all year round</li>
+          <li>
+            <strong>Cozy Private Room:</strong> A compact private room without a view. Practical and comfortable for guests who spend most of their day in training and want privacy at an accessible price.
+          </li>
+          <li>
+            <strong>Premium Villa Room:</strong> A private room with a scenic view. Suited to guests who prefer a more relaxing, immersive setting for rest and recovery between sessions.
+          </li>
         </ul>
 
         <h3>What The Program Includes</h3>
         <ul>
           <li>Independent living in an upscale, private villa room</li>
-          <li>Semi-private training &amp; personalized coaching</li>
-          <li>Curated healthy meals</li>
-          <li>Advanced amenities &amp; high-speed Wi-Fi</li>
-          <li>Attached washroom</li>
+          <li>Semi-private training: Walks, Rehab, Boxing sessions, Lifting, Resistance, Functional, Compound movement training, Theraband training, German drills</li>
+          <li>Curated healthy meals &amp; advanced amenities</li>
+          <li>Attached washroom &amp; high-speed Wi-Fi</li>
           <li>24/7 supervision &amp; accountability</li>
         </ul>
 
         <h3>Investment (+18% GST Extra)</h3>
         <div class="modal-price-box">
-          <p><strong>30 Days &middot; Cozy Private Room (no view):</strong> <span>₹1,21,000</span></p>
-          <p><strong>30 Days &middot; Premium Villa Room (with view):</strong> <span>₹1,41,000</span></p>
-          <p><strong>15 Days &middot; Private Villa Camp:</strong> <span>₹75,000</span></p>
-          <small>Per person &middot; Attached washroom &middot; +18% GST extra</small>
+          <p><strong>30 Days &middot; Cozy Private Room:</strong> <span>₹1,21,000</span> <small>(+18% GST = ₹1,42,780 · 50% Advance)</small></p>
+          <p><strong>30 Days &middot; Premium Villa Room:</strong> <span>₹1,41,000</span> <small>(+18% GST = ₹1,66,380 · 50% Advance)</small></p>
+          <hr style="border: 0; border-top: 1px dashed rgba(255,255,255,0.25); margin: 8px 0;" />
+          <p><strong>15 Days &middot; Cozy Private Room:</strong> <span>₹60,500</span> <small>(Final incl. 18% GST: <strong>₹71,390 Full Payment</strong>)</small></p>
+          <p><strong>15 Days &middot; Premium Villa Room:</strong> <span>₹70,500</span> <small>(Final incl. 18% GST: <strong>₹83,190 Full Payment</strong>)</small></p>
+          <small>Per person &middot; Attached washroom &middot; 15 Days: Full payment &middot; 30 Days: 50% advance</small>
         </div>
       `,
     },
@@ -233,30 +239,39 @@ document.addEventListener("DOMContentLoaded", () => {
           expert fitness.
         </p>
 
+        <h3>Who It's For &amp; Why Choose It</h3>
+        <ul>
+          <li><strong>Who It's For:</strong> High Net Worth Individuals (HNIs), luxury seekers, and those demanding an ultra-premium experience.</li>
+          <li><strong>Why Choose It:</strong> Immerse yourself in total luxury and exclusive services. Live in an expansive resort-style setting with personalized training.</li>
+          <li><strong>Stay:</strong> Individual Luxury Resort Cottage.</li>
+          <li><strong>Experience:</strong> Luxury, total comfort, scenic tranquility.</li>
+          <li><strong>Training:</strong> Precise, Small-Group Sessions (Group Size: 7 People).</li>
+          <li><strong>Coaching:</strong> Led directly by Head Coach (Program Designer).</li>
+        </ul>
+
         <h3>Room, Duration &amp; Batch</h3>
         <ul>
           <li>Available in <strong>30-Day</strong> and <strong>15-Day</strong> camp durations</li>
           <li>Individual luxury resort cottage, attached washroom</li>
           <li>Group size: 7 people, precise small-group training sessions</li>
-          <li>Training led directly by our Head Coach (Program Designer)</li>
           <li>Joining dates: 1st &amp; 15th of every month, all year round</li>
         </ul>
 
         <h3>What The Program Includes</h3>
         <ul>
           <li>Stay in a scenic, luxury individual resort cottage</li>
-          <li>Precise, small-group training with intensive personal attention</li>
+          <li>Precise, small-group training: Walks, Rehab, Boxing sessions, Lifting, Resistance, Functional, Compound movement training, Theraband training</li>
           <li>Sophisticated, specially curated dining</li>
           <li>Personalized concierge &amp; luxury facilities</li>
-          <li>Attached washroom</li>
-          <li>24/7 supervision &amp; accountability</li>
+          <li>Attached washroom &amp; 24/7 supervision</li>
         </ul>
 
         <h3>Investment (+18% GST Extra)</h3>
         <div class="modal-price-box">
-          <p><strong>30 Days &middot; Individual Resort Cottage:</strong> <span>₹2,35,000</span></p>
-          <p><strong>15 Days &middot; Individual Resort Cottage:</strong> <span>₹1,35,000</span></p>
-          <small>Per person &middot; Attached washroom &middot; +18% GST extra</small>
+          <p><strong>30 Days &middot; Individual Resort Cottage:</strong> <span>₹2,35,000</span> <small>(+18% GST = ₹2,77,300 · 50% Advance)</small></p>
+          <hr style="border: 0; border-top: 1px dashed rgba(255,255,255,0.25); margin: 8px 0;" />
+          <p><strong>15 Days &middot; Individual Resort Cottage:</strong> <span>₹1,17,500</span> <small>(Final incl. 18% GST: <strong>₹1,38,650 Full Payment</strong>)</small></p>
+          <small>Per person &middot; Attached washroom &middot; 15 Days: Full payment &middot; 30 Days: 50% advance</small>
         </div>
       `,
     },
@@ -487,6 +502,34 @@ document.addEventListener("DOMContentLoaded", () => {
         if (el) sectionObserver.observe(el);
       }
     );
+  }
+
+  /* =========================================================
+     [NEW] INTERACTIVE ROUTINE DURATION SWITCHER (15-DAY VS 30-DAY)
+     Toggles between the new 15-day camp routine and 30-day camp routine
+     ========================================================= */
+  const routineTabBtns = document.querySelectorAll(".routine-tab-btn");
+  const routineGrid15d = document.getElementById("routineGrid15d");
+  const routineGrid30d = document.getElementById("routineGrid30d");
+
+  if (routineTabBtns.length > 0 && routineGrid15d && routineGrid30d) {
+    routineTabBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = btn.getAttribute("data-routine-target");
+        routineTabBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        if (target === "15d") {
+          routineGrid15d.style.display = "grid";
+          routineGrid30d.style.display = "none";
+          F2FAnalytics.trackCustom("ViewRoutineDuration", { duration: "15-day" });
+        } else {
+          routineGrid15d.style.display = "none";
+          routineGrid30d.style.display = "grid";
+          F2FAnalytics.trackCustom("ViewRoutineDuration", { duration: "30-day" });
+        }
+      });
+    });
   }
 });
 
@@ -824,14 +867,29 @@ document.addEventListener("DOMContentLoaded", () => {
     let advance = pkg.base;
     let balance = 0;
 
-    if (pkg.isFullPayment) {
-      // Online Pass: One-time all-inclusive fee
+    // [NEW/UPDATED] Pricing & Advance Payment Separation:
+    // 1. Online Transformation Pass (online3m): One-time all-inclusive fee (No separate GST, 100% full payment)
+    // 2. 15-Day Camp Programs (hostel15d, villa15d, resort15d): Base + 18% GST, Requires 100% FULL PAYMENT
+    //    upon registration (Advance = Total, Remaining Balance Due on Arrival = 0).
+    // 3. 30-Day Camp Programs (hostel4, hostel1, villacozy, villapremium, resortsingle): Base + 18% GST,
+    //    Requires 50% Advance now, with the remaining 50% balance due upon arrival at Shimla retreat.
+    const isOnlineProgram = pkg.type === "online";
+    const is15DayCamp = pkg.durationDays === 15 || (pkg.type === "camp" && pkg.isFullPayment);
+
+    if (isOnlineProgram) {
+      // 3-Month Online Pass: Full one-time payment
       gst = 0;
       total = pkg.base;
       advance = pkg.base;
       balance = 0;
+    } else if (is15DayCamp) {
+      // 15-Day In-Person Camp: 100% Full Payment upon registration
+      gst = Math.round(pkg.base * 0.18);
+      total = pkg.finalPrice ? pkg.finalPrice : pkg.base + gst;
+      advance = total; // 100% full payment required for 15-day camp
+      balance = 0;     // Balance due on arrival is ₹0
     } else {
-      // In-Person Camp (both 30-Day & 15-Day): Base + 18% GST, 50% advance now & 50% on arrival
+      // 30-Day In-Person Camp: 50% advance now & 50% on arrival
       gst = Math.round(pkg.base * 0.18);
       total = pkg.base + gst;
       advance = Math.round(total / 2);
@@ -851,8 +909,8 @@ document.addEventListener("DOMContentLoaded", () => {
       additional,
       packageKey,
       packageLabel: pkg.label,
-      durationDays: pkg.durationDays || (pkg.isFullPayment ? 90 : 30),
-      isOnline: !!pkg.isFullPayment,
+      durationDays: pkg.durationDays || (isOnlineProgram ? 90 : 30),
+      isOnline: isOnlineProgram,
       month,
       day,
       base: pkg.base,
@@ -883,6 +941,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderSummary(b) {
     const durationText = b.isOnline ? "3 Months (90 Days)" : `${b.durationDays} Days In-Person Camp`;
+    // Label depending on package:
+    // Online Pass -> Full Payment
+    // 15-Day Camp -> 100% Full Payment
+    // 30-Day Camp -> 50% Advance
+    const payNowLabel = b.isOnline
+      ? "Full Payment"
+      : b.durationDays === 15
+      ? "100% Full Payment"
+      : "50% Advance";
+
     regSummary.innerHTML = `
       <div class="reg-summary-section">
         <h5>Customer &amp; Health Profile</h5>
@@ -906,8 +974,12 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="reg-summary-row"><span>${b.isOnline ? "Plan Fee" : `Base Camp Fee (${b.durationDays} Days)`}</span><span>${formatINR(b.base)}</span></div>
         ${b.gst > 0 ? `<div class="reg-summary-row"><span>GST (18%)</span><span>+ ${formatINR(b.gst)}</span></div>` : ""}
         <div class="reg-summary-row reg-total"><span>Total Payable (Incl. GST)</span><span>${formatINR(b.total)}</span></div>
-        <div class="reg-summary-row reg-advance"><span>Pay Now (${b.isOnline ? "Full Payment" : "50% Advance"})</span><span>${formatINR(b.advance)}</span></div>
-        ${b.balance > 0 ? `<div class="reg-summary-row"><span>Remaining 50% Due on Arrival</span><span>${formatINR(b.balance)}</span></div>` : ""}
+        <div class="reg-summary-row reg-advance"><span>Pay Now (${payNowLabel})</span><span>${formatINR(b.advance)}</span></div>
+        ${
+          b.balance > 0
+            ? `<div class="reg-summary-row"><span>Remaining 50% Due on Arrival</span><span>${formatINR(b.balance)}</span></div>`
+            : `<div class="reg-summary-row" style="color:#2c7a3f;"><span>Balance Due on Arrival</span><span><strong>₹0 (Paid in Full)</strong></span></div>`
+        }
       </div>
     `;
   }
@@ -966,9 +1038,12 @@ document.addEventListener("DOMContentLoaded", () => {
         amount: orderData.amount,
         currency: "INR",
         name: "Fat2Fit",
+        // [NEW/UPDATED] 15-Day Camp is 100% Full Payment; 30-Day Camp is 50% Advance
         description: currentBooking.isOnline
-          ? "3-Month Online Pass"
-          : `${currentBooking.durationDays}-Day Camp Advance Payment`,
+          ? "3-Month Online Pass (Full Payment)"
+          : currentBooking.durationDays === 15
+          ? "15-Day Camp Full Payment (100%)"
+          : "30-Day Camp 50% Advance Payment",
         order_id: orderData.order_id,
         prefill: {
           name: currentBooking.name,
@@ -1143,8 +1218,9 @@ document.addEventListener("DOMContentLoaded", () => {
             <tr><td>${b.isOnline ? "3-Month Online Pass Fee" : `Program Fee (${b.durationDays} Days, per person)`}</td><td>${formatINR(b.base)}</td></tr>
             ${b.gst > 0 ? `<tr><td>GST (18%)</td><td>${formatINR(b.gst)}</td></tr>` : ""}
             <tr class="invoice-table-total"><td>Total Amount (Incl. GST)</td><td>${formatINR(b.total)}</td></tr>
-            <tr><td>Amount Paid Now</td><td>${formatINR(b.advance)}</td></tr>
-            ${b.balance > 0 ? `<tr><td>Remaining Balance Due on Arrival</td><td>${formatINR(b.balance)}</td></tr>` : ""}
+            <!-- [NEW/UPDATED] Distinguish 100% Full Payment (15-day camp & online) vs 50% Advance (30-day camp) -->
+            <tr><td>${b.balance === 0 ? "Amount Paid (100% Full Payment)" : "Advance Paid Now (50%)"}</td><td>${formatINR(b.advance)}</td></tr>
+            ${b.balance > 0 ? `<tr><td>Remaining Balance Due on Arrival (50%)</td><td>${formatINR(b.balance)}</td></tr>` : `<tr><td>Remaining Balance Due on Arrival</td><td>₹0 (Paid in Full)</td></tr>`}
             ${b.txnId ? `<tr><td>Razorpay Transaction ID</td><td>${escapeHtml(b.txnId)}</td></tr>` : ""}
           </tbody>
         </table>
@@ -1184,6 +1260,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function buildWhatsappCopyLink(b) {
+    // [NEW/UPDATED] Clarify Full Payment vs 50% Advance in WhatsApp copy text
     const lines = [
       "New Fat2Fit Registration & Payment",
       `Booking ID: ${b.bookingId}`,
@@ -1203,8 +1280,8 @@ document.addEventListener("DOMContentLoaded", () => {
       `Base Fee: ${formatINR(b.base)}`,
       b.gst > 0 ? `GST (18%): ${formatINR(b.gst)}` : null,
       `Total Fee: ${formatINR(b.total)}`,
-      `Amount Paid: ${formatINR(b.advance)}`,
-      b.balance > 0 ? `Balance Due on Arrival: ${formatINR(b.balance)}` : "Balance: ₹0 (Paid in Full)",
+      `Amount Paid: ${formatINR(b.advance)} (${b.balance === 0 ? "100% Full Payment" : "50% Advance"})`,
+      b.balance > 0 ? `Balance Due on Arrival: ${formatINR(b.balance)}` : "Balance Due on Arrival: ₹0 (Paid in Full)",
       b.txnId ? `Razorpay Payment ID: ${b.txnId}` : "Razorpay Payment ID: (Pending)",
     ].filter(Boolean);
     const text = encodeURIComponent(lines.join("\n"));

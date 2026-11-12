@@ -253,15 +253,25 @@ serve(async (req) => {
         cy -= rowHeight;
       };
 
+      // [NEW/UPDATED] Invoice line items: Handle Online Pass, 15-Day Camps (100% Full Payment), and 30-Day Camps (50% Advance)
       if (bookingData.isOnline) {
         drawFeeRow('Fat2Fit 3-Month Online Pass Fee', bookingData.base);
         drawFeeRow('Total Amount', bookingData.total, true);
         drawFeeRow('Amount Paid (Full Payment)', bookingData.advance);
         drawFeeRow('Remaining Balance', 0);
-      } else {
-        drawFeeRow('Program Base Fee (per person)', bookingData.base);
+      } else if (bookingData.durationDays === 15 || bookingData.balance === 0) {
+        // 15-Day Camp Program: 100% Full Payment upon registration
+        drawFeeRow('15-Day Camp Base Fee (per person)', bookingData.base);
         drawFeeRow('GST (18%)', bookingData.gst);
-        drawFeeRow('Total Program Fee', bookingData.total, true);
+        drawFeeRow('Total Program Fee (incl. 18% GST)', bookingData.total, true);
+        drawFeeRow('Amount Paid (100% Full Payment)', bookingData.advance);
+        drawFeeRow('Remaining Balance Due on Arrival', 0);
+      } else {
+        // 30-Day Camp Program: 50% Advance now, 50% on arrival
+        const durLabel = bookingData.durationDays ? `${bookingData.durationDays}-Day ` : '30-Day ';
+        drawFeeRow(`${durLabel}Program Base Fee (per person)`, bookingData.base);
+        drawFeeRow('GST (18%)', bookingData.gst);
+        drawFeeRow('Total Program Fee (incl. 18% GST)', bookingData.total, true);
         drawFeeRow('Advance Paid (50%)', bookingData.advance);
         drawFeeRow('Remaining Balance (due on arrival)', bookingData.balance);
       }
@@ -326,8 +336,8 @@ serve(async (req) => {
               <p style="margin: 4px 0;"><strong>Goal:</strong> ${bookingData.goal || 'Weight Loss'}</p>
               <p style="margin: 4px 0;"><strong>Allergies / Diet:</strong> ${bookingData.allergies || 'None declared'}</p>
               <p style="margin: 4px 0;"><strong>Batch:</strong> ${bookingData.isOnline ? 'Immediate Online Access' : `${bookingData.month} ${bookingData.day}`}</p>
-              <p style="margin: 4px 0;"><strong>Amount Paid:</strong> ₹${bookingData.advance}</p>
-              ${bookingData.balance > 0 ? `<p style="margin: 4px 0;"><strong>Remaining Balance:</strong> ₹${bookingData.balance} (due upon arrival)</p>` : ''}
+              <p style="margin: 4px 0;"><strong>Amount Paid:</strong> ₹${bookingData.advance} ${bookingData.balance > 0 ? '(50% Advance)' : '(100% Full Payment)'}</p>
+              ${bookingData.balance > 0 ? `<p style="margin: 4px 0;"><strong>Remaining Balance:</strong> ₹${bookingData.balance} (due upon arrival)</p>` : '<p style="margin: 4px 0;"><strong>Remaining Balance:</strong> ₹0 (Paid in Full)</p>'}
             </div>
 
             <p>Your official tax invoice & receipt is attached to this email as a PDF.</p>
@@ -357,8 +367,8 @@ serve(async (req) => {
               <li><strong>Medical / Health Notes:</strong> ${bookingData.additional}</li>
               <li><strong>Package:</strong> ${bookingData.packageLabel}</li>
               <li><strong>Batch / Schedule:</strong> ${bookingData.month} ${bookingData.day}</li>
-              <li><strong>Amount Paid:</strong> ₹${bookingData.advance}</li>
-              <li><strong>Balance Due:</strong> ₹${bookingData.balance}</li>
+              <li><strong>Amount Paid:</strong> ₹${bookingData.advance} ${bookingData.balance > 0 ? '(50% Advance)' : '(100% Full Payment)'}</li>
+              <li><strong>Balance Due:</strong> ${bookingData.balance > 0 ? `₹${bookingData.balance} (due upon arrival)` : '₹0 (Paid in Full)'}</li>
               <li><strong>Razorpay Payment ID:</strong> ${razorpay_payment_id}</li>
             </ul>
             <p>The client's generated invoice is attached.</p>
