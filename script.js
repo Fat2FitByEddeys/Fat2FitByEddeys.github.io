@@ -981,6 +981,11 @@ document.addEventListener("DOMContentLoaded", () => {
             : `<div class="reg-summary-row" style="color:#2c7a3f;"><span>Balance Due on Arrival</span><span><strong>₹0 (Paid in Full)</strong></span></div>`
         }
       </div>
+
+      <!-- [NEW] Terms & Cancellation Policy Acknowledgment in Step 2 Review -->
+      <div class="reg-summary-section" style="font-size: 12px; color: #475569; background: #f8fafc; border-left: 3px solid #2c7a3f; padding: 10px 14px; border-radius: 6px; margin-top: 14px; line-height: 1.5;">
+        <span>&#10003; <strong>Retreat Rules &amp; Strict Refund Policy Acknowledged:</strong> Includes quiet hours [10 PM &ndash; 6 AM], professional boundaries, zero drug/alcohol tolerance, and strict cancellation timeline (&lt;30 days non-refundable).</span>
+      </div>
     `;
   }
 
