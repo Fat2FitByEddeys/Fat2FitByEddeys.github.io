@@ -1784,6 +1784,273 @@ li {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+/* =========================================================
+   [NEW/UPDATED] STRUCTURED TERMS, RULES & REFUND POLICIES
+   Based on official "Fat2Fit By Eddey's" Him Valley Retreat
+   4-Pillar Guidelines, Code of Conduct & Strict Refund Timeline
+   ========================================================= */
+
+.terms-section {
+  padding: 80px 20px 90px;
+  background: #fbfbfb;
+  border-top: 1px solid #f1f5f9;
+}
+
+.terms-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.terms-subtitle {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 14px;
+  color: #2c7a3f;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: -6px;
+  margin-bottom: 14px;
+}
+
+.terms-lead {
+  max-width: 840px;
+  margin: 0 auto 35px;
+  font-size: 15px;
+  color: #475569;
+  line-height: 1.7;
+}
+
+.terms-overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 25px;
+  margin-bottom: 45px;
+}
+
+.policy-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-bottom: 35px;
+}
+
+.policy-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 30px 26px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.policy-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+.policy-card-highlight {
+  border-color: #fca5a5;
+  background: #fffafa;
+}
+
+.policy-card-header {
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.policy-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #e0f2fe;
+  color: #0369a1;
+  margin-bottom: 8px;
+}
+
+.policy-badge-red {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.policy-card-header h3 {
+  font-family: "Anton", sans-serif;
+  font-size: 23px;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.policy-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.policy-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #334155;
+  padding-bottom: 13px;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.policy-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.policy-list li strong {
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Refund Visual Timeline */
+.refund-timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 12px;
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  border-radius: 12px;
+}
+
+.refund-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 5px;
+}
+
+.refund-stage-badge {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 9px;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
+}
+
+.refund-stage-badge.green {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.refund-stage-badge.yellow {
+  background: #fef9c3;
+  color: #a16207;
+}
+
+.refund-stage-badge.red {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.refund-stage-text strong {
+  font-size: 12px;
+  color: #0f172a;
+  display: block;
+}
+
+.refund-stage-text span {
+  font-size: 10.5px;
+  color: #64748b;
+  line-height: 1.3;
+}
+
+/* Participant Agreement Box */
+.participant-agreement-box {
+  background: #0f172a;
+  color: #ffffff;
+  border-radius: 14px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin-top: 20px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+}
+
+.agreement-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #22c55e;
+  color: #000;
+  font-weight: 900;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.agreement-content h4 {
+  font-family: "Anton", sans-serif;
+  font-size: 20px;
+  margin: 0 0 6px;
+  color: #fabf33;
+  letter-spacing: 0.5px;
+}
+
+.agreement-content p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #cbd5e1;
+}
+
+.reg-terms-notice {
+  font-size: 12px;
+  color: #64748b;
+  text-align: center;
+  margin: 12px 0 16px;
+  line-height: 1.5;
+}
+
+.reg-terms-notice a {
+  color: #2c7a3f;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .policy-pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .refund-timeline {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .terms-overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .participant-agreement-box {
+    flex-direction: column;
+    padding: 20px;
+  }
+}
+
 /* ===== TRANSFORMATIONS ===== */
 
 .people {
