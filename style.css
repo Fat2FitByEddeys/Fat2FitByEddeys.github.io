@@ -1081,12 +1081,39 @@ li {
 .pass-steps-container {
   max-width: 1100px;
   margin: 80px auto 0;
+  text-align: center;
 }
 
-.steps-intro {
-  color: #aaa;
+/* [FIX] Process Headline: Ensure bright, crisp white visibility on #000 dark background */
+.pass-steps-container .section-header-center {
+  margin-bottom: 45px;
+}
+
+.pass-steps-container .section-header-center h2,
+.online-pass-section .section-header-center h2 {
+  color: #ffffff !important;
+  font-family: "Anton", sans-serif;
+  font-size: 54px;
+  letter-spacing: 2px;
+  line-height: 1.15;
+  text-transform: uppercase;
+  margin: 10px 0 14px;
+}
+
+.pass-steps-container .section-header-center .mini {
+  color: #4bd67b;
+  letter-spacing: 3px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.pass-steps-container .steps-intro {
+  color: #cbd5e1;
   font-size: 16px;
-  margin-top: 8px;
+  line-height: 1.6;
+  max-width: 680px;
+  margin: 0 auto;
 }
 
 .pass-steps-grid {
@@ -2772,6 +2799,13 @@ li {
 
   .section-header-center h2 {
     font-size: 38px;
+  }
+
+  /* Responsive Process Headline in 3-Month Pass Section */
+  .pass-steps-container .section-header-center h2,
+  .online-pass-section .section-header-center h2 {
+    font-size: 34px !important;
+    letter-spacing: 1px;
   }
 
   .location-hero {
