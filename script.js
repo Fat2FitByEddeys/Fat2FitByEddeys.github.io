@@ -496,7 +496,7 @@ document.addEventListener("DOMContentLoaded", () => {
       { threshold: 0.35 }
     );
 
-    ["programs", "founder-pt", "online-pass", "routine", "location", "testimonials", "coach", "about"].forEach(
+    ["programs", "founder-pt", "online-pass", "routine", "location", "terms", "testimonials", "coach", "about"].forEach(
       (id) => {
         const el = document.getElementById(id);
         if (el) sectionObserver.observe(el);
